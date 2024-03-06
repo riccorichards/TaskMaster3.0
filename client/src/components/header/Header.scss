@@ -1,0 +1,43 @@
+@use "../../utils/sass/v.scss";
+
+header {
+  height: 10vh;
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: v.$intro_title;
+    border-radius: 0 10px 0 10px;
+    box-shadow: 0 0 10px #ffffff30;
+    color: #fff;
+    padding: 5px;
+
+    svg {
+      font-size: 24px;
+    }
+  }
+
+  button {
+    padding: 10px;
+    border: none;
+    box-shadow: 0 0 10px v.$example;
+    font-family: v.$intro_title;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.intro-wrapper {
+  background-size: 10px 10px;
+  background-image: radial-gradient(circle, #51946f 20%, transparent 10%);
+  background-position: 0 0, 10px 10px;
+  height: 100vh;
+  display: flex;
+  gap: 25px;
+}
+.intro-wrapper .intro-title {
+  flex: 1;
+  font-family: "Patua One", serif;
+  -webkit-backdrop-filter: blur(2.5px);
+          backdrop-filter: blur(2.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.intro-wrapper .intro-title h1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 85px;
+  text-shadow: 0 0 10px #1e6c82;
+}
+.intro-wrapper .intro-title p {
+  color: #5f402d;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.intro-wrapper .intro-title button {
+  padding: 15px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "Patua One", serif;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px #8b847d;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.intro-wrapper .intro-title button:active {
+  transform: scale(0.95);
+}
+.intro-wrapper .product-showcases {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro-wrapper .product-showcases .product-wrapper {
+  width: 400px;
+  height: 400px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #6c6885;
+}
+.intro-wrapper .product-showcases .product-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}

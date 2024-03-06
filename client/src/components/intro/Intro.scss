@@ -1,0 +1,94 @@
+@use "../../utils/sass/v.scss";
+
+.intro-wrapper {
+  position: relative;
+  background-size: 10px 10px;
+  background-image: radial-gradient(circle, #51946f 20%, transparent 10%);
+  background-position: 0 0, 10px 10px;
+  height: 100vh;
+  display: flex;
+  gap: 25px;
+
+  .intro-title {
+    flex: 1;
+    font-family: v.$intro_title;
+    backdrop-filter: blur(2.5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+
+    h1 {
+      display: flex;
+      flex-direction: column;
+      font-size: 85px;
+      text-shadow: 0 0 10px v.$nice_blue;
+    }
+
+    p {
+      color: v.$gray;
+      font-family: v.$font;
+    }
+
+    button {
+      padding: 15px;
+      width: fit-content;
+      font-family: v.$intro_title;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 10px v.$light_grey;
+      letter-spacing: 1px;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .product-showcases {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .product-wrapper {
+      width: 400px;
+      height: 400px;
+      border-radius: 5px;
+      box-shadow: 10px 10px 10px v.$example;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    .products {
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+
+      .product {
+        display: flex;
+        backdrop-filter: blur(2.5px);
+        align-items: flex-start;
+        gap: 5px;
+        padding: 5px;
+        box-shadow: 10px 10px 100px v.$example;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+        svg {
+          font-size: 24px;
+        }
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
