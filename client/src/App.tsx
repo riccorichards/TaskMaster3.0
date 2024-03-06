@@ -1,9 +1,9 @@
-import Intro from "./components/intro/Intro";
+import Langding from "./pages/Langding/Langding";
 
 function App() {
   return (
     <div>
-      <Intro />
+      <Langding />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+@use "../../utils/sass/v.scss";
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+
+  .offers {
+    display: flex;
+    flex-direction: column;
+    gap: 160px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px;
+  }
+}

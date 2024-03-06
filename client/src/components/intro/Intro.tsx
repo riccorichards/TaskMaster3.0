@@ -1,10 +1,12 @@
 import inpto_products from "../../const";
+import Utils from "../../utils/Utils";
 import Header from "../header/Header";
 import "./Intro.scss";
 
 const Intro = () => {
   const test =
     "https://i.pinimg.com/564x/92/f0/d2/92f0d2e8dd34c9ffe422bcfc826c3d81.jpg";
+
   return (
     <div className="intro-wrapper">
       <Header />
@@ -56,6 +58,7 @@ const Intro = () => {
                     flexDirection: "column",
                     gap: "5px",
                   }}
+                  onClick={() => Utils.scrollToComponent(product.title)}
                 >
                   <h3>{product.title}</h3>
                   <p>{product.desc}</p>
