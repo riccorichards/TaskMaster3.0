@@ -1,3 +1,4 @@
+import Footer from "../../components/footer/Footer";
 import Intro from "../../components/intro/Intro";
 import OurOffers from "../../components/ourOffers/OurOffers";
 import { offers_pres } from "../../const";
@@ -12,6 +13,7 @@ const Langding = () => {
           <OurOffers offer={offer} index={i} />
         ))}
       </main>
+      <Footer />
     </div>
   );
 };

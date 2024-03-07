@@ -1,0 +1,93 @@
+@use "../../utils/sass/v.scss";
+
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  background-color: v.$nice_blue;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px v.$example;
+
+  span {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .introduce-myself {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #fff;
+
+    .author-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: v.$example 1px solid;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      text-decoration: underline;
+      font-family: v.$intro_title;
+      cursor: pointer;
+      color: v.$orange;
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .networks {
+      color: v.$light_grey;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+
+      .network-item {
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+      }
+
+      .network-item:hover {
+        color: aliceblue;
+      }
+    }
+  }
+
+  .my-projects {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    color: #fff;
+    border-left: 2px solid;
+
+    .new {
+      background-color: v.$orange;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}
