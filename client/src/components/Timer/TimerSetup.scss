@@ -1,0 +1,162 @@
+@use "../../utils/sass/v.scss";
+
+.timer-wrapper {
+  margin-top: 10vh;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .timer {
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 0 1.5px v.$example;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    .timer-setup {
+      flex: 1;
+      height: 100%;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .define-task {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        position: relative;
+        color: #fff;
+        text-shadow: 0 0 1.5px black;
+
+        .define-task-btn {
+          width: fit-content;
+          border: none;
+          font-family: v.$intro_title;
+          padding: 5px;
+          background-color: v.$orange;
+          color: #fff;
+          border-radius: 3.5px;
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+
+        .define-task-box {
+          position: absolute;
+          background-color: #fff;
+          padding: 5px;
+          top: 105%;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px v.$example;
+
+          .task-picker {
+            background-color: v.$nice_blue;
+            padding: 5px;
+            border-radius: 2.5px;
+            cursor: pointer;
+            transition: all 0.25s ease-in-out;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+
+      .defined-task-wrapper {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .define-timer-method {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: #fff;
+        text-shadow: 0 0 1.5px black;
+
+        .timer-method-wrapper {
+          background-color: v.$nice_blue;
+          padding: 5px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.25s ease-in-out;
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
+
+      .chosen-task-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        height: 22vh;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px v.$example;
+      }
+
+      .run-timer-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        color: v.$nice_blue;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        box-shadow: 5px 5px 15px v.$example;
+        cursor: pointer;
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+
+    .timer-output-wrapper {
+      flex: 2;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .timer-output {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px v.$example;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .timer-output-item {
+          font-size: 150px;
+          color: #fff;
+          background-color: v.$orange;
+          border-radius: 5px;
+        }
+        .timer-dots {
+          font-size: 150px;
+          color: v.$nice_blue;
+        }
+      }
+    }
+  }
+}

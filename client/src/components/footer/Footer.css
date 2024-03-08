@@ -1,0 +1,80 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 80%;
+  margin: auto;
+  align-items: center;
+  background-color: #1e6c82;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #6c6885;
+}
+footer span {
+  color: #fff;
+  font-weight: 700;
+}
+footer .introduce-myself {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+}
+footer .introduce-myself .author-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+footer .introduce-myself .author-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: #6c6885 1px solid;
+}
+footer .introduce-myself button {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  font-family: "Patua One", serif;
+  cursor: pointer;
+  color: #f07043;
+}
+footer .introduce-myself button:active {
+  transform: scale(0.95);
+}
+footer .introduce-myself .networks {
+  color: #8b847d;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+footer .introduce-myself .networks .network-item {
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+footer .introduce-myself .networks .network-item:hover {
+  color: aliceblue;
+}
+footer .my-projects {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  color: #fff;
+  border-left: 2px solid;
+}
+footer .my-projects .new {
+  background-color: #f07043;
+  padding: 5px;
+  border-radius: 5px;
+}
+footer .my-projects ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

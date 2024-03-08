@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import inpto_products from "../../const";
 import Utils from "../../utils/Utils";
 import Header from "../header/Header";
 import "./Intro.scss";
+const test =
+  "https://i.pinimg.com/564x/92/f0/d2/92f0d2e8dd34c9ffe422bcfc826c3d81.jpg";
 
 const Intro = () => {
-  const test =
-    "https://i.pinimg.com/564x/92/f0/d2/92f0d2e8dd34c9ffe422bcfc826c3d81.jpg";
+  const navigate = useNavigate();
+
+  const navigateToAuth = () => {
+    navigate("/auth");
+  };
 
   return (
     <div className="intro-wrapper">
@@ -32,7 +38,7 @@ const Intro = () => {
             achievements through our intuitive dashboard, and embrace a life
             where every second counts towards your success.
           </p>
-          <button>Begin Your Journey</button>
+          <button onClick={navigateToAuth}>Begin Your Journey</button>
         </div>
       </div>
       <div className="product-showcases">

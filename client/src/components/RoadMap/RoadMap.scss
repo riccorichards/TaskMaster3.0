@@ -1,0 +1,102 @@
+@use "../../utils/sass/v.scss";
+
+.roadmap-wrapper {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  .roadmap {
+    width: 80%;
+    height: 90%;
+    box-shadow: 0 0 1px v.$example;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+
+    .roadmap-setup {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      input {
+        width: 80%;
+        padding: 10px;
+        border-radius: 3.5px;
+        box-shadow: 5px 5px 5px v.$example;
+        border: 1px solid v.$example;
+        font-family: v.$intro_title;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        padding: 10px;
+        font-family: v.$intro_title;
+        border: 1px solid v.$example;
+        background-color: v.$orange;
+        color: #fff;
+        border-radius: 3.5px;
+        box-shadow: 5px 5px 5px v.$example;
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .existing-workspace-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        span {
+          background-color: v.$pink;
+          padding: 5px;
+          position: relative;
+          border-radius: 3.5px;
+          color: #fff;
+          transition: all 0.25s ease-in-out;
+          cursor: pointer;
+          box-shadow: 5px 5px 5px v.$example;
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          &:hover {
+            .remove-node {
+              opacity: 1;
+            }
+            .update-node {
+              opacity: 1;
+            }
+          }
+
+          .remove-node {
+            position: absolute;
+            bottom: 65%;
+            transition: all 0.25s ease-in-out;
+            right: 0;
+            opacity: 0;
+          }
+          .update-node {
+            position: absolute;
+            bottom: 65%;
+            transition: all 0.25s ease-in-out;
+            left: 0;
+            opacity: 0;
+          }
+        }
+      }
+    }
+    .roadmap-chart {
+      flex: 2;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.single-task {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #1e6c82;
+  box-shadow: 5px 5px 10px #6c6885;
+  border-radius: 5px;
+  color: #fff;
+}
+.single-task .update-btn {
+  font-family: "Patua One", serif;
+  border: none;
+  background-color: #1e6c82;
+  padding: 5px;
+  border-radius: 3.5px;
+  color: #fff;
+  cursor: pointer;
+}
+.single-task .update-btn:active {
+  transform: scale(0.95);
+}
+.single-task .remove-btn {
+  font-family: "Patua One", serif;
+  border: none;
+  background-color: rgb(218, 54, 54);
+  padding: 5px;
+  border-radius: 3.5px;
+  color: #fff;
+  cursor: pointer;
+}
+.single-task .remove-btn:active {
+  transform: scale(0.95);
+}

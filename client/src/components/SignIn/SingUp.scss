@@ -1,0 +1,70 @@
+@use "../../utils/sass/v.scss";
+
+.signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+
+  h1 {
+    font-size: 45px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        font-family: v.$font;
+        border: 1px solid v.$nice_blue;
+        border-radius: 2.5px;
+        padding: 5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      .errors-wrapper {
+        color: red;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      padding: 5px;
+      border: v.$nice_blue 1px solid;
+      border-radius: 5px;
+      background-color: v.$nice_blue;
+      font-family: v.$intro_title;
+      color: #fff;
+      letter-spacing: 1px;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .signup-with-google {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    font-family: v.$intro_title;
+    gap: 5px;
+    box-shadow: 5px 5px 10px v.$example;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

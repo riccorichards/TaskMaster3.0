@@ -1,0 +1,55 @@
+.our-offer-wrapper {
+  display: flex;
+  border-radius: 3.5px;
+  box-shadow: 10px 10px 10px #6c6885;
+}
+.our-offer-wrapper .offer-info {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.our-offer-wrapper .offer-info span {
+  position: absolute;
+  font-size: 250px;
+  font-family: "Lilita One", sans-serif;
+  opacity: 0.3;
+}
+.our-offer-wrapper .offer-info h1 {
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 0 0 10px black;
+}
+.our-offer-wrapper .offer-info p {
+  color: #fff;
+  font-size: 24px;
+  text-shadow: 0 0 10px black;
+}
+.our-offer-wrapper .offer-info button {
+  position: absolute;
+  top: 80%;
+  left: 10px;
+  border: none;
+  background-color: transparent;
+  font-family: "Patua One", serif;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.our-offer-wrapper .offer-info button:active {
+  transform: scale(0.95);
+}
+.our-offer-wrapper .video-wrapper {
+  flex: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3.5px;
+}
+.our-offer-wrapper .video-wrapper video {
+  width: 100%;
+  height: 100%;
+  border-radius: 3.5px;
+  border: 15px solid #fff;
+}

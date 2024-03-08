@@ -1,0 +1,13 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+}
+.landing-page .offers {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 25px;
+}

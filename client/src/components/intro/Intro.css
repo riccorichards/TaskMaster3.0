@@ -1,4 +1,5 @@
 .intro-wrapper {
+  position: relative;
   background-size: 10px 10px;
   background-image: radial-gradient(circle, #51946f 20%, transparent 10%);
   background-position: 0 0, 10px 10px;
@@ -56,4 +57,28 @@
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+.intro-wrapper .product-showcases .products {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.intro-wrapper .product-showcases .products .product {
+  display: flex;
+  -webkit-backdrop-filter: blur(2.5px);
+          backdrop-filter: blur(2.5px);
+  align-items: flex-start;
+  gap: 5px;
+  padding: 5px;
+  box-shadow: 10px 10px 100px #6c6885;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.intro-wrapper .product-showcases .products .product svg {
+  font-size: 24px;
+}
+.intro-wrapper .product-showcases .products .product:hover {
+  opacity: 0.7;
 }

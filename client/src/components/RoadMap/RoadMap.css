@@ -1,0 +1,87 @@
+.roadmap-wrapper {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+.roadmap-wrapper .roadmap {
+  width: 80%;
+  height: 90%;
+  box-shadow: 0 0 1px #6c6885;
+  border-radius: 5px;
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+}
+.roadmap-wrapper .roadmap .roadmap-setup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.roadmap-wrapper .roadmap .roadmap-setup input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 3.5px;
+  box-shadow: 5px 5px 5px #6c6885;
+  border: 1px solid #6c6885;
+  font-family: "Patua One", serif;
+}
+.roadmap-wrapper .roadmap .roadmap-setup input:focus {
+  outline: none;
+}
+.roadmap-wrapper .roadmap .roadmap-setup button {
+  padding: 10px;
+  font-family: "Patua One", serif;
+  border: 1px solid #6c6885;
+  background-color: #f07043;
+  color: #fff;
+  border-radius: 3.5px;
+  box-shadow: 5px 5px 5px #6c6885;
+  cursor: pointer;
+}
+.roadmap-wrapper .roadmap .roadmap-setup button:active {
+  transform: scale(0.95);
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span {
+  background-color: #fb2985;
+  padding: 5px;
+  position: relative;
+  border-radius: 3.5px;
+  color: #fff;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #6c6885;
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span:active {
+  transform: scale(0.95);
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span:hover .remove-node {
+  opacity: 1;
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span:hover .update-node {
+  opacity: 1;
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span .remove-node {
+  position: absolute;
+  bottom: 65%;
+  transition: all 0.25s ease-in-out;
+  right: 0;
+  opacity: 0;
+}
+.roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span .update-node {
+  position: absolute;
+  bottom: 65%;
+  transition: all 0.25s ease-in-out;
+  left: 0;
+  opacity: 0;
+}
+.roadmap-wrapper .roadmap .roadmap-chart {
+  flex: 2;
+}

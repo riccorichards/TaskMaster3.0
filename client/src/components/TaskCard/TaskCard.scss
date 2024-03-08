@@ -1,0 +1,39 @@
+@use "../../utils/sass/v.scss";
+
+.single-task {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: v.$nice_blue;
+  box-shadow: 5px 5px 10px v.$example;
+  border-radius: 5px;
+  color: #fff;
+
+  .update-btn {
+    font-family: v.$intro_title;
+    border: none;
+    background-color: v.$nice_blue;
+    padding: 5px;
+    border-radius: 3.5px;
+    color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  .remove-btn {
+    font-family: v.$intro_title;
+    border: none;
+    background-color: rgb(218, 54, 54);
+    padding: 5px;
+    border-radius: 3.5px;
+    color: #fff;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}

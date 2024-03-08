@@ -1,0 +1,9 @@
+@use "../../utils/sass/v.scss";
+
+.dashboard-wrapper {
+  position: relative;
+  border: 1px solid v.$example;
+  .dashboard {
+    margin-top: 10vh;
+  }
+}

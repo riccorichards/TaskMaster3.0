@@ -1,0 +1,144 @@
+.timer-wrapper {
+  margin-top: 10vh;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timer-wrapper .timer {
+  width: 80%;
+  height: 80%;
+  box-shadow: 0 0 1.5px #6c6885;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.timer-wrapper .timer .timer-setup {
+  flex: 1;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer-wrapper .timer .timer-setup .define-task {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  color: #fff;
+  text-shadow: 0 0 1.5px black;
+}
+.timer-wrapper .timer .timer-setup .define-task .define-task-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  border: none;
+  font-family: "Patua One", serif;
+  padding: 5px;
+  background-color: #f07043;
+  color: #fff;
+  border-radius: 3.5px;
+  cursor: pointer;
+}
+.timer-wrapper .timer .timer-setup .define-task .define-task-btn:active {
+  transform: scale(0.95);
+}
+.timer-wrapper .timer .timer-setup .define-task .define-task-box {
+  position: absolute;
+  background-color: #fff;
+  padding: 5px;
+  top: 105%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #6c6885;
+}
+.timer-wrapper .timer .timer-setup .define-task .define-task-box .task-picker {
+  background-color: #1e6c82;
+  padding: 5px;
+  border-radius: 2.5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.timer-wrapper .timer .timer-setup .define-task .define-task-box .task-picker:hover {
+  opacity: 0.7;
+}
+.timer-wrapper .timer .timer-setup .defined-task-wrapper {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.timer-wrapper .timer .timer-setup .define-timer-method {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+  text-shadow: 0 0 1.5px black;
+}
+.timer-wrapper .timer .timer-setup .define-timer-method .timer-method-wrapper {
+  background-color: #1e6c82;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.timer-wrapper .timer .timer-setup .define-timer-method .timer-method-wrapper:active {
+  transform: scale(0.95);
+}
+.timer-wrapper .timer .timer-setup .chosen-task-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  height: 22vh;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #6c6885;
+}
+.timer-wrapper .timer .timer-setup .run-timer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #1e6c82;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 15px #6c6885;
+  cursor: pointer;
+}
+.timer-wrapper .timer .timer-setup .run-timer-btn:active {
+  transform: scale(0.95);
+}
+.timer-wrapper .timer .timer-output-wrapper {
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.timer-wrapper .timer .timer-output-wrapper .timer-output {
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #6c6885;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer-wrapper .timer .timer-output-wrapper .timer-output .timer-output-item {
+  font-size: 150px;
+  color: #fff;
+  background-color: #f07043;
+  border-radius: 5px;
+}
+.timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {
+  font-size: 150px;
+  color: #1e6c82;
+}
