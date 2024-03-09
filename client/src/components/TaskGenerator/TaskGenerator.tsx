@@ -14,7 +14,7 @@ const TaskGenerator = () => {
   }, [storeWorkspace]);
 
   return (
-    <section className="task-generator-wrapper">
+    <section className="task-generator-wrapper" id="Task">
       <div className="task-generator">
         <WorkSpace setStoreWorkspace={setStoreWorkspace} />
         <div className="insert-daily-task">

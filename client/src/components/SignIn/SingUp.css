@@ -1,0 +1,59 @@
+.signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+}
+.signup-wrapper h1 {
+  font-size: 45px;
+}
+.signup-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.signup-wrapper form .input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.signup-wrapper form .input-wrapper input {
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #1e6c82;
+  border-radius: 2.5px;
+  padding: 5px;
+}
+.signup-wrapper form .input-wrapper input:focus {
+  outline: none;
+}
+.signup-wrapper form .input-wrapper .errors-wrapper {
+  color: red;
+  font-size: 14px;
+}
+.signup-wrapper form button {
+  padding: 5px;
+  border: #1e6c82 1px solid;
+  border-radius: 5px;
+  background-color: #1e6c82;
+  font-family: "Patua One", serif;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.signup-wrapper form button:active {
+  transform: scale(0.95);
+}
+.signup-wrapper .signup-with-google {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  font-family: "Patua One", serif;
+  gap: 5px;
+  box-shadow: 5px 5px 10px #6c6885;
+  cursor: pointer;
+}
+.signup-wrapper .signup-with-google:active {
+  transform: scale(0.95);
+}

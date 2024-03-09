@@ -42,7 +42,7 @@ const Timer = () => {
   };
 
   return (
-    <section className="timer-wrapper">
+    <section className="timer-wrapper" id="Timer">
       <div className="timer">
         <div className="timer-setup">
           <div

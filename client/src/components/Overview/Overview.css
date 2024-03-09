@@ -1,0 +1,53 @@
+.overview-wrapper {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overview-wrapper .overview {
+  width: 80%;
+  height: 90%;
+  box-shadow: 0 0 1.5px #6c6885;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  gap: 15px;
+}
+.overview-wrapper .overview .left-side-wrapper {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.overview-wrapper .overview .left-side-wrapper .daily-result-wrapper {
+  flex: 1.5;
+  background-color: #1e6c82;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #6c6885;
+}
+.overview-wrapper .overview .left-side-wrapper .active-history-wrapper {
+  flex: 1;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #6c6885;
+  border-radius: 15px;
+}
+.overview-wrapper .overview .right-side-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.overview-wrapper .overview .right-side-wrapper .my-stats-wrapper {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #6c6885;
+}
+.overview-wrapper .overview .right-side-wrapper .top-learned-wrapper {
+  flex: 2;
+  background-color: #1e6c82;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #6c6885;
+}

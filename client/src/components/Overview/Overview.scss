@@ -1,0 +1,62 @@
+@use "../../utils/sass/v.scss";
+
+.overview-wrapper {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .overview {
+    width: 80%;
+    height: 90%;
+    box-shadow: 0 0 1.5px v.$example;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+
+    .left-side-wrapper {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .daily-result-wrapper {
+        flex: 1.5;
+        background-color: v.$nice_blue;
+        border-radius: 15px;
+        box-shadow: 0 0 10px v.$example;
+      }
+
+      .active-history-wrapper {
+        flex: 1;
+        padding: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px v.$example;
+        border-radius: 15px;
+      }
+    }
+
+    .right-side-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .my-stats-wrapper {
+        flex: 1;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 10px v.$example;
+      }
+
+      .top-learned-wrapper {
+        flex: 2;
+        background-color: v.$nice_blue;
+        border-radius: 15px;
+        box-shadow: 0 0 10px v.$example;
+      }
+    }
+  }
+}

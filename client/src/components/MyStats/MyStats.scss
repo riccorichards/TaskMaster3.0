@@ -1,0 +1,40 @@
+@use "../../utils/sass/v.scss";
+
+.my-stats {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  input {
+    padding: 3.5px;
+    border: 1px solid v.$nice_blue;
+    border-radius: 3.5px;
+    font-family: v.$font;
+  }
+
+  .submit-journey-btn {
+    border: none;
+    font-family: v.$intro_title;
+    padding: 3.5px;
+    background-color: v.$nice_blue;
+    border-radius: 3.5px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 5px;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .journey-stats {
+    .custom-chart {
+      width: 100%;
+      height: 10px;
+      border: 1px solid;
+      position: relative;
+      border-radius: 2.5px;
+    }
+  }
+}

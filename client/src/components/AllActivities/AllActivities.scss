@@ -1,0 +1,89 @@
+@use "../../utils/sass/v.scss";
+
+.all-activities-wapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .active-filter {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    button {
+      font-family: v.$intro_title;
+      border: none;
+      padding: 3.5px;
+      cursor: pointer;
+      border-radius: 2.5px;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .custom-filter-input {
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      padding: 3.5px;
+      border-radius: 2.5px;
+
+      input {
+        border: none;
+        font-family: v.$font;
+        &:focus {
+          outline: none;
+        }
+      }
+
+      svg {
+        color: v.$example;
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+  .all-acts-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+
+    .act-header-item {
+      flex: 1;
+      background-color: v.$nice_blue;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 0 5px v.$example;
+      padding: 3px 0;
+    }
+  }
+
+  .active-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 25vh;
+    overflow-y: auto;
+
+    .single-active {
+      width: 100%;
+      gap: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid;
+
+      span {
+        border-radius: 5px;
+        flex: 1;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.all-activities-wapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.all-activities-wapper .active-filter {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.all-activities-wapper .active-filter button {
+  font-family: "Patua One", serif;
+  border: none;
+  padding: 3.5px;
+  cursor: pointer;
+  border-radius: 2.5px;
+}
+.all-activities-wapper .active-filter button:active {
+  transform: scale(0.95);
+}
+.all-activities-wapper .active-filter .custom-filter-input {
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  padding: 3.5px;
+  border-radius: 2.5px;
+}
+.all-activities-wapper .active-filter .custom-filter-input input {
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.all-activities-wapper .active-filter .custom-filter-input input:focus {
+  outline: none;
+}
+.all-activities-wapper .active-filter .custom-filter-input svg {
+  color: #6c6885;
+  cursor: pointer;
+}
+.all-activities-wapper .active-filter .custom-filter-input svg:active {
+  transform: scale(0.95);
+}
+.all-activities-wapper .all-acts-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.all-activities-wapper .all-acts-header .act-header-item {
+  flex: 1;
+  background-color: #1e6c82;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #6c6885;
+  padding: 3px 0;
+}
+.all-activities-wapper .active-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 25vh;
+  overflow-y: auto;
+}
+.all-activities-wapper .active-wrapper .single-active {
+  width: 100%;
+  gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid;
+}
+.all-activities-wapper .active-wrapper .single-active span {
+  border-radius: 5px;
+  flex: 1;
+  text-align: center;
+}

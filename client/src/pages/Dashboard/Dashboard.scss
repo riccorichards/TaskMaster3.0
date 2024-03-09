@@ -5,5 +5,8 @@
   border: 1px solid v.$example;
   .dashboard {
     margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    gap: 160px;
   }
 }
