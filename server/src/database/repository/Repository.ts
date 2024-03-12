@@ -3,11 +3,103 @@ import {
   ReadNodeType,
   UpdateNodeType,
 } from "../../api/middleware/zodSchemas/NoteTreeZodSchema";
+import {
+  CreateTaskType,
+  DeleteTaskType,
+  UpdateTaskType,
+} from "../../api/middleware/zodSchemas/TaskZodSchema";
+import {
+  LoginUserType,
+  NewJourneyType,
+  RegisterUserType,
+} from "../../api/middleware/zodSchemas/UserAuthZodSchema";
 import CustomError from "../../utils/CustomError";
 import Utils from "../../utils/Utils";
 import NodeModel from "../model/NodeTree.model";
+import SessionModel from "../model/Session.model";
+import TaskModel from "../model/Task.model";
+import UserModel from "../model/User.model";
 
 class Repository {
+  async Register(input: RegisterUserType["body"]) {
+    try {
+      const newUser = await UserModel.create({
+        ...input,
+        journeyDuration: null,
+      });
+
+      if (!newUser) throw new CustomError(400, "Bad request!");
+
+      return await newUser.save();
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while creating new node " + error
+      );
+    }
+  }
+
+  async Login(input: LoginUserType["body"], userAgent: string) {
+    try {
+      const { email, password } = input;
+      const user = await UserModel.findOne({ email });
+      if (!user) throw new CustomError(404, "Wrong credentials!");
+      const validUser = user.comparePass(password);
+      if (!validUser) throw new CustomError(404, "Wrong credentials!");
+
+      const newSession = await SessionModel.create({
+        user: user._id,
+        userAgent,
+      });
+      const savedSession = await newSession.save();
+
+      return savedSession;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while creating new node " + error
+      );
+    }
+  }
+
+  async FindMe(id: string) {
+    try {
+      const profile = await UserModel.findById(id);
+      if (!profile)
+        throw new CustomError(
+          404,
+          "Profile was not found with provided ID: " + id
+        );
+
+      return profile;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while creating new node " + error
+      );
+    }
+  }
+
+  async NewJourney(id: string, input: NewJourneyType["body"]) {
+    try {
+      const profile = await UserModel.findByIdAndUpdate(id, input, {
+        new: true,
+      });
+
+      if (!profile)
+        throw new CustomError(
+          400,
+          "Profile was not found or thrown error while updating process"
+        );
+
+      return await profile.save();
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while creating new node " + error
+      );
+    }
+  }
   async CreateNode(input: CreateNodeType["body"]) {
     try {
       const newNode = await NodeModel.create(input);
@@ -161,6 +253,68 @@ class Repository {
         }
       }
     } catch (error) {}
+  }
+
+  async CreateTask(input: CreateTaskType["body"], author: string) {
+    try {
+      const task = await TaskModel.create({ ...input, author });
+
+      if (!task) throw new CustomError(400, "Bad request or invalid data");
+
+      return await task.save();
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async ReadTasks(author: string) {
+    try {
+      const tasks = await TaskModel.find({ author });
+
+      if (!tasks) throw new CustomError(400, "Bad request or invalid data");
+
+      if (tasks.length === 0) return [];
+      return tasks.reverse();
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async UpdateTask(
+    id: UpdateTaskType["params"],
+    input: UpdateTaskType["body"]
+  ) {
+    try {
+      const { taskId } = id;
+      const task = await TaskModel.findByIdAndUpdate(taskId, input, {
+        new: true,
+      });
+      if (!task) throw new CustomError(400, "Bad request or invalid data");
+      return await task.save();
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async DeleteTask(input: DeleteTaskType["params"]) {
+    try {
+      const { taskId } = input;
+      return await TaskModel.findByIdAndDelete(taskId);
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
   }
 }
 

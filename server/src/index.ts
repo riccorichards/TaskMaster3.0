@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
-import config from "./config";
+import config from "../config";
 import cookieParser from "cookie-parser";
 import connectedToDB from "./utils/connectedToDB";
 import Api from "./api/Api";

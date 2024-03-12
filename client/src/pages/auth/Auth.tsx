@@ -25,7 +25,9 @@ const Auth = () => {
             </button>
           </span>
         </div>
-        <div className="auth-form">{isSignUp ? <SingUp /> : <SignIn />}</div>
+        <div className="auth-form">
+          {isSignUp ? <SingUp setIsSignUp={setIsSignUp} /> : <SignIn />}
+        </div>
       </div>
     </div>
   );

@@ -10,6 +10,9 @@
   border-radius: 3.5px;
   font-family: "Roboto Condensed", sans-serif;
 }
+.my-stats input:focus {
+  outline: none;
+}
 .my-stats .submit-journey-btn {
   border: none;
   font-family: "Patua One", serif;
@@ -23,9 +26,22 @@
 .my-stats .submit-journey-btn:active {
   transform: scale(0.95);
 }
+.my-stats .reset-journey-btn {
+  border: none;
+  font-family: "Patua One", serif;
+  padding: 3.5px;
+  background-color: #fb2985;
+  border-radius: 3.5px;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 5px;
+}
+.my-stats .reset-journey-btn:active {
+  transform: scale(0.95);
+}
 .my-stats .journey-stats .custom-chart {
   width: 100%;
-  height: 10px;
+  height: 15px;
   border: 1px solid;
   position: relative;
   border-radius: 2.5px;

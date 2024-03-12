@@ -8,25 +8,28 @@
   border-radius: 5px;
   color: #fff;
 }
-.single-task .update-btn {
+.single-task .complete-btn {
   font-family: "Patua One", serif;
   border: none;
-  background-color: #1e6c82;
+  background-color: #093b1f;
   padding: 5px;
   border-radius: 3.5px;
   color: #fff;
   cursor: pointer;
 }
-.single-task .update-btn:active {
+.single-task .complete-btn:active {
   transform: scale(0.95);
 }
 .single-task .remove-btn {
   font-family: "Patua One", serif;
   border: none;
-  background-color: rgb(218, 54, 54);
+  background-color: rgb(250, 36, 36);
   padding: 5px;
   border-radius: 3.5px;
   color: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: flex-end;
   cursor: pointer;
 }
 .single-task .remove-btn:active {

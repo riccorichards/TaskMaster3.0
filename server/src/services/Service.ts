@@ -3,12 +3,54 @@ import {
   ReadNodeType,
   UpdateNodeType,
 } from "../api/middleware/zodSchemas/NoteTreeZodSchema";
+import {
+  CreateTaskType,
+  DeleteTaskType,
+  UpdateTaskType,
+} from "../api/middleware/zodSchemas/TaskZodSchema";
+import {
+  LoginUserType,
+  NewJourneyType,
+  RegisterUserType,
+} from "../api/middleware/zodSchemas/UserAuthZodSchema";
 import Repository from "../database/repository/Repository";
 
 class Service {
   private Repo: Repository;
   constructor() {
     this.Repo = new Repository();
+  }
+
+  async RegisterService(input: RegisterUserType["body"]) {
+    try {
+      return this.Repo.Register(input);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async LoginService(input: LoginUserType["body"], userAgent: string) {
+    try {
+      return this.Repo.Login(input, userAgent);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async FindMeService(id: string) {
+    try {
+      return this.Repo.FindMe(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async NewjourneyService(id: string, input: NewJourneyType["body"]) {
+    try {
+      return this.Repo.NewJourney(id, input);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async CreateNewNodeService(input: CreateNodeType["body"]) {
@@ -41,11 +83,46 @@ class Service {
     } catch (error) {
       throw error;
     }
-	}
-	
+  }
+
   async UpdateNodeService(input: UpdateNodeType["body"]) {
     try {
       return this.Repo.UpdateNode(input);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async CreateTaskService(input: CreateTaskType["body"], author: string) {
+    try {
+      return this.Repo.CreateTask(input, author);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async ReadTasksService(author: string) {
+    try {
+      return this.Repo.ReadTasks(author);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async UpdateTaskService(
+    taskId: UpdateTaskType["params"],
+    input: UpdateTaskType["body"]
+  ) {
+    try {
+      return this.Repo.UpdateTask(taskId, input);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async DeleteTaskService(taskId: DeleteTaskType["params"]) {
+    try {
+      return this.Repo.DeleteTask(taskId);
     } catch (error) {
       throw error;
     }

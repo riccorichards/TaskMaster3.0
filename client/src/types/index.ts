@@ -19,11 +19,18 @@ export interface SignInInput {
 }
 
 export interface TaskType {
-  id: number;
+  _id?: string;
   workspace: string;
   task: string;
+  desc: string;
   priority: string;
-  storedTime: string;
+  storedTime: number;
+  complete: boolean;
+}
+
+export interface NewJourneyType {
+  journeyDuration: string;
+  allocatedTime: number;
 }
 
 export interface NodeTreeInputType {
@@ -39,6 +46,32 @@ export interface NodeTreeType {
 export interface NodeTreeState {
   nodeTree: NodeTreeType | null;
   nodeNames: string[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface UserType {
+  username: string;
+  email: string;
+  url: string;
+  journeyDuration: string;
+  allocatedTime: number;
+}
+
+export interface SessionType {
+  user: string;
+}
+
+export interface UserState {
+  user: UserType | null;
+  session: SessionType | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface TaskState {
+  tasks: TaskType[];
+  storedTime: number;
   isLoading: boolean;
   error: string | null;
 }

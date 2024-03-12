@@ -57,10 +57,9 @@
       flex: 1;
       background-color: v.$nice_blue;
       color: #fff;
-      text-align: center;
       border-radius: 5px;
       box-shadow: 0 0 5px v.$example;
-      padding: 3px 0;
+      padding: 3px;
     }
   }
 
@@ -77,12 +76,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid;
+      padding: 5px;
+      box-shadow: 0 0 1px v.$example;
+      border-radius: 5px;
 
       span {
         border-radius: 5px;
         flex: 1;
-        text-align: center;
       }
     }
   }

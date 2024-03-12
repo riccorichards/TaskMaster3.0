@@ -4,19 +4,35 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { SignInValidation } from "../../pages/auth/signValidation";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useUserStore } from "../../store/AuthStore";
+import Loader from "../Loader/Loader";
 
 const SignIn = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<SignInInput>({
     resolver: zodResolver(SignInValidation),
   });
-
+  const { isLoading, error, login, session } = useUserStore();
+  const navigate = useNavigate();
   const onSubmit = async (values: SignInInput) => {
-    console.log(values);
+    login(values);
+    reset();
   };
+
+  useEffect(() => {
+    if (session) {
+      navigate("/dashboard");
+    }
+  }, [session, navigate]);
+
+  if (isLoading) return <Loader />;
+
   return (
     <div className="signup-wrapper">
       <h1>Sign In</h1>
@@ -45,6 +61,7 @@ const SignIn = () => {
         </div>
 
         <button type="submit">Log In</button>
+        {error && <p className="errors-wrapper">Error: {error}</p>}
       </form>
 
       <span style={{ margin: "0 auto" }}>--OR--</span>

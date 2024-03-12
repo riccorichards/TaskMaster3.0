@@ -16,49 +16,25 @@
     display: flex;
     flex-direction: column;
     gap: 35px;
+  }
 
-    .insert-daily-task {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      position: relative;
+  .store-daily-result {
+    border: none;
+    box-shadow: 0 0 10px v.$example;
+    background-color: v.$orange;
+    width: fit-content;
+    align-self: flex-end;
+    font-family: v.$intro_title;
+    padding: 5px;
+    border-radius: 3.5px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 2.5px;
 
-      .stored-workspace {
-        position: absolute;
-        top: 115%;
-        background-color: v.$orange;
-        padding: 5px;
-        border-radius: 5px;
-        color: #fff;
-      }
-
-      input {
-        width: 90%;
-        font-size: 16px;
-        font-family: v.$font;
-        padding: 5px;
-        border-radius: 5px;
-        border: none;
-        box-shadow: 0 0 5px v.$example;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      button {
-        padding: 5.5px;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 0 10px v.$example;
-        font-family: v.$intro_title;
-        cursor: pointer;
-
-        &:active {
-          transform: scale(0.95);
-        }
-      }
+    &:active {
+      transform: scale(0.95);
     }
   }
 }

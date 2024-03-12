@@ -6,6 +6,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import MapTreeChart from "./MapTreeChart";
 import { TbDatabaseExclamation } from "react-icons/tb";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { useUserStore } from "../../store/AuthStore";
 
 const RoadMap = () => {
   const [node, setNode] = useState<string>("");
@@ -21,18 +22,22 @@ const RoadMap = () => {
     insertNewNode,
     fetchEntireNodesName,
     updateNode,
+    fetchEntireNodeTree,
   } = useNodeTree();
 
+  const { user } = useUserStore();
+  useEffect(() => {
+    if (user?.username) {
+      fetchEntireNodesName(user?.username);
+      fetchEntireNodeTree(user?.username);
+    }
+  }, [fetchEntireNodesName, user?.username, fetchEntireNodeTree]);
+
+  if (!user) return null;
+  const { username } = user;
   const handleNode = (e: ChangeEvent<HTMLInputElement>) => {
     setNode(e.target.value);
   };
-
-  const username = "ricco";
-  useEffect(() => {
-    if (username) {
-      fetchEntireNodesName(username);
-    }
-  }, [fetchEntireNodesName]);
 
   const handleInsertNode = () => {
     if (node !== "") {
@@ -49,7 +54,7 @@ const RoadMap = () => {
         if (isUpdate) {
           const updatedNodeName = node.split(":")[1];
           const updatedNode = {
-            username: "ricco",
+            username: user.username,
             node: Utils.capitalized(originalNode.current.trim()),
             method: "update",
             updatedNodeName: Utils.capitalized(updatedNodeName.trim()),
@@ -61,7 +66,7 @@ const RoadMap = () => {
         }
 
         const newNode = {
-          username: "ricco",
+          username: user.username,
           node: Utils.capitalized(node.trim()),
           path: nodeNames.length > 0 && workspace ? workspace : "/",
         };

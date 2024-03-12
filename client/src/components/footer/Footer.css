@@ -38,7 +38,7 @@ footer .introduce-myself button {
   text-decoration: underline;
   font-family: "Patua One", serif;
   cursor: pointer;
-  color: #f07043;
+  color: orangered;
 }
 footer .introduce-myself button:active {
   transform: scale(0.95);
@@ -68,7 +68,7 @@ footer .my-projects {
   border-left: 2px solid;
 }
 footer .my-projects .new {
-  background-color: #f07043;
+  background-color: orangered;
   padding: 5px;
   border-radius: 5px;
 }

@@ -4,56 +4,12 @@
   gap: 15px;
 }
 .workspace-wrapper .workspace {
-  box-shadow: 1.5px 1.5px 10px #6c6885;
+  background-color: orangered;
   padding: 5px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  position: relative;
-}
-.workspace-wrapper .workspace button {
-  border: 1px solid #1e6c82;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
+  border-radius: 3.5px;
   color: #fff;
-  border-radius: 1.5px;
   cursor: pointer;
 }
-.workspace-wrapper .workspace button:active {
+.workspace-wrapper .workspace:active {
   transform: scale(0.95);
-}
-.workspace-wrapper .workspace .graphs {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 1;
-  background-color: #fff;
-  color: black;
-  display: flex;
-  padding: 5px;
-  border-radius: 5px;
-  flex-direction: column;
-  gap: 5px;
-}
-.workspace-wrapper .workspace:hover .add-task {
-  opacity: 1;
-}
-.workspace-wrapper .workspace .add-task {
-  cursor: pointer;
-  position: absolute;
-  top: 100%;
-  z-index: 1;
-  right: 0;
-  opacity: 0;
-  transition: all 0.25s ease-in-out;
-  background-color: #fff;
-  padding: 5px;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2.5px;
 }

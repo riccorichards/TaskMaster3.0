@@ -1,34 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./TaskGenerator.scss";
 import WorkSpace from "./WorkSpace/WorkSpace";
 import TasksWrapper from "../TasksWrapper/TasksWrapper";
+import { useTaskStore } from "../../store/TaskStore";
+import TaskInput from "./TaskInput/TaskInput";
 
 const TaskGenerator = () => {
   const [storeWorkspace, setStoreWorkspace] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { getTasks } = useTaskStore();
 
   useEffect(() => {
-    if (storeWorkspace && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [storeWorkspace]);
+    getTasks();
+  }, [getTasks]);
 
   return (
     <section className="task-generator-wrapper" id="Task">
       <div className="task-generator">
         <WorkSpace setStoreWorkspace={setStoreWorkspace} />
-        <div className="insert-daily-task">
-          {storeWorkspace && (
-            <div className="stored-workspace">{storeWorkspace}</div>
-          )}
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Task, description.../priority; (example) => Blockchain, this is example of blockchain/high"
-          />
-          <button>Add new task</button>
-        </div>
+        <TaskInput
+          storeWorkspace={storeWorkspace}
+          setStoreWorkspace={setStoreWorkspace}
+        />
         <TasksWrapper />
+        <button className="store-daily-result">
+          <span>Store result</span>
+        </button>
       </div>
     </section>
   );

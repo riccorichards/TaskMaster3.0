@@ -1,14 +1,17 @@
 import Echart from "echarts-for-react";
 import { useNodeTree } from "../../store/NodeTreeStore";
 import { useEffect } from "react";
+import { useUserStore } from "../../store/AuthStore";
 
 const MapTreeChart = () => {
   const { fetchEntireNodeTree, isLoading, error, nodeTree } = useNodeTree();
+  const { user } = useUserStore();
 
-  const username = "ricco";
   useEffect(() => {
-    fetchEntireNodeTree(username);
-  }, [fetchEntireNodeTree]);
+    if (user?.username) {
+      fetchEntireNodeTree(user?.username);
+    }
+  }, [fetchEntireNodeTree, user?.username]);
 
   if (isLoading)
     return (

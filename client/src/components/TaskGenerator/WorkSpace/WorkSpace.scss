@@ -6,64 +6,14 @@
   gap: 15px;
 
   .workspace {
-    box-shadow: 1.5px 1.5px 10px v.$example;
+    background-color: v.$orange;
     padding: 5px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    position: relative;
-
-    button {
-      border: 1px solid v.$nice_blue;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      color: #fff;
-      border-radius: 1.5px;
-      cursor: pointer;
-
-      &:active {
-        transform: scale(0.95);
-      }
-    }
-
-    .graphs {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 1;
-      background-color: #fff;
-      color: black;
-      display: flex;
-      padding: 5px;
-      border-radius: 5px;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    &:hover {
-      .add-task {
-        opacity: 1;
-      }
-    }
-
-    .add-task {
-      cursor: pointer;
-      position: absolute;
-      top: 100%;
-      z-index: 1;
-      right: 0;
-      opacity: 0;
-      transition: all 0.25s ease-in-out;
-      background-color: #fff;
-      padding: 5px;
-      font-size: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2.5px;
+    border-radius: 3.5px;
+    color: #fff;
+    cursor: pointer;
+    
+    &:active {
+      transform: scale(0.95);
     }
   }
 }

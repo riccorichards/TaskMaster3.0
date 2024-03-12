@@ -27,6 +27,7 @@ class Utils {
         url: `http://localhost:5000/${url}`,
         method,
         data,
+        withCredentials: true,
         responseType: "json",
       });
       return response.data;
@@ -38,6 +39,12 @@ class Utils {
     }
   }
 
+  static validPeriod(str: string) {
+    const validPeriodFormat =
+      /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    return validPeriodFormat.test(str);
+  }
+
   static capitalized(str: string) {
     const firstChar = str.charAt(0).toUpperCase();
     return firstChar + str.slice(1);
@@ -45,6 +52,16 @@ class Utils {
 
   static extractedWorkspace(nodes: NodeTreeType[]) {
     return nodes.map((node) => node.name);
+  }
+
+  static formatDuration(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.round(seconds % 60);
+
+    return [hours, minutes, remainingSeconds]
+      .map((val) => String(val).padStart(2, "0"))
+      .join(":");
   }
 }
 

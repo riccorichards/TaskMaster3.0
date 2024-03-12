@@ -5,7 +5,6 @@ import { IoMdCloseCircle } from "react-icons/io";
 const take = [
   {
     workspace: "Test A",
-    task: "this is a test version",
     complete: true,
     duratio: "03:36:06",
     priority: "high",
@@ -13,7 +12,6 @@ const take = [
   },
   {
     workspace: "Test V",
-    task: "this is a test version",
     complete: false,
     duratio: "03:36:06",
     priority: "easy",
@@ -21,7 +19,6 @@ const take = [
   },
   {
     workspace: "Test C",
-    task: "this is a test version",
     complete: true,
     duratio: "03:36:06",
     priority: "high",
@@ -29,7 +26,6 @@ const take = [
   },
   {
     workspace: "Test D",
-    task: "this is a test version fdsfdsfdsfsd fsdf sdfsd fdsf dsf",
     complete: false,
     duratio: "03:36:06",
     priority: "medium",
@@ -37,7 +33,6 @@ const take = [
   },
   {
     workspace: "Test A",
-    task: "this is a test version",
     complete: true,
     duratio: "03:36:06",
     priority: "high",
@@ -45,7 +40,6 @@ const take = [
   },
   {
     workspace: "Test V",
-    task: "this is a test version",
     complete: false,
     duratio: "03:36:06",
     priority: "easy",
@@ -53,7 +47,6 @@ const take = [
   },
   {
     workspace: "Test C",
-    task: "this is a test version",
     complete: true,
     duratio: "03:36:06",
     priority: "high",
@@ -61,7 +54,6 @@ const take = [
   },
   {
     workspace: "Test D",
-    task: "this is a test version",
     complete: false,
     duratio: "03:36:06",
     priority: "medium",
@@ -69,9 +61,6 @@ const take = [
   },
 ];
 
-const taskCutter = (str: string) => {
-  return str.length > 20 ? str.slice(0, 20) + "..." : str;
-};
 const AllActivities = () => {
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [customFilter, setCustomFilter] = useState<string>("");
@@ -132,9 +121,6 @@ const AllActivities = () => {
           <b>#Workspace</b>
         </span>
         <span className="act-header-item">
-          <b>#Task</b>
-        </span>
-        <span className="act-header-item">
           <b>#Complete</b>
         </span>
         <span className="act-header-item">
@@ -148,10 +134,9 @@ const AllActivities = () => {
         </span>
       </div>
       <div className="active-wrapper">
-        {take.map((active) => (
-          <div className="single-active">
+        {take.map((active, i) => (
+          <div className="single-active" key={i}>
             <span>{active.workspace}</span>
-            <span>{taskCutter(active.task)}</span>
             <span
               style={{
                 color: "#fff",

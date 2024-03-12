@@ -1,10 +1,21 @@
 import { FC } from "react";
 import "./TaskCard.scss";
 import { TaskType } from "../../types";
+import { useTaskStore } from "../../store/TaskStore";
+import Utils from "../../utils/Utils";
 
 const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
+  const { deleteTask } = useTaskStore();
+
+  const handleRemoveTask = (taskId: string) => {
+    deleteTask(taskId);
+  };
+
   return (
-    <div className="single-task">
+    <div
+      className="single-task"
+      style={{ opacity: task.complete ? "0.5" : "1" }}
+    >
       <h4>
         Workspace:{" "}
         <span
@@ -21,7 +32,7 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
         Task:{" "}
         <span
           style={{
-            backgroundColor: "#f07043",
+            backgroundColor: "orangered",
             padding: "3.5px",
             borderRadius: "3.5px",
           }}
@@ -38,7 +49,9 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
             borderRadius: "3.5px",
           }}
         >
-          {task.storedTime}
+          {task.storedTime === 0
+            ? "N/A"
+            : Utils.formatDuration(task.storedTime)}
         </span>
       </p>
       <p>
@@ -59,19 +72,13 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
           {task.priority}
         </span>
       </p>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-					justifyContent: "space-evenly",
-					padding: "5px",
-					backgroundColor: "#fff",
-					borderRadius:"3.5px"
-        }}
+      <button
+        className="remove-btn"
+        onClick={() => handleRemoveTask(task._id || "")}
+        disabled={task.complete}
       >
-        <button className="update-btn">Update</button>
-        <button className="remove-btn">Remove</button>
-      </div>
+        Remove
+      </button>
     </div>
   );
 };

@@ -50,10 +50,9 @@
   flex: 1;
   background-color: #1e6c82;
   color: #fff;
-  text-align: center;
   border-radius: 5px;
   box-shadow: 0 0 5px #6c6885;
-  padding: 3px 0;
+  padding: 3px;
 }
 .all-activities-wapper .active-wrapper {
   display: flex;
@@ -68,10 +67,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid;
+  padding: 5px;
+  box-shadow: 0 0 1px #6c6885;
+  border-radius: 5px;
 }
 .all-activities-wapper .active-wrapper .single-active span {
   border-radius: 5px;
   flex: 1;
-  text-align: center;
 }
