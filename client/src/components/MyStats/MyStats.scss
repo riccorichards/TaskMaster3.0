@@ -50,9 +50,9 @@
     .custom-chart {
       width: 100%;
       height: 15px;
-      border: 1px solid;
       position: relative;
       border-radius: 2.5px;
+      box-shadow: 0 0 1px v.$example;
     }
   }
 }

@@ -7,7 +7,7 @@ import {
   UpdateNodeSchema,
 } from "./middleware/zodSchemas/NoteTreeZodSchema";
 import CustomError from "../utils/CustomError";
-import { ZodError } from "zod";
+import { ZodError, string } from "zod";
 import { deserializeUser } from "./middleware/deserializedUser/deselializedUser";
 import { requestUser } from "./middleware/deserializedUser/requestUser";
 import {
@@ -288,6 +288,126 @@ const Api = (app: Application) => {
       }
     }
   );
+
+  //api endpoint for day finish (store daily tasks in the history)
+  app.post(
+    "/day-finish",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const author = res.locals.user.user;
+        const response = await service.DayFinishService(author);
+        if (response) return res.status(201).json(response.reverse());
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
+  //api endpoint for filter history
+  app.get(
+    "/filter-history",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const author = res.locals.user.user;
+
+        if (Object.keys(req.query).length === 0)
+          return res
+            .status(400)
+            .json({ error: "No filter criteria provided." });
+
+        const query = Object.entries(req.query)[0];
+        const [field, value] = query;
+
+        if (typeof field !== "string" || typeof value !== "string") {
+          return res.status(400).json({ error: "Invalid filter criteria." });
+        }
+
+        const response = await service.FilterHistoryService(
+          author,
+          field,
+          value
+        );
+        return res.status(201).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
+  //api endpoint for retrieve history
+  app.get(
+    "/day-finish",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const author = res.locals.user.user;
+        const amount =
+          typeof req.query.amount === "string" ? req.query.amount : "";
+
+        const response = await service.GetDayFinishService(author, amount);
+        return res.status(201).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
+  //api endpoint for retrieve daily result based on user's history
+  app.get(
+    "/daily-result",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const author = res.locals.user.user;
+        const response = await service.DailyResulyService(author);
+        return res.status(200).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+  app.get(
+    "/my-stats",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const userId = res.locals.user.user;
+        const response = await service.MyStatsService(userId);
+        return res.status(200).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
+  app.get(
+    "/top-workspaces",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const userId = res.locals.user.user;
+        const response = await service.TopLearnedTopicsService(userId);
+        return res.status(200).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
   // api error endpiont
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof CustomError) {

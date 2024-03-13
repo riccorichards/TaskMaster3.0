@@ -58,6 +58,12 @@ export interface UserType {
   allocatedTime: number;
 }
 
+export interface MyStatsType {
+  remainingDays: number;
+  usedTime: number;
+  perDay: number;
+}
+
 export interface SessionType {
   user: string;
 }
@@ -65,13 +71,43 @@ export interface SessionType {
 export interface UserState {
   user: UserType | null;
   session: SessionType | null;
+  myStats: MyStatsType | null;
   isLoading: boolean;
   error: string | null;
+}
+
+export interface HistoryType {
+  workspace: string;
+  task: string;
+  priority: string;
+  storedTime: number;
+  complete: boolean;
+  createdAt: string;
+}
+
+export interface DailyResultType {
+  date: string;
+  value: number;
+}
+
+export interface TopWorkspaceType {
+  workspace: string;
+  value: number;
 }
 
 export interface TaskState {
   tasks: TaskType[];
   storedTime: number;
+  history: HistoryType[];
+  dailyResult: DailyResultType[];
+  topWorkspaces: TopWorkspaceType[];
   isLoading: boolean;
   error: string | null;
+}
+
+export interface FilteredType {
+  done?: string;
+  failed?: string;
+  priority?: string;
+  workspace?: string;
 }

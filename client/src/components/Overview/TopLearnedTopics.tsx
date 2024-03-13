@@ -1,16 +1,17 @@
 import EChartsReact from "echarts-for-react";
-
-const fake = [
-  { id: 1, name: "Test A", value: 85 },
-  { id: 2, name: "Test B", value: 55 },
-  { id: 3, name: "Test C", value: 76 },
-  { id: 4, name: "Test D", value: 63 },
-  { id: 5, name: "Test E", value: 50 },
-  { id: 6, name: "Test F", value: 18 },
-  { id: 7, name: "Test J", value: 43 },
-];
+import { useTaskStore } from "../../store/TaskStore";
+import { useEffect } from "react";
+import Loader from "../Loader/Loader";
 
 const TopLearnedTopics = () => {
+  const { topWorkspaces, getTopWorkspaces } = useTaskStore();
+
+  useEffect(() => {
+    getTopWorkspaces();
+  }, [getTopWorkspaces]);
+
+  if (!topWorkspaces) return <Loader />;
+
   const option = {
     title: {
       text: "Top Learned Topics",
@@ -37,7 +38,7 @@ const TopLearnedTopics = () => {
         type: "pie",
         radius: "55%",
         center: ["50%", "50%"],
-        data: fake,
+        data: topWorkspaces,
         roseType: "radius",
         label: {
           color: "#fff",

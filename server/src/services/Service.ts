@@ -127,6 +127,54 @@ class Service {
       throw error;
     }
   }
+
+  async DayFinishService(author: string) {
+    try {
+      return this.Repo.DayFinish(author);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async GetDayFinishService(author: string, amount: string) {
+    try {
+      return this.Repo.GetDayFinish(author, amount);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async FilterHistoryService(author: string, field: string, value: string) {
+    try {
+      return this.Repo.FilterHistory(author, field, value);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async DailyResulyService(author: string) {
+    try {
+      return this.Repo.DailyResuly(author);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async MyStatsService(userId: string) {
+    try {
+      return this.Repo.GetMyStats(userId);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async TopLearnedTopicsService(userId: string) {
+    try {
+      return this.Repo.TopLearnedTopics(userId);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Service;

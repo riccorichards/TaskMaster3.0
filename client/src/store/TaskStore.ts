@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { TaskState, TaskType } from "../types";
+import { DailyResultType, HistoryType, TaskState, TaskType, TopWorkspaceType } from "../types";
 import Utils from "../utils/Utils";
 
 interface TaskStore extends TaskState {
@@ -11,11 +11,19 @@ interface TaskStore extends TaskState {
     taskId: string,
     input: { storedTime: number; complete: boolean }
   ) => Promise<void>;
+  dayFinish: () => Promise<void>;
+  getHistory: (amount: string) => Promise<void>;
+  filterHistory: (field: string, value: string) => Promise<void>;
+  fetchDailyResult: () => Promise<void>;
+  getTopWorkspaces: () => Promise<void>;
 }
 
 export const useTaskStore = create<TaskStore>((set) => ({
   tasks: [],
   storedTime: 0,
+  dailyResult: [],
+  topWorkspaces: [],
+  history: [],
   isLoading: false,
   error: null,
   createTask: async (input) => {
@@ -92,6 +100,75 @@ export const useTaskStore = create<TaskStore>((set) => ({
 
         return {};
       });
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  dayFinish: async () => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<HistoryType[]>(
+        "day-finish",
+        "POST"
+      );
+      set(() => ({
+        tasks: response && [],
+        history: response,
+        isLoading: false,
+      }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  getHistory: async (amount) => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<HistoryType[]>(
+        `day-finish?amount=${amount}`,
+        "GET"
+      );
+      set(() => ({ history: response, isLoading: false }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  filterHistory: async (field, value) => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<HistoryType[]>(
+        `filter-history?${field}=${value}`,
+        "GET"
+      );
+      set(() => ({ history: response, isLoading: false }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  fetchDailyResult: async () => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<DailyResultType[]>(
+        "daily-result",
+        "GET"
+      );
+      set(() => ({ dailyResult: response, isLoading: false }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  getTopWorkspaces: async () => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<TopWorkspaceType[]>(
+        "top-workspaces",
+        "GET"
+      );
+      set(() => ({ topWorkspaces: response, isLoading: false }));
     } catch (error) {
       const msg = (error as Error).message ?? "An unexpected error occurred!";
       set(() => ({ error: msg, isLoading: false }));

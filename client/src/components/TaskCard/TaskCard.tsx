@@ -72,6 +72,21 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
           {task.priority}
         </span>
       </p>
+      <span
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "5px",
+          padding: "1.5px",
+          backgroundColor: "#fff",
+          color: "orangered",
+          borderRadius: "2.5px",
+          fontWeight: "bold",
+          fontSize: "14px",
+        }}
+      >
+        {Utils.extractDate(task.createdAt)}
+      </span>
       <button
         className="remove-btn"
         onClick={() => handleRemoveTask(task._id || "")}

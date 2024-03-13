@@ -4,7 +4,6 @@ import { useTaskStore } from "../../store/TaskStore";
 
 const TasksWrapper = () => {
   const { tasks } = useTaskStore();
-
   return (
     <div className="tasks-wrapper">
       {tasks.length > 0 ? (
@@ -19,7 +18,7 @@ const TasksWrapper = () => {
             justifyContent: "center",
           }}
         >
-          Task was not defined...
+          <span>Task was not defined...</span>
         </div>
       )}
     </div>

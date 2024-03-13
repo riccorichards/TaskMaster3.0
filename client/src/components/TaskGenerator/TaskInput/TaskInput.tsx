@@ -23,10 +23,14 @@ const TaskInput: FC<{
   }, [storeWorkspace]);
 
   const handleCreateTask = () => {
-    if (storeWorkspace && inputValue !== "") {
+    if (!storeWorkspace) {
+      setErrorHandler("You need to define the workspace!");
+      return;
+    }
+    if (inputValue !== "") {
       const task = inputValue.split(",")[0].split("/")[0];
       const desc = inputValue.split(",")[1].split("/")[0].trim();
-      const priority = inputValue.split("/")[1] as "easy" | "medium" | "high";
+      const priority = inputValue.split("/")[1];
       const allowedPriorities = ["easy", "medium", "high"];
 
       if (!allowedPriorities.includes(priority)) {

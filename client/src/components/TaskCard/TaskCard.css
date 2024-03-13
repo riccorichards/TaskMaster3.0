@@ -7,6 +7,7 @@
   box-shadow: 5px 5px 10px #6c6885;
   border-radius: 5px;
   color: #fff;
+  position: relative;
 }
 .single-task .complete-btn {
   font-family: "Patua One", serif;

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { CreateTaskType } from "../api/middleware/zodSchemas/TaskZodSchema";
 
 //map tree model type
 export interface NodeTreeType {
@@ -39,7 +38,14 @@ export interface SessionDocument extends mongoose.Document {
 }
 
 //task model type
-export interface TaskDocument extends CreateTaskType {
+export interface TaskDocument {
   _id: string;
-  user: UserDocument["_id"];
+  author: mongoose.Schema.Types.ObjectId;
+  workspace: string;
+  task: string;
+  desc: string;
+  storedTime: number;
+  priority: string;
+  complete: boolean;
+  createdAt: Date;
 }

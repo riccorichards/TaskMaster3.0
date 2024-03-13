@@ -63,6 +63,36 @@ class Utils {
       .map((val) => String(val).padStart(2, "0"))
       .join(":");
   }
+
+  static extractDate(createdAt: string) {
+    const date = new Date(createdAt);
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, "0");
+    const hr = String(date.getHours()).padStart(2, "0");
+    const min = String(date.getMinutes()).padStart(2, "0");
+    return `${month}/${day}-${hr}:${min}`;
+  }
+
+  static defineRemainDays(period: string, startDay: string) {
+    const endTime = new Date(period);
+    const today = new Date();
+    const start = new Date(startDay);
+
+    //normalize both days at the start of the day
+    endTime.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+    start.setHours(0, 0, 0, 0);
+
+    //define the difference between target day and today in milleseconds
+    const differentInTime = endTime.getTime() - today.getTime();
+    const journeyDuration = endTime.getTime() - start.getTime();
+    //convert milleseconds into days
+    const differenceInDays = Math.ceil(differentInTime / (1000 * 3600 * 24));
+    const journeyDurationDays = Math.ceil(differentInTime / (1000 * 3600 * 24));
+    console.log({ journeyDuration, journeyDurationDays, startDay });
+
+    return differenceInDays;
+  }
 }
 
 export default Utils;

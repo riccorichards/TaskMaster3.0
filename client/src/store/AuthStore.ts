@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import {
+  MyStatsType,
   NewJourneyType,
   SessionType,
   SignInInput,
@@ -14,11 +15,13 @@ interface UserStore extends UserState {
   login: (input: SignInInput) => Promise<void>;
   getMe: () => Promise<void>;
   newJourney: (input: NewJourneyType) => Promise<void>;
+  getMyStats: () => Promise<void>;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
   user: null,
   session: null,
+  myStats: null,
   isLoading: false,
   error: null,
   signup: async (input) => {
@@ -71,6 +74,16 @@ export const useUserStore = create<UserStore>((set) => ({
         input
       );
       set(() => ({ user: response, isLoading: false }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  getMyStats: async () => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<MyStatsType>("my-stats", "GET");
+      set(() => ({ myStats: response, isLoading: false }));
     } catch (error) {
       const msg = (error as Error).message ?? "An unexpected error occurred!";
       set(() => ({ error: msg, isLoading: false }));

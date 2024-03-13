@@ -1,9 +1,17 @@
+import { useEffect } from "react";
+import { useUserStore } from "../../store/AuthStore";
+import Loader from "../Loader/Loader";
 import "./MyStats.css";
 import StatsInput from "./StatsInput";
 
 const MyStats = () => {
-  const randomWidth = Math.floor(Math.random() * 100);
-  const ot = Math.floor(Math.random() * 100);
+  const { myStats, getMyStats } = useUserStore();
+
+  useEffect(() => {
+    getMyStats();
+  }, [getMyStats]);
+
+  if (!myStats) return <Loader />;
 
   return (
     <div className="my-stats">
@@ -18,7 +26,8 @@ const MyStats = () => {
                 position: "absolute",
                 height: "100%",
                 backgroundColor: "orangered",
-                width: `${randomWidth}%`,
+                borderRadius: "3.5px",
+                width: `${myStats.remainingDays}%`,
               }}
             />
             <span
@@ -27,9 +36,10 @@ const MyStats = () => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%,-50%)",
+                color: myStats.remainingDays > 45 ? "#fff" : "",
               }}
             >
-              {randomWidth}%
+              {myStats.remainingDays}%
             </span>
           </div>
         </div>
@@ -41,7 +51,8 @@ const MyStats = () => {
                 position: "absolute",
                 height: "100%",
                 backgroundColor: " #fb2985",
-                width: `${ot}%`,
+                width: `${myStats.usedTime}%`,
+                borderRadius: "3.5px",
               }}
             />
             <span
@@ -49,10 +60,11 @@ const MyStats = () => {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
+                color: myStats.usedTime > 45 ? "#fff" : "",
                 transform: "translate(-50%,-50%)",
               }}
             >
-              {ot}%
+              {myStats.usedTime.toFixed(2)}%
             </span>
           </div>
         </div>

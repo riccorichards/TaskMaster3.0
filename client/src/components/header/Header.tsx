@@ -5,16 +5,23 @@ import { useNavigate } from "react-router-dom";
 import Utils from "../../utils/Utils";
 import { useUserStore } from "../../store/AuthStore";
 import { IoPersonCircleSharp } from "react-icons/io5";
+import { useTaskStore } from "../../store/TaskStore";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user } = useUserStore();
+  const { user, myStats } = useUserStore();
+  const { dailyResult } = useTaskStore();
+
   const navigateToAuth = () => {
     navigate("/auth");
   };
   const handleScrollProcess = (id: string) => {
     Utils.scrollToComponent(id);
   };
+
+  const quality =
+    dailyResult &&
+    dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;
 
   return (
     <header>
@@ -41,8 +48,12 @@ const Header = () => {
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <h4>{user.username}</h4>
-              <span style={{ fontSize: "14px" }}>Quality: 50%</span>
-              <span style={{ fontSize: "14px" }}>Per day: 10.32 hr</span>
+              <span style={{ fontSize: "14px" }}>
+                Quality: {quality.toFixed(2)}%
+              </span>
+              <span style={{ fontSize: "14px" }}>
+                Per day: {myStats?.perDay} hr
+              </span>
             </div>
           </div>
           <ul>

@@ -15,10 +15,12 @@ import {
 } from "../../api/middleware/zodSchemas/UserAuthZodSchema";
 import CustomError from "../../utils/CustomError";
 import Utils from "../../utils/Utils";
+import HistoryModel from "../model/History.model";
 import NodeModel from "../model/NodeTree.model";
 import SessionModel from "../model/Session.model";
 import TaskModel from "../model/Task.model";
 import UserModel from "../model/User.model";
+import { TaskDocument } from "../type";
 
 class Repository {
   async Register(input: RegisterUserType["body"]) {
@@ -309,6 +311,230 @@ class Repository {
     try {
       const { taskId } = input;
       return await TaskModel.findByIdAndDelete(taskId);
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async DayFinish(author: string) {
+    try {
+      const dailyTasks = await TaskModel.find({ author });
+      if (dailyTasks.length === 0)
+        throw new CustomError(400, "Tasks was not defined");
+
+      await Promise.all(
+        dailyTasks.map(async (dailyTask: TaskDocument) => {
+          const {
+            _id,
+            createdAt,
+            author,
+            workspace,
+            complete,
+            storedTime,
+            task,
+            priority,
+          } = dailyTask;
+
+          const storedTask = await HistoryModel.create({
+            createdAt,
+            author,
+            workspace,
+            complete,
+            storedTime,
+            task,
+            priority,
+          });
+
+          if (!storedTask)
+            throw new CustomError(
+              400,
+              "Error while converting task into history"
+            );
+          const removedTask = await TaskModel.findByIdAndDelete(_id);
+          if (!removedTask)
+            throw new CustomError(400, "Error while removing task: " + _id);
+        })
+      );
+
+      const result = await HistoryModel.find({ author });
+      return result;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async GetDayFinish(author: string, amount: string) {
+    try {
+      let myHistory: any;
+      if (amount === "all") {
+        myHistory = await HistoryModel.find({ author }).sort({ createdAt: -1 });
+      } else {
+        myHistory = await HistoryModel.find({ author })
+          .sort({ createdAt: -1 })
+          .limit(10);
+      }
+
+      if (myHistory.length === 0) return [];
+
+      return myHistory;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async FilterHistory(author: string, field: string, originValue: string) {
+    const intArray = ["1", "0"];
+
+    let value: number | boolean | string = originValue;
+
+    if (intArray.includes(originValue)) {
+      value = parseInt(originValue, 10);
+      if (value < 2) {
+        value = Boolean(value);
+      }
+    }
+    let query: { [key: string]: any } = { author };
+    query[field] = value;
+
+    const items = parseInt(originValue);
+    try {
+      let filteredData;
+      if (field !== "list") {
+        filteredData = await HistoryModel.find(query);
+      } else {
+        filteredData = (await HistoryModel.find()).splice(
+          0,
+          parseInt(originValue, 10)
+        );
+      }
+      if (!filteredData || filteredData.length === 0) return [];
+      return filteredData;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async DailyResuly(author: string) {
+    try {
+      const history = await HistoryModel.find({ author });
+      if (history.length === 0) return [];
+      // Create a map to group tasks by date
+      const groupedTasks = new Map();
+
+      // Populate the map with tasks grouped by date
+      for (const task of history) {
+        const date = Utils.extractDate(task.createdAt || ""); // Get only the date portion
+        const existingTasks = groupedTasks.get(date) || [];
+        groupedTasks.set(date, [...existingTasks, task]);
+      }
+
+      // Calculate the completion percentage for each group
+      const result = Array.from(groupedTasks).map(([date, dailyTasks]) => {
+        const doneTasks = dailyTasks.filter(
+          (task: any) => task.complete
+        ).length;
+        return {
+          date,
+          value: (doneTasks / dailyTasks.length) * 100,
+        };
+      });
+
+      return result;
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async GetMyStats(userId: string) {
+    try {
+      const profile = await UserModel.findById(userId);
+      if (!profile) throw new CustomError(404, "user was not found");
+
+      let remainingDays;
+      let usedTime;
+      let perDay;
+      if (profile.journeyDuration && profile.allocatedTime) {
+        const history = await HistoryModel.find({ author: userId });
+        if (history.length === 0) return [];
+        const totalWorkingHours = history.reduce(
+          (acc, task) => acc + task.storedTime!,
+          0
+        );
+        remainingDays = Utils.defineRemainDays(
+          profile.journeyDuration,
+          history[0].createdAt || ""
+        ).result;
+        usedTime = (totalWorkingHours / (profile.allocatedTime * 3600)) * 100;
+        perDay =
+          profile.allocatedTime /
+          Utils.defineRemainDays(
+            profile.journeyDuration,
+            history[0].createdAt || ""
+          ).differenceInDays;
+      }
+      return { remainingDays, usedTime, perDay };
+    } catch (error) {
+      throw new CustomError(
+        500,
+        "An error occurred while retrieve users' nodes" + error
+      );
+    }
+  }
+
+  async TopLearnedTopics(author: string) {
+    try {
+      const history = await HistoryModel.find({ author });
+
+      if (history.length === 0) return [];
+
+      const groupedTasks = new Map<any, any>();
+
+      for (const task of history) {
+        const workspace = task.workspace;
+        const existingEntry = groupedTasks.get(workspace) || {
+          tasks: [],
+          totalStoredTime: 0,
+          completeTasks: 0,
+        };
+        existingEntry.tasks.push(task);
+        existingEntry.totalStoredTime += task.storedTime;
+        if (task.complete) {
+          existingEntry.completeTasks += 1;
+        }
+
+        groupedTasks.set(workspace, existingEntry);
+      }
+
+      const result: { name: string; value: number }[] = [];
+
+      groupedTasks.forEach((value, key) => {
+        const totalTasks = value.tasks.length * 0.04;
+        const totalStoredTime = value.totalStoredTime * 0.035;
+        const completionRate =
+          (value.completeTasks / value.tasks.length) * 100 * 0.025;
+
+        result.push({
+          name: key,
+          value: totalStoredTime + totalTasks + completionRate,
+        });
+      });
+
+      return result.sort((a, b) => b.value - a.value);
     } catch (error) {
       throw new CustomError(
         500,

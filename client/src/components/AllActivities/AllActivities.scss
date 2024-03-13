@@ -9,6 +9,7 @@
     display: flex;
     gap: 15px;
     align-items: center;
+    position: relative;
     button {
       font-family: v.$intro_title;
       border: none;
@@ -71,7 +72,8 @@
     overflow-y: auto;
 
     .single-active {
-      width: 100%;
+      width: 98%;
+      margin: 0 auto;
       gap: 15px;
       display: flex;
       justify-content: space-between;

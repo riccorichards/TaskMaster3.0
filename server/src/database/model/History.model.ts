@@ -1,20 +1,14 @@
 import mongoose from "mongoose";
 
-const HistorySchema = new mongoose.Schema(
-  {
-    author: { type: mongoose.Schema.ObjectId, ref: "User" },
-    history: [
-      {
-        workspace: { type: String },
-        task: { type: String },
-        duration: { type: String },
-        status: { type: String },
-        priority: { type: String },
-      },
-    ],
-  },
-  { timestamps: true }
-);
+const HistorySchema = new mongoose.Schema({
+  author: { type: mongoose.Schema.ObjectId, ref: "User" },
+  workspace: { type: String },
+  task: { type: String },
+  storedTime: { type: Number },
+  complete: { type: Boolean },
+  priority: { type: String },
+  createdAt: { type: String },
+});
 
 const HistoryModel = mongoose.model("history", HistorySchema);
 
