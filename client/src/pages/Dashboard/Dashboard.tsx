@@ -17,7 +17,7 @@ const Dashboard = () => {
   }, [getMe]);
 
   useEffect(() => {
-    let timeOut: NodeJS.Timeout;
+    let timeOut: ReturnType<typeof setTimeout>;
     if (!user) {
       timeOut = setTimeout(() => {
         if (!user) {

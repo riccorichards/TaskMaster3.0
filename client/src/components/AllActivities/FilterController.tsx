@@ -7,7 +7,7 @@ const FilterController: FC<{ historyLen: number }> = ({ historyLen }) => {
   const [customFilter, setCustomFilter] = useState<string>("");
   const { filterHistory, getHistory } = useTaskStore();
   const [searchTimeout, setSearchTimeout] = useState<
-    NodeJS.Timeout | null | number
+    ReturnType<typeof setTimeout> | null | number
   >(null);
 
   const [errorHandler, setErrorHandler] = useState<string | null>(null);
