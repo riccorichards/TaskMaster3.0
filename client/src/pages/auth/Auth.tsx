@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Auth.css";
 import SingUp from "../../components/SingUp/SingUp";
 import SignIn from "../../components/SignIn/SignIn";
+import Logo from "../../components/header/logo/Logo";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(true);
@@ -9,7 +10,7 @@ const Auth = () => {
     <div className="auth-wrapper">
       <div className="auth">
         <div className="auth-panel">
-          <h1>{`<Ricco/>`}</h1>
+          <Logo isAuth />
           <div>
             <h2>Embark on a Journey to Mastery with TaskMaster3.0</h2>
             <p>
