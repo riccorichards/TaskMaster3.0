@@ -23,7 +23,7 @@ const Dashboard = () => {
         if (!user) {
           navigate("/auth");
         }
-      }, 500);
+      }, 1500);
     }
 
     return () => clearTimeout(timeOut);
@@ -34,11 +34,13 @@ const Dashboard = () => {
       <div style={{ height: "10vh" }}>
         <Header />
       </div>
-      <Overview />
-      <TaskGenerator />
-      <Timer />
-      <RoadMap />
-      <Footer />
+      <div style={{ display: "flex", flexDirection: "column", gap: "160px" }}>
+        <Overview />
+        <TaskGenerator />
+        <Timer />
+        <RoadMap />
+        <Footer />
+      </div>
     </section>
   );
 };

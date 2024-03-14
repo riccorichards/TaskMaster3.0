@@ -41,6 +41,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logOut();
+    navigate("/");
   };
 
   const navigateToAuth = () => {
@@ -49,7 +50,7 @@ const Header = () => {
   return (
     <header
       style={{
-        backgroundColor: hasScrollDown ? "#14bc87" : "",
+        backgroundColor: user && hasScrollDown ? "#14bc87" : "",
         transition: "all 0.25s ease-in-out",
       }}
     >

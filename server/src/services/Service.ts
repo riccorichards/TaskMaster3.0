@@ -113,7 +113,8 @@ class Service {
     if (!insertedNode) throw new BadRequestError("bad request");
 
     const nodeNames = await this.Repo.RetrieveNodeName(username);
-    const nodeTree = Utils.buildHierarchy(nodes)[0];
+    const updatedNodeTree = await this.Repo.RetrieveNodes(input.username);
+    const nodeTree = Utils.buildHierarchy(updatedNodeTree)[0];
     return {
       nodeTree,
       nodeNames,
@@ -139,7 +140,6 @@ class Service {
     const { username, node, method } = input;
     let nodeNames;
     let nodeTree;
-    const nodes = await this.Repo.RetrieveNodes(username);
 
     if (method === "remove") {
       const { removeNode, removeNodeSubnodes } =
@@ -150,6 +150,7 @@ class Service {
           "bad request with removing nodes and its sub nodes"
         );
       nodeNames = await this.Repo.RetrieveNodeName(username);
+      const nodes = await this.Repo.RetrieveNodes(username);
       nodeTree = Utils.buildHierarchy(nodes)[0];
     } else if (method === "update") {
       const { updatedNode } = await this.Repo.UpdateNode(input);
@@ -157,6 +158,7 @@ class Service {
       if (!updatedNode)
         throw new BadRequestError("bad request with updating node");
       nodeNames = await this.Repo.RetrieveNodeName(username);
+      const nodes = await this.Repo.RetrieveNodes(username);
       nodeTree = Utils.buildHierarchy(nodes)[0];
     }
 

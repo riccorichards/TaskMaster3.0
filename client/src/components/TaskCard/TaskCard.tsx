@@ -85,7 +85,7 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
           fontSize: "14px",
         }}
       >
-        {Utils.extractDate(task.createdAt)}
+        {Utils.extractDate(task.createdAt || "")}
       </span>
       <button
         className="remove-btn"

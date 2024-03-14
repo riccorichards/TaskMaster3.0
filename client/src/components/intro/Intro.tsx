@@ -3,9 +3,7 @@ import inpto_products from "../../const";
 import Utils from "../../utils/Utils";
 import Header from "../header/Header";
 import "./Intro.scss";
-const test =
-  "https://i.pinimg.com/564x/92/f0/d2/92f0d2e8dd34c9ffe422bcfc826c3d81.jpg";
-
+import introImg from "../../assets/intro.jpeg";
 const Intro = () => {
   const navigate = useNavigate();
 
@@ -26,10 +24,10 @@ const Intro = () => {
         >
           <h1>
             <span>
-              Master Your <span style={{ color: "#f07043" }}>Time</span>,
+              Master Your <span style={{ color: "orangered" }}>Time</span>,
             </span>
             <span>
-              Master Your <span style={{ color: "#f07043" }}>Life</span>
+              Master Your <span style={{ color: "orangered" }}>Life</span>
             </span>
           </h1>
           <p>
@@ -51,7 +49,7 @@ const Intro = () => {
           }}
         >
           <div className="product-wrapper">
-            <img src={test} alt="test" />
+            <img src={introImg} alt="intro" />
           </div>
           <div className="products">
             {inpto_products.map((product) => (
