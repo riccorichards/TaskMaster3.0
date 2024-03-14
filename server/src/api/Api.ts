@@ -6,8 +6,7 @@ import {
   ReadNodeSchema,
   UpdateNodeSchema,
 } from "./middleware/zodSchemas/NoteTreeZodSchema";
-import CustomError from "../utils/CustomError";
-import { ZodError, string } from "zod";
+import { ZodError } from "zod";
 import { deserializeUser } from "./middleware/deserializedUser/deselializedUser";
 import { requestUser } from "./middleware/deserializedUser/requestUser";
 import {
@@ -15,11 +14,9 @@ import {
   NewJourneySchema,
   RegisterUserSchema,
 } from "./middleware/zodSchemas/UserAuthZodSchema";
-import { signWihtJWT } from "../utils/jwt";
 import {
   CreateTaskSchema,
   DeleteTaskSchema,
-  ReadTaskSchema,
   UpdateTaskSchema,
 } from "./middleware/zodSchemas/TaskZodSchema";
 
@@ -29,7 +26,7 @@ const Api = (app: Application) => {
   //register
   app.post(
     "/register",
-    incomingDataValidation(RegisterUserSchema),
+    incomingDataValidation(RegisterUserSchema), //validate incoming data
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const response = await service.RegisterService(req.body);
@@ -48,26 +45,8 @@ const Api = (app: Application) => {
     incomingDataValidation(LoginUserSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
-        const session = await service.LoginService(
-          req.body,
-          req.get("user-agent") || ""
-        );
-
-        const accessToken = signWihtJWT(
-          {
-            user: session.user,
-            session: session._id,
-          },
-          { expiresIn: 86400 }
-        ); //day
-
-        const refreshToken = signWihtJWT(
-          {
-            user: session.user,
-            session: session._id,
-          },
-          { expiresIn: 86400 * 30 }
-        ); //month
+        const { accessToken, refreshToken, newSession } =
+          await service.LoginService(req.body, req.get("user-agent") || "");
 
         res.cookie("accessToken", accessToken, {
           maxAge: 3.154e10,
@@ -87,7 +66,7 @@ const Api = (app: Application) => {
           secure: false,
         });
 
-        return res.status(201).json(session);
+        return res.status(201).json(newSession);
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });
@@ -174,7 +153,6 @@ const Api = (app: Application) => {
       try {
         const { username } = req.params;
         const response = await service.RetrieveNodesService({ username });
-
         return res.status(200).json(response);
       } catch (error) {
         if (error instanceof ZodError) {
@@ -288,7 +266,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   //api endpoint for day finish (store daily tasks in the history)
   app.post(
     "/day-finish",
@@ -305,7 +282,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   //api endpoint for filter history
   app.get(
     "/filter-history",
@@ -339,7 +315,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   //api endpoint for retrieve history
   app.get(
     "/day-finish",
@@ -359,7 +334,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   //api endpoint for retrieve daily result based on user's history
   app.get(
     "/daily-result",
@@ -376,6 +350,7 @@ const Api = (app: Application) => {
       }
     }
   );
+
   app.get(
     "/my-stats",
     async (req: Request, res: Response, next: NextFunction) => {
@@ -383,6 +358,22 @@ const Api = (app: Application) => {
         const userId = res.locals.user.user;
         const response = await service.MyStatsService(userId);
         return res.status(200).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
+
+  app.get(
+    "/log-out",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        res.clearCookie("refreshToken");
+        res.clearCookie("accessToken");
+        return res.status(201).json(null);
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });
@@ -407,16 +398,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
-  // api error endpiont
-  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    if (err instanceof CustomError) {
-      res.status(err.statusCode).json({ message: err.message });
-    } else {
-      console.error(err);
-      res.status(500).json({ message: "Something went wrong" });
-    }
-  });
 };
 
 export default Api;

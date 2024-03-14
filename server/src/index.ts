@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
 import config from "../config";
@@ -24,6 +24,13 @@ const runServer = async () => {
   });
 
   Api(app);
+
+  // api error endpiont
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    const status = err.status || 500;
+    const data = err.message || err.data;
+    return res.status(status).json(data);
+  });
 
   const PORT = process.env.PORT || config.port;
 

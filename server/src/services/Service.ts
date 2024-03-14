@@ -14,6 +14,13 @@ import {
   RegisterUserType,
 } from "../api/middleware/zodSchemas/UserAuthZodSchema";
 import Repository from "../database/repository/Repository";
+import {
+  AuthorisedError,
+  BadRequestError,
+  NotFoundError,
+} from "../utils/Error";
+import Utils from "../utils/Utils";
+import { signWihtJWT } from "../utils/jwt";
 
 class Service {
   private Repo: Repository;
@@ -23,157 +30,291 @@ class Service {
 
   async RegisterService(input: RegisterUserType["body"]) {
     try {
-      return this.Repo.Register(input);
+      const newUser = this.Repo.Register(input);
+      if (!newUser) throw new BadRequestError("something wents wrong...");
+      return newUser;
     } catch (error) {
       throw error;
     }
   }
 
   async LoginService(input: LoginUserType["body"], userAgent: string) {
-    try {
-      return this.Repo.Login(input, userAgent);
-    } catch (error) {
-      throw error;
-    }
+    const { email, password } = input;
+    const user = await this.Repo.FindUserByEmail(email);
+    if (!user) throw new AuthorisedError("wrong credentials");
+    const validPassword = await user.comparePass(password);
+    if (!validPassword) throw new AuthorisedError("wrong credentials");
+    const newSession = await this.Repo.CreateSession(
+      user._id.toString(),
+      userAgent
+    );
+
+    const accessToken = signWihtJWT(
+      {
+        user: newSession.user,
+        session: newSession._id,
+      },
+      { expiresIn: 86400 }
+    ); //day
+
+    const refreshToken = signWihtJWT(
+      {
+        user: newSession.user,
+        session: newSession._id,
+      },
+      { expiresIn: 86400 * 30 }
+    ); //month
+
+    return { accessToken, refreshToken, newSession };
   }
 
   async FindMeService(id: string) {
-    try {
-      return this.Repo.FindMe(id);
-    } catch (error) {
-      throw error;
-    }
+    const user = await this.Repo.FindMe(id);
+    if (!user)
+      throw new NotFoundError("User was not found with provided ID: " + id);
+    return user;
   }
 
   async NewjourneyService(id: string, input: NewJourneyType["body"]) {
-    try {
-      return this.Repo.NewJourney(id, input);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.NewJourney(id, input);
   }
 
   async CreateNewNodeService(input: CreateNodeType["body"]) {
-    try {
-      return this.Repo.CreateNode(input);
-    } catch (error) {
-      throw error;
-    }
+    const newNode = this.Repo.CreateNode(input);
+    if (!newNode) throw new BadRequestError("bad request or server issue");
+    const nodeNames = await this.Repo.RetrieveNodeName(input.username);
+    if (nodeNames.length < 1)
+      throw new NotFoundError("data was not found or data is not available");
+    const nodes = await this.Repo.RetrieveNodes(input.username);
+    const nodeTree = Utils.buildHierarchy(nodes)[0];
+    return {
+      nodeTree,
+      nodeNames,
+    };
   }
 
   async InsertNodeService(input: CreateNodeType["body"]) {
-    try {
-      return this.Repo.InsertNode(input);
-    } catch (error) {
-      throw error;
-    }
+    const { username, node, path } = input;
+    const nodes = await this.Repo.RetrieveNodes(input.username);
+    if (nodes.length === 0)
+      throw new NotFoundError("data was not found or data is not available");
+
+    const newAbsolutePath = Utils.defineAbsolutePath(nodes, path);
+
+    if (!newAbsolutePath)
+      throw new BadRequestError("nodes' path was not found");
+
+    const newNode = {
+      username,
+      node,
+      path: newAbsolutePath,
+    };
+    const insertedNode = await this.Repo.InsertNode(newNode);
+    if (!insertedNode) throw new BadRequestError("bad request");
+
+    const nodeNames = await this.Repo.RetrieveNodeName(username);
+    const nodeTree = Utils.buildHierarchy(nodes)[0];
+    return {
+      nodeTree,
+      nodeNames,
+    };
   }
 
   async RetrieveNodesService(input: ReadNodeType["params"]) {
-    try {
-      return this.Repo.RetrieveNodes(input);
-    } catch (error) {
-      throw error;
-    }
+    const { username } = input;
+    const nodes = await this.Repo.RetrieveNodes(username);
+    return Utils.buildHierarchy(nodes)[0];
   }
 
   async RetrieveNodeNamesService(input: ReadNodeType["params"]) {
     try {
-      return this.Repo.RetrieveNodeNames(input);
+      const { username } = input;
+      return this.Repo.RetrieveNodeName(username);
     } catch (error) {
       throw error;
     }
   }
 
   async UpdateNodeService(input: UpdateNodeType["body"]) {
-    try {
-      return this.Repo.UpdateNode(input);
-    } catch (error) {
-      throw error;
+    const { username, node, method } = input;
+    let nodeNames;
+    let nodeTree;
+    const nodes = await this.Repo.RetrieveNodes(username);
+
+    if (method === "remove") {
+      const { removeNode, removeNodeSubnodes } =
+        await this.Repo.RemoveNodeAndSubNodes(username, node);
+
+      if (!removeNode || !removeNodeSubnodes)
+        throw new BadRequestError(
+          "bad request with removing nodes and its sub nodes"
+        );
+      nodeNames = await this.Repo.RetrieveNodeName(username);
+      nodeTree = Utils.buildHierarchy(nodes)[0];
+    } else if (method === "update") {
+      const { updatedNode } = await this.Repo.UpdateNode(input);
+
+      if (!updatedNode)
+        throw new BadRequestError("bad request with updating node");
+      nodeNames = await this.Repo.RetrieveNodeName(username);
+      nodeTree = Utils.buildHierarchy(nodes)[0];
     }
+
+    return {
+      nodeTree,
+      nodeNames,
+    };
   }
 
   async CreateTaskService(input: CreateTaskType["body"], author: string) {
-    try {
-      return this.Repo.CreateTask(input, author);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.CreateTask(input, author);
   }
 
   async ReadTasksService(author: string) {
-    try {
-      return this.Repo.ReadTasks(author);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.ReadTasks(author);
   }
 
   async UpdateTaskService(
     taskId: UpdateTaskType["params"],
     input: UpdateTaskType["body"]
   ) {
-    try {
-      return this.Repo.UpdateTask(taskId, input);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.UpdateTask(taskId, input);
   }
 
   async DeleteTaskService(taskId: DeleteTaskType["params"]) {
-    try {
-      return this.Repo.DeleteTask(taskId);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.DeleteTask(taskId);
   }
 
   async DayFinishService(author: string) {
-    try {
-      return this.Repo.DayFinish(author);
-    } catch (error) {
-      throw error;
-    }
+    return this.Repo.DayFinish(author);
   }
 
   async GetDayFinishService(author: string, amount: string) {
-    try {
-      return this.Repo.GetDayFinish(author, amount);
-    } catch (error) {
-      throw error;
-    }
+    const history = await this.Repo.GetDayFinish(author, amount);
+    if (history.length === 0) throw new NotFoundError("data was not found");
+    return history;
   }
 
-  async FilterHistoryService(author: string, field: string, value: string) {
-    try {
-      return this.Repo.FilterHistory(author, field, value);
-    } catch (error) {
-      throw error;
+  async FilterHistoryService(
+    author: string,
+    field: string,
+    originValue: string
+  ) {
+    const intArray = ["1", "0"];
+
+    let value: number | boolean | string = originValue;
+
+    if (intArray.includes(originValue)) {
+      value = parseInt(originValue, 10);
+      if (value < 2) {
+        value = Boolean(value);
+      }
     }
+    let query: { [key: string]: any } = { author };
+    query[field] = value;
+
+    return this.Repo.FilterHistory(query);
   }
 
   async DailyResulyService(author: string) {
-    try {
-      return this.Repo.DailyResuly(author);
-    } catch (error) {
-      throw error;
+    const history = await this.Repo.GetDayFinish(author, "all");
+    if (history.length === 0) throw new NotFoundError("data was not found");
+
+    // Create a map to group tasks by date
+    const groupedTasks = new Map();
+
+    // Populate the map with tasks grouped by date
+    for (const task of history) {
+      const date = Utils.extractDate(task.createdAt || ""); // Get only the date portion
+      const existingTasks = groupedTasks.get(date) || [];
+      groupedTasks.set(date, [...existingTasks, task]);
     }
+
+    // Calculate the completion percentage for each group
+    const result = Array.from(groupedTasks).map(([date, dailyTasks]) => {
+      const doneTasks = dailyTasks.filter((task: any) => task.complete).length;
+      return {
+        date,
+        value: (doneTasks / dailyTasks.length) * 100,
+      };
+    });
+
+    return result;
   }
 
   async MyStatsService(userId: string) {
-    try {
-      return this.Repo.GetMyStats(userId);
-    } catch (error) {
-      throw error;
+    const profile = await this.Repo.FindMe(userId);
+    if (!profile)
+      throw new NotFoundError("user was not ound with provided ID: " + userId);
+
+    let remainingDays;
+    let usedTime;
+    let perDay;
+    if (profile.journeyDuration && profile.allocatedTime) {
+      const history = (await this.Repo.GetDayFinish(userId, "all")) as {
+        storedTime: number;
+        createdAt: string;
+      }[];
+
+      if (history.length === 0) throw new NotFoundError("data was not found");
+
+      const totalWorkingHours = history.reduce(
+        (acc, task) => acc + task.storedTime!,
+        0
+      );
+      remainingDays = Utils.defineRemainDays(
+        profile.journeyDuration,
+        history[0].createdAt || ""
+      ).result;
+      usedTime = (totalWorkingHours / (profile.allocatedTime * 3600)) * 100;
+      perDay =
+        profile.allocatedTime /
+        Utils.defineRemainDays(
+          profile.journeyDuration,
+          history[0].createdAt || ""
+        ).differenceInDays;
     }
+    return { remainingDays, usedTime, perDay };
   }
 
   async TopLearnedTopicsService(userId: string) {
-    try {
-      return this.Repo.TopLearnedTopics(userId);
-    } catch (error) {
-      throw error;
+    const history = await this.Repo.GetDayFinish(userId, "all");
+
+    if (history.length === 0) throw new NotFoundError("data was not found");
+
+    const groupedTasks = new Map<any, any>();
+
+    for (const task of history) {
+      const workspace = task.workspace;
+      const existingEntry = groupedTasks.get(workspace) || {
+        tasks: [],
+        totalStoredTime: 0,
+        completeTasks: 0,
+      };
+      existingEntry.tasks.push(task);
+      existingEntry.totalStoredTime += task.storedTime;
+      if (task.complete) {
+        existingEntry.completeTasks += 1;
+      }
+
+      groupedTasks.set(workspace, existingEntry);
     }
+
+    const result: { name: string; value: number }[] = [];
+
+    groupedTasks.forEach((value, key) => {
+      const totalTasks = value.tasks.length * 0.04;
+      const totalStoredTime = value.totalStoredTime * 0.035;
+      const completionRate =
+        (value.completeTasks / value.tasks.length) * 100 * 0.025;
+
+      result.push({
+        name: key,
+        value: totalStoredTime + totalTasks + completionRate,
+      });
+    });
+
+    return result.sort((a, b) => b.value - a.value);
   }
 }
 

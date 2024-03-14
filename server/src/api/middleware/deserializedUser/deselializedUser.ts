@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { get } from "lodash";
 import { verifyJWT } from "../../../utils/jwt";
 import { generateNewAccessToken } from "../../../utils/newAccessToken";
+import { ApiError, AuthorisedError } from "../../../utils/Error";
 
 //deserializeuser functon helps us to handle the incoming user, check its token
 export const deserializeUser = async (
@@ -37,7 +38,7 @@ export const deserializeUser = async (
       const { token, error } = await generateNewAccessToken(refreshToken);
 
       if (error) {
-        return res.status(401).json({ error: error });
+        throw new AuthorisedError(error);
       }
 
       if (token) {
@@ -55,7 +56,7 @@ export const deserializeUser = async (
         next();
       }
     } catch (error: any) {
-      throw new Error(error.message);
+      throw new ApiError(error.message);
     }
   }
 };

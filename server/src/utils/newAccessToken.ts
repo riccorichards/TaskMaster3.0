@@ -2,6 +2,7 @@ import { get } from "lodash";
 import UserModel from "../database/model/User.model";
 import { signWihtJWT, verifyJWT } from "./jwt";
 import SessionModel from "../database/model/Session.model";
+import { AuthorisedError } from "./Error";
 
 export const generateNewAccessToken = async (refreshToken: string) => {
   const { decoded, valid, expired } = verifyJWT(refreshToken);
@@ -14,13 +15,13 @@ export const generateNewAccessToken = async (refreshToken: string) => {
   }
 
   if (!decoded || !get(decoded, "session")) {
-    throw new Error("Something went wrong");
+    throw new AuthorisedError("Something went wrong");
   }
 
   const session = await SessionModel.findById(get(decoded, "session"));
 
   if (!session || !session.valid) {
-    throw new Error("Invalid session");
+    throw new AuthorisedError("Invalid session");
   }
 
   const accessToken = signWihtJWT(

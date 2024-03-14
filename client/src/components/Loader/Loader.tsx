@@ -15,7 +15,7 @@ const Loader: FC<{ width?: string; height?: string }> = ({
         justifyContent: "center",
       }}
     >
-      <div className="loader" style={{ width, height }} />;
+      <div className="loader" style={{ width, height }} />
     </div>
   );
 };

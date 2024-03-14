@@ -16,6 +16,7 @@ interface UserStore extends UserState {
   getMe: () => Promise<void>;
   newJourney: (input: NewJourneyType) => Promise<void>;
   getMyStats: () => Promise<void>;
+  logOut: () => Promise<void>;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -84,6 +85,16 @@ export const useUserStore = create<UserStore>((set) => ({
     try {
       const response = await Utils.makeRequest<MyStatsType>("my-stats", "GET");
       set(() => ({ myStats: response, isLoading: false }));
+    } catch (error) {
+      const msg = (error as Error).message ?? "An unexpected error occurred!";
+      set(() => ({ error: msg, isLoading: false }));
+    }
+  },
+  logOut: async () => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await Utils.makeRequest<null>("log-out", "GET");
+      set(() => ({ user: response, session: null, isLoading: false }));
     } catch (error) {
       const msg = (error as Error).message ?? "An unexpected error occurred!";
       set(() => ({ error: msg, isLoading: false }));

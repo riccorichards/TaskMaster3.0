@@ -68,7 +68,7 @@ export interface SessionType {
   user: string;
 }
 
-export interface UserState {
+ export interface UserState {
   user: UserType | null;
   session: SessionType | null;
   myStats: MyStatsType | null;

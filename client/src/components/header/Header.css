@@ -56,6 +56,20 @@ header .profile-wrapper .profile-img img {
      object-fit: cover;
   border-radius: 50%;
 }
+header .profile-wrapper .log-out {
+  border: none;
+  font-family: "Patua One", serif;
+  position: absolute;
+  top: 125%;
+  display: flex;
+  padding: 5px;
+  background-color: #6c6885;
+  color: #fff;
+  right: 0;
+}
+header .profile-wrapper .log-out:active {
+  transform: scale(0.95);
+}
 header ul {
   display: flex;
   list-style-type: none;

@@ -22,16 +22,14 @@ const RoadMap = () => {
     insertNewNode,
     fetchEntireNodesName,
     updateNode,
-    fetchEntireNodeTree,
   } = useNodeTree();
 
   const { user } = useUserStore();
   useEffect(() => {
     if (user?.username) {
       fetchEntireNodesName(user?.username);
-      fetchEntireNodeTree(user?.username);
     }
-  }, [fetchEntireNodesName, user?.username, fetchEntireNodeTree]);
+  }, [fetchEntireNodesName, user?.username]);
 
   if (!user) return null;
   const { username } = user;
@@ -106,6 +104,7 @@ const RoadMap = () => {
       setWorkspace(node);
     }
   };
+
   return (
     <div className="roadmap-wrapper" id="Road Map">
       <div className="roadmap">

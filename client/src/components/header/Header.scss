@@ -61,6 +61,22 @@ header {
         border-radius: 50%;
       }
     }
+
+    .log-out {
+      border: none;
+      font-family: v.$intro_title;
+      position: absolute;
+      top: 125%;
+      display: flex;
+      padding: 5px;
+      background-color: v.$example;
+      color: #fff;
+      right: 0;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
   }
 
   ul {

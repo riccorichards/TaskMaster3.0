@@ -4,27 +4,42 @@ import RoadMap from "../../components/RoadMap/RoadMap";
 import TaskGenerator from "../../components/TaskGenerator/TaskGenerator";
 import Timer from "../../components/Timer/TimerSetup";
 import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
 import { useUserStore } from "../../store/AuthStore";
 import "./Dashboard.scss";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/header/Header";
 
 const Dashboard = () => {
-  const { getMe } = useUserStore();
+  const { getMe, user } = useUserStore();
+  const navigate = useNavigate();
   useEffect(() => {
     getMe();
   }, [getMe]);
 
+  useEffect(() => {
+    let timeOut: NodeJS.Timeout;
+    if (!user) {
+      timeOut = setTimeout(() => {
+        if (!user) {
+          navigate("/auth");
+        }
+      }, 500);
+    }
+
+    return () => clearTimeout(timeOut);
+  }, [user, navigate]);
+
   return (
-    <div className="dashboard-wrapper">
-      <Header />
-      <section className="dashboard">
-        <Overview />
-        <TaskGenerator />
-        <Timer />
-        <RoadMap />
-        <Footer />
-      </section>
-    </div>
+    <section className="dashboard">
+      <div style={{ height: "10vh" }}>
+        <Header />
+      </div>
+      <Overview />
+      <TaskGenerator />
+      <Timer />
+      <RoadMap />
+      <Footer />
+    </section>
   );
 };
 

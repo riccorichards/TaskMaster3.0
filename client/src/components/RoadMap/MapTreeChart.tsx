@@ -2,6 +2,7 @@ import Echart from "echarts-for-react";
 import { useNodeTree } from "../../store/NodeTreeStore";
 import { useEffect } from "react";
 import { useUserStore } from "../../store/AuthStore";
+import Loader from "../Loader/Loader";
 
 const MapTreeChart = () => {
   const { fetchEntireNodeTree, isLoading, error, nodeTree } = useNodeTree();
@@ -13,20 +14,7 @@ const MapTreeChart = () => {
     }
   }, [fetchEntireNodeTree, user?.username]);
 
-  if (isLoading)
-    return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+  if (isLoading) return <Loader />;
 
   if (error)
     return (
@@ -92,7 +80,16 @@ const MapTreeChart = () => {
   return (
     <>
       {nodeTree && (
-        <Echart option={option} style={{ width: "100%", height: "100%" }} />
+        <Echart
+          option={option}
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundColor: "black",
+            borderRadius: "15px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.55)",
+          }}
+        />
       )}
     </>
   );
