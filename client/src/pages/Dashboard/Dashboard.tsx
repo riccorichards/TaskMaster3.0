@@ -35,11 +35,11 @@ const Dashboard = () => {
         <Header />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "160px" }}>
-        <Overview />
+        {/*<Overview />
         <TaskGenerator />
         <Timer />
         <RoadMap />
-        <Footer />
+        <Footer />*/}
       </div>
     </section>
   );
