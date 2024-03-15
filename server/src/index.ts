@@ -5,6 +5,10 @@ import config from "../config";
 import cookieParser from "cookie-parser";
 import connectedToDB from "./utils/connectedToDB";
 import Api from "./api/Api";
+import { incomingDataValidation } from "./api/middleware/incomingDataValidation";
+import { CreateNodeSchema } from "./api/middleware/zodSchemas/NoteTreeZodSchema";
+import Service from "./services/Service";
+import { ZodError } from "zod";
 
 export const app = express();
 
@@ -23,6 +27,21 @@ export const runServer = async () => {
 
   Api(app);
 
+  app.post(
+    "/api/node-tree",
+    incomingDataValidation(CreateNodeSchema),
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const response = await new Service().CreateNewNodeService(req.body);
+        return res.status(201).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
   // api error endpiont
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     const status = err.status || 500;
