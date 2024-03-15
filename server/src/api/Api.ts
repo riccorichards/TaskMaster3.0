@@ -81,7 +81,7 @@ const Api = (app: Application) => {
   );
 
   //after this line each request needs user authentication
-  //app.use([deserializeUser, requestUser]);
+  app.use([deserializeUser, requestUser]);
 
   //retrieve the user's info when the page was refreshed...
   app.get(
@@ -118,21 +118,21 @@ const Api = (app: Application) => {
     }
   );
   // api endpoint for create root node
-  //app.post(
-  //  "/api/node-tree",
-  //  incomingDataValidation(CreateNodeSchema),
-  //  async (req: Request, res: Response, next: NextFunction) => {
-  //    try {
-  //      const response = await service.CreateNewNodeService(req.body);
-  //      return res.status(201).json(response);
-  //    } catch (error) {
-  //      if (error instanceof ZodError) {
-  //        return res.status(404).json({ err: error.message });
-  //      }
-  //      next(error);
-  //    }
-  //  }
-  //);
+  app.post(
+    "/api/node-tree",
+    incomingDataValidation(CreateNodeSchema),
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const response = await service.CreateNewNodeService(req.body);
+        return res.status(201).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
+      }
+    }
+  );
   // api endpoint for insert node inside already existing node
   app.post(
     "/api/insert-node",
@@ -149,6 +149,7 @@ const Api = (app: Application) => {
       }
     }
   );
+
   // api endpoint for finding the entire nodes based on provided username
   app.get(
     "/api/nodes/:username",
