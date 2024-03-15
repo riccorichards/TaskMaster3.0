@@ -24,7 +24,7 @@ class Utils {
   ): Promise<T> {
     try {
       const response = await axios({
-        url: `http://localhost:5000/api/${url}`,
+        url: `https://taskmaster3-0.onrender.com/api/${url}`,
         method,
         data,
         withCredentials: true,

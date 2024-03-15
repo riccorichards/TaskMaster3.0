@@ -23,7 +23,7 @@ import {
 const Api = (app: Application) => {
   const service = new Service();
 
-  app.get("/api/handshake", async (req: Request, res: Response) => {
+  app.get("/", async (req: Request, res: Response) => {
     return res.json({ msg: "Everything looks good..." });
   });
 
@@ -43,6 +43,7 @@ const Api = (app: Application) => {
       }
     }
   );
+
   //login
   app.post(
     "/api/login",
