@@ -81,7 +81,7 @@ const Api = (app: Application) => {
   );
 
   //after this line each request needs user authentication
-  app.use([deserializeUser, requestUser]);
+  //app.use([deserializeUser, requestUser]);
 
   //retrieve the user's info when the page was refreshed...
   app.get(
@@ -405,7 +405,6 @@ const Api = (app: Application) => {
       }
     }
   );
-  
 };
 
 export default Api;

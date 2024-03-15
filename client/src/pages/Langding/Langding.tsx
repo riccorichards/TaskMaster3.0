@@ -10,7 +10,7 @@ const Langding = () => {
       <Intro />
       <main className="offers">
         {offers_pres.map((offer, i) => (
-          <OurOffers offer={offer} index={i} />
+          <OurOffers offer={offer} index={i} key={i} />
         ))}
       </main>
       <Footer />

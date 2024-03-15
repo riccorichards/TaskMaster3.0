@@ -11,9 +11,8 @@ const Logo: FC<{ hasScrollDown?: boolean; isAuth?: boolean }> = ({
     <div
       className="logo-container"
       style={{
-        borderColor: user && hasScrollDown ? "#fff" : "",
         transition: "all 0.25s ease-in-out",
-        border: isAuth ? "5px solid #fff" : "",
+        border: (user && hasScrollDown) || isAuth ? "5px solid #fff" : "",
       }}
     >
       <span

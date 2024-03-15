@@ -24,7 +24,7 @@ class Utils {
   ): Promise<T> {
     try {
       const response = await axios({
-        url: `https://task-master3-0-backend.vercel.app/api/${url}`,
+        url: `http://localhost:5000/api/${url}`,
         method,
         data,
         withCredentials: true,
@@ -32,6 +32,7 @@ class Utils {
       });
       return response.data;
     } catch (error) {
+      console.log({ error });
       if (axios.isAxiosError(error)) {
         throw new Error(error.message);
       }

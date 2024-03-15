@@ -53,7 +53,7 @@ const Intro = () => {
           </div>
           <div className="products">
             {inpto_products.map((product) => (
-              <div className="product">
+              <div className="product" key={product.id}>
                 <product.icon />
                 <div
                   style={{
