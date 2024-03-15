@@ -23,7 +23,7 @@ const Dashboard = () => {
         if (!user) {
           navigate("/auth");
         }
-      }, 1500);
+      }, 15000);
     }
 
     return () => clearTimeout(timeOut);

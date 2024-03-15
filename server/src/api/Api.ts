@@ -59,7 +59,7 @@ const Api = (app: Application) => {
           domain: "localhost",
           path: "/",
           sameSite: "strict",
-          secure: false,
+          secure: true,
         });
 
         res.cookie("refreshToken", refreshToken, {
@@ -68,7 +68,7 @@ const Api = (app: Application) => {
           domain: "localhost",
           path: "/",
           sameSite: "strict",
-          secure: false,
+          secure: true,
         });
 
         return res.status(201).json(newSession);
