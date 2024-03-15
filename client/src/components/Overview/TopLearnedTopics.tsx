@@ -2,13 +2,17 @@ import EChartsReact from "echarts-for-react";
 import { useTaskStore } from "../../store/TaskStore";
 import { useEffect } from "react";
 import Loader from "../Loader/Loader";
+import { useUserStore } from "../../store/AuthStore";
 
 const TopLearnedTopics = () => {
   const { topWorkspaces, getTopWorkspaces } = useTaskStore();
-
+  const { user } = useUserStore();
+  
   useEffect(() => {
-    getTopWorkspaces();
-  }, [getTopWorkspaces]);
+    if (user) {
+      getTopWorkspaces();
+    }
+  }, [getTopWorkspaces, user]);
 
   if (!topWorkspaces) return <Loader />;
 

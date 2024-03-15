@@ -1,13 +1,17 @@
 import EChartsReact from "echarts-for-react";
 import { useTaskStore } from "../../store/TaskStore";
 import { useEffect } from "react";
+import { useUserStore } from "../../store/AuthStore";
 
 const DailyResult = () => {
   const { dailyResult, fetchDailyResult } = useTaskStore();
-
+  const { user } = useUserStore();
+  
   useEffect(() => {
-    fetchDailyResult();
-  }, [fetchDailyResult]);
+    if (user) {
+      fetchDailyResult();
+    }
+  }, [fetchDailyResult, user]);
 
   const option = {
     xAxis: {

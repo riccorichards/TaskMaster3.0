@@ -1,33 +1,21 @@
-import { useEffect } from "react";
-import Overview from "../../components/Overview/Overview";
-import RoadMap from "../../components/RoadMap/RoadMap";
-import TaskGenerator from "../../components/TaskGenerator/TaskGenerator";
+import React, { useEffect } from "react";
+const Overview = React.lazy(() => import("../../components/Overview/Overview"));
+const RoadMap = React.lazy(() => import("../../components/RoadMap/RoadMap"));
+const TaskGenerator = React.lazy(
+  () => import("../../components/TaskGenerator/TaskGenerator")
+);
+
 import Timer from "../../components/Timer/TimerSetup";
 import Footer from "../../components/footer/Footer";
 import { useUserStore } from "../../store/AuthStore";
 import "./Dashboard.scss";
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 
 const Dashboard = () => {
-  const { getMe, user } = useUserStore();
-  const navigate = useNavigate();
+  const { getMe } = useUserStore();
   useEffect(() => {
     getMe();
   }, [getMe]);
-
-  useEffect(() => {
-    let timeOut: ReturnType<typeof setTimeout>;
-    if (!user) {
-      timeOut = setTimeout(() => {
-        if (!user) {
-          navigate("/auth");
-        }
-      }, 45000);
-    }
-
-    return () => clearTimeout(timeOut);
-  }, [user, navigate]);
 
   return (
     <section className="dashboard">
@@ -35,11 +23,11 @@ const Dashboard = () => {
         <Header />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "160px" }}>
-        {/*<Overview />
+        <Overview />
         <TaskGenerator />
         <Timer />
         <RoadMap />
-        <Footer />*/}
+        <Footer />
       </div>
     </section>
   );

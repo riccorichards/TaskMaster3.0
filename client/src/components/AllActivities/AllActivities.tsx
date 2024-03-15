@@ -3,13 +3,17 @@ import "./AllActivities.css";
 import { useTaskStore } from "../../store/TaskStore";
 import Utils from "../../utils/Utils";
 import FilterController from "./FilterController";
+import { useUserStore } from "../../store/AuthStore";
 
 const AllActivities = () => {
   const { history, getHistory } = useTaskStore();
+  const { user } = useUserStore();
 
   useEffect(() => {
-    getHistory("10");
-  }, [getHistory]);
+    if (user) {
+      getHistory("10");
+    }
+  }, [user, getHistory]);
 
   const historyLen = history.length;
   return (

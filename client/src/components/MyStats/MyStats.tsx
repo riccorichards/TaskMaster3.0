@@ -5,11 +5,13 @@ import "./MyStats.css";
 import StatsInput from "./StatsInput";
 
 const MyStats = () => {
-  const { myStats, getMyStats } = useUserStore();
+  const { myStats, getMyStats, user } = useUserStore();
 
   useEffect(() => {
-    getMyStats();
-  }, [getMyStats]);
+    if (user) {
+      getMyStats();
+    }
+  }, [user, getMyStats]);
 
   if (!myStats) return <Loader />;
 
