@@ -1,5 +1,5 @@
 export default {
-  origin: "https://task-master3-0.vercel.app/",
+  origin: "https://task-master3-0.vercel.app",
   origin_dev: "http://localhost:5173",
   mongo_dev: process.env.Mongo_dev,
   mongo_prod: process.env.MongoDB_Prod,
