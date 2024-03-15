@@ -37,7 +37,7 @@ export const runServer = async () => {
   const PORT = process.env.PORT || config.port;
 
   app.listen(PORT, async () => {
-    console.log(`We are Running at http://localhost:${config.port}`);
+    console.log(`We are Running at http://localhost:${PORT}`);
   });
 };
 runServer();
