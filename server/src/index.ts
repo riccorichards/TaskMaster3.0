@@ -6,18 +6,20 @@ import cookieParser from "cookie-parser";
 import connectedToDB from "./utils/connectedToDB";
 import Api from "./api/Api";
 
-const runServer = async () => {
-  const app = express();
+export const app = express();
+
+export const runServer = async () => {
   app.use(
     cors({
-      origin: config.origin,
+      origin: config.origin_dev,
       credentials: true,
     })
   );
+
   app.use(express.json());
   app.use(cookieParser());
 
-  await connectedToDB(config.mongo_dev || "");
+  await connectedToDB(config.mongo_prod || "");
 
   app.get("/handshake", async (req: Request, res: Response) => {
     return res.json({ msg: "Everything looks good..." });
@@ -38,5 +40,4 @@ const runServer = async () => {
     console.log(`We are Running at http://localhost:${config.port}`);
   });
 };
-
 runServer();

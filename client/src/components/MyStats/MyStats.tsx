@@ -64,7 +64,7 @@ const MyStats = () => {
                 transform: "translate(-50%,-50%)",
               }}
             >
-              {myStats.usedTime.toFixed(2)}%
+              {myStats.usedTime?.toFixed(2)}%
             </span>
           </div>
         </div>

@@ -74,7 +74,7 @@ const Header = () => {
             >
               <h4>{user.username}</h4>
               <span style={{ fontSize: "14px" }}>
-                Quality: {quality.toFixed(2)}%
+                Quality: {quality ? quality.toFixed(2) : 0}%
               </span>
               <span style={{ fontSize: "14px" }}>
                 Per day: {myStats?.perDay?.toFixed(2)} hr
