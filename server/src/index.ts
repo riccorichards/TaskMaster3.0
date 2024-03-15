@@ -21,7 +21,7 @@ export const runServer = async () => {
 
   await connectedToDB(config.mongo_prod || "");
 
-  app.get("/handshake", async (req: Request, res: Response) => {
+  app.get("/api/handshake", async (req: Request, res: Response) => {
     return res.json({ msg: "Everything looks good..." });
   });
 

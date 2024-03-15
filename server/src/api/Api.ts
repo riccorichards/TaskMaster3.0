@@ -25,7 +25,7 @@ const Api = (app: Application) => {
 
   //register
   app.post(
-    "/register",
+    "/api/register",
     incomingDataValidation(RegisterUserSchema), //validate incoming data
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -41,7 +41,7 @@ const Api = (app: Application) => {
   );
   //login
   app.post(
-    "/login",
+    "/api/login",
     incomingDataValidation(LoginUserSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -81,7 +81,7 @@ const Api = (app: Application) => {
 
   //retrieve the user's info when the page was refreshed...
   app.get(
-    "/find-me",
+    "/api/find-me",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const userId = res.locals.user.user;
@@ -97,7 +97,7 @@ const Api = (app: Application) => {
   );
 
   app.put(
-    "/new-journey",
+    "/api/new-journey",
     incomingDataValidation(NewJourneySchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -115,7 +115,7 @@ const Api = (app: Application) => {
   );
   // api endpoint for create root node
   app.post(
-    "/node-tree",
+    "/api/node-tree",
     incomingDataValidation(CreateNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -131,7 +131,7 @@ const Api = (app: Application) => {
   );
   // api endpoint for insert node inside already existing node
   app.post(
-    "/insert-node",
+    "/api/insert-node",
     incomingDataValidation(CreateNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -147,7 +147,7 @@ const Api = (app: Application) => {
   );
   // api endpoint for finding the entire nodes based on provided username
   app.get(
-    "/nodes/:username",
+    "/api/nodes/:username",
     incomingDataValidation(ReadNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -164,7 +164,7 @@ const Api = (app: Application) => {
   );
   // api endpoint for retrieves existing nodes' name based on provided username
   app.get(
-    "/nodes-name/:username",
+    "/api/nodes-name/:username",
     incomingDataValidation(ReadNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -182,7 +182,7 @@ const Api = (app: Application) => {
   );
   // api endpoint for update notes (update // remove)
   app.put(
-    "/update-node",
+    "/api/update-node",
     incomingDataValidation(UpdateNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
