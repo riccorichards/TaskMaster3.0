@@ -23,6 +23,10 @@ import {
 const Api = (app: Application) => {
   const service = new Service();
 
+  app.get("/api/handshake", async (req: Request, res: Response) => {
+    return res.json({ msg: "Everything looks good..." });
+  });
+
   //register
   app.post(
     "/api/register",
@@ -198,7 +202,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for read task only
   app.post(
-    "/task",
+    "/api/task",
     incomingDataValidation(CreateTaskSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -215,21 +219,24 @@ const Api = (app: Application) => {
     }
   );
   //api endpoint for read author's tasks
-  app.get("/task", async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const author = res.locals.user.user;
-      const response = await service.ReadTasksService(author);
-      return res.status(201).json(response);
-    } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(404).json({ err: error.message });
+  app.get(
+    "/api/task",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const author = res.locals.user.user;
+        const response = await service.ReadTasksService(author);
+        return res.status(201).json(response);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          return res.status(404).json({ err: error.message });
+        }
+        next(error);
       }
-      next(error);
     }
-  });
+  );
   //api endpoint for read author's tasks
   app.put(
-    "/task/:taskId",
+    "/api/task/:taskId",
     incomingDataValidation(UpdateTaskSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -251,7 +258,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for delete task
   app.delete(
-    "/task/:taskId",
+    "/api/task/:taskId",
     incomingDataValidation(DeleteTaskSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -268,7 +275,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for day finish (store daily tasks in the history)
   app.post(
-    "/day-finish",
+    "/api/day-finish",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const author = res.locals.user.user;
@@ -284,7 +291,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for filter history
   app.get(
-    "/filter-history",
+    "/api/filter-history",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const author = res.locals.user.user;
@@ -317,7 +324,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for retrieve history
   app.get(
-    "/day-finish",
+    "/api/day-finish",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const author = res.locals.user.user;
@@ -336,7 +343,7 @@ const Api = (app: Application) => {
   );
   //api endpoint for retrieve daily result based on user's history
   app.get(
-    "/daily-result",
+    "/api/daily-result",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const author = res.locals.user.user;
@@ -352,7 +359,7 @@ const Api = (app: Application) => {
   );
 
   app.get(
-    "/my-stats",
+    "/api/my-stats",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const userId = res.locals.user.user;
@@ -368,7 +375,7 @@ const Api = (app: Application) => {
   );
 
   app.get(
-    "/log-out",
+    "/api/log-out",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         res.clearCookie("refreshToken");
@@ -384,7 +391,7 @@ const Api = (app: Application) => {
   );
 
   app.get(
-    "/top-workspaces",
+    "/api/top-workspaces",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const userId = res.locals.user.user;
@@ -398,6 +405,7 @@ const Api = (app: Application) => {
       }
     }
   );
+  
 };
 
 export default Api;
