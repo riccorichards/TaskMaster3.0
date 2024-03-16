@@ -1,5 +1,4 @@
 .timer-wrapper {
-  height: 90vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,15 +12,24 @@
   display: flex;
   align-items: center;
 }
-.timer-wrapper .timer .timer-setup {
+@media (max-width: 1024px) {
+  .timer-wrapper .timer {
+    width: 100%;
+  }
+}
+.timer-wrapper .timer .timer-setup-wrapper {
   flex: 1;
   height: 100%;
   padding: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-.timer-wrapper .timer .timer-setup .define-task {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -29,24 +37,9 @@
   color: #fff;
   text-shadow: 0 0 1.5px black;
 }
-.timer-wrapper .timer .timer-setup .define-task .define-task-btn {
-  width: -moz-fit-content;
-  width: fit-content;
-  border: none;
-  font-family: "Patua One", serif;
-  padding: 5px;
-  background-color: orangered;
-  color: #fff;
-  border-radius: 3.5px;
-  cursor: pointer;
-}
-.timer-wrapper .timer .timer-setup .define-task .define-task-btn:active {
-  transform: scale(0.95);
-}
-.timer-wrapper .timer .timer-setup .define-task .define-task-box {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box {
   background-color: #fff;
   padding: 5px;
-  top: 105%;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -55,7 +48,7 @@
   max-height: 25vh;
   overflow-y: scroll;
 }
-.timer-wrapper .timer .timer-setup .define-task .define-task-box .task-picker {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker {
   background-color: orangered;
   padding: 5px;
   border-radius: 2.5px;
@@ -67,10 +60,10 @@
   text-shadow: 0 0 1.5px black;
   text-align: left;
 }
-.timer-wrapper .timer .timer-setup .define-task .define-task-box .task-picker:hover {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker:hover {
   opacity: 0.7;
 }
-.timer-wrapper .timer .timer-setup .defined-task-wrapper {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .defined-task-wrapper {
   width: 90%;
   height: 90%;
   display: flex;
@@ -78,33 +71,17 @@
   justify-content: space-between;
   gap: 10px;
 }
-.timer-wrapper .timer .timer-setup .define-timer-method {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: #fff;
-  text-shadow: 0 0 1.5px black;
-}
-.timer-wrapper .timer .timer-setup .define-timer-method .timer-method-wrapper {
-  background-color: #1e6c82;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.25s ease-in-out;
-}
-.timer-wrapper .timer .timer-setup .define-timer-method .timer-method-wrapper:active {
-  transform: scale(0.95);
-}
-.timer-wrapper .timer .timer-setup .chosen-task-wrapper {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .chosen-task-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fff;
   padding: 5px;
+  min-height: 32vh;
   border-radius: 5px;
   box-shadow: 0 0 10px #6c6885;
 }
-.timer-wrapper .timer .timer-setup .run-timer-btn {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,8 +93,21 @@
   box-shadow: 5px 5px 15px #6c6885;
   cursor: pointer;
 }
-.timer-wrapper .timer .timer-setup .run-timer-btn:active {
+.timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn:active {
   transform: scale(0.95);
+}
+@media (max-width: 768px) {
+  .timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #1e6c82;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 15px #6c6885;
+  }
 }
 .timer-wrapper .timer .timer-output-wrapper {
   flex: 2;
@@ -127,9 +117,14 @@
   align-items: center;
   width: 100%;
 }
+@media (max-width: 425px) {
+  .timer-wrapper .timer .timer-output-wrapper {
+    display: none;
+  }
+}
 .timer-wrapper .timer .timer-output-wrapper .timer-output {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 500px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px #6c6885;
@@ -143,7 +138,17 @@
   background-color: orangered;
   border-radius: 5px;
 }
+@media (max-width: 768px) {
+  .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-output-item {
+    font-size: 100px;
+  }
+}
 .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {
   font-size: 150px;
   color: #1e6c82;
+}
+@media (max-width: 768px) {
+  .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {
+    font-size: 100px;
+  }
 }

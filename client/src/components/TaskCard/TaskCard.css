@@ -9,6 +9,11 @@
   color: #fff;
   position: relative;
 }
+@media (max-width: 425px) {
+  .single-task {
+    width: 100%;
+  }
+}
 .single-task .complete-btn {
   font-family: "Patua One", serif;
   border: none;

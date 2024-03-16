@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 footer {
   display: flex;
@@ -17,77 +18,104 @@ footer {
     font-weight: 700;
   }
 
-  .introduce-myself {
-    flex: 3;
+  .footer-content {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    color: #fff;
-
-    .author-img {
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: v.$example 1px solid;
-      }
-    }
-
-    button {
-      border: none;
-      background-color: transparent;
-      text-decoration: underline;
-      font-family: v.$intro_title;
-      cursor: pointer;
-      color: v.$orange;
-      &:active {
-        transform: scale(0.95);
-      }
-    }
-
-    .networks {
-      color: v.$light_grey;
-      display: flex;
+    @include mq.respond-to("tablet-device") {
+      flex-direction: column;
       gap: 15px;
-      align-items: center;
-
-      .network-item {
-        font-size: 24px;
-        cursor: pointer;
-        transition: all 0.25s ease-in-out;
-      }
-
-      .network-item:hover {
-        color: aliceblue;
-      }
     }
-  }
-
-  .my-projects {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 15px;
-    color: #fff;
-    border-left: 2px solid;
-
-    .new {
-      background-color: v.$orange;
-      padding: 5px;
-      border-radius: 5px;
+    @include mq.respond-to("mobile-device") {
+      flex-direction: column;
+      gap: 15px;
     }
 
-    ul {
-      list-style-type: none;
+    .introduce-myself {
+      flex: 3;
       display: flex;
       flex-direction: column;
       gap: 5px;
+      color: #fff;
+
+      .author-img {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: v.$example 1px solid;
+        }
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+        text-decoration: underline;
+        font-family: v.$intro_title;
+        cursor: pointer;
+        color: v.$orange;
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .networks {
+        color: v.$light_grey;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+
+        @include mq.respond-to("mobile-device") {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .network-item {
+          font-size: 24px;
+          cursor: pointer;
+          transition: all 0.25s ease-in-out;
+        }
+
+        .network-item:hover {
+          color: aliceblue;
+        }
+      }
+    }
+
+    .my-projects {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+      color: #fff;
+      border-left: 2px solid;
+
+      @include mq.respond-to("tablet-device") {
+        border: none;
+      }
+      @include mq.respond-to("mobile-device") {
+        border: none;
+      }
+
+      .new {
+        background-color: v.$orange;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        @include mq.respond-to("tablet-device") {
+          align-items: center;
+        }
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .timer-wrapper {
-  height: 90vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -15,120 +15,105 @@
     display: flex;
     align-items: center;
 
-    .timer-setup {
+    @include mq.respond-to("laptop-device") {
+      width: 100%;
+    }
+
+    .timer-setup-wrapper {
       flex: 1;
       height: 100%;
       padding: 10px;
       display: flex;
       justify-content: center;
-      align-items: center;
 
-      .define-task {
+      .timer-setup {
         display: flex;
         flex-direction: column;
-        gap: 5px;
-        position: relative;
-        color: #fff;
-        text-shadow: 0 0 1.5px black;
+        gap: 15px;
 
-        .define-task-btn {
-          width: fit-content;
-          border: none;
-          font-family: v.$intro_title;
-          padding: 5px;
-          background-color: v.$orange;
-          color: #fff;
-          border-radius: 3.5px;
-          cursor: pointer;
-
-          &:active {
-            transform: scale(0.95);
-          }
-        }
-
-        .define-task-box {
-          background-color: #fff;
-          padding: 5px;
-          top: 105%;
+        .define-task {
           display: flex;
           flex-direction: column;
           gap: 5px;
-          border-radius: 5px;
-          box-shadow: 0 0 10px v.$example;
-          max-height: 25vh;
-          overflow-y: scroll;
+          position: relative;
+          color: #fff;
+          text-shadow: 0 0 1.5px black;
 
-          .task-picker {
-            background-color: v.$orange;
+          .define-task-box {
+            background-color: #fff;
             padding: 5px;
-            border-radius: 2.5px;
-            font-family: v.$intro_title;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.25s ease-in-out;
-            text-shadow: 0 0 1.5px black;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px v.$example;
+            max-height: 25vh;
+            overflow-y: scroll;
 
-            &:hover {
-              opacity: 0.7;
+            .task-picker {
+              background-color: v.$orange;
+              padding: 5px;
+              border-radius: 2.5px;
+              font-family: v.$intro_title;
+              border: none;
+              color: #fff;
+              cursor: pointer;
+              transition: all 0.25s ease-in-out;
+              text-shadow: 0 0 1.5px black;
+              text-align: left;
+
+              &:hover {
+                opacity: 0.7;
+              }
             }
           }
         }
-      }
 
-      .defined-task-wrapper {
-        width: 90%;
-        height: 90%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 10px;
-      }
-
-      .define-timer-method {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        color: #fff;
-        text-shadow: 0 0 1.5px black;
-
-        .timer-method-wrapper {
-          background-color: v.$nice_blue;
+        .defined-task-wrapper {
+          width: 90%;
+          height: 90%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        .chosen-task-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #fff;
           padding: 5px;
+          min-height: 32vh;
           border-radius: 5px;
+          box-shadow: 0 0 10px v.$example;
+        }
+        .run-timer-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #fff;
+          color: v.$nice_blue;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          box-shadow: 5px 5px 15px v.$example;
           cursor: pointer;
-          transition: all 0.25s ease-in-out;
 
           &:active {
             transform: scale(0.95);
           }
-        }
-      }
 
-      .chosen-task-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        padding: 5px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px v.$example;
-      }
-
-      .run-timer-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        color: v.$nice_blue;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        box-shadow: 5px 5px 15px v.$example;
-        cursor: pointer;
-        &:active {
-          transform: scale(0.95);
+          @include mq.respond-to("tablet-device") {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: v.$nice_blue;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 15px v.$example;
+          }
         }
       }
     }
@@ -141,9 +126,12 @@
       align-items: center;
       width: 100%;
 
+      @include mq.respond-to("mobile-device") {
+        display: none;
+      }
       .timer-output {
-        width: 80%;
-        height: 80%;
+        width: 90%;
+        height: 500px;
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 0 10px v.$example;
@@ -156,10 +144,17 @@
           color: #fff;
           background-color: v.$orange;
           border-radius: 5px;
+
+          @include mq.respond-to("tablet-device") {
+            font-size: 100px;
+          }
         }
         .timer-dots {
           font-size: 150px;
           color: v.$nice_blue;
+          @include mq.respond-to("tablet-device") {
+            font-size: 100px;
+          }
         }
       }
     }

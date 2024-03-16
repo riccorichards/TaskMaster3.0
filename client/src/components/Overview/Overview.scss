@@ -1,12 +1,15 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .overview-wrapper {
-  height: 90vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  @include mq.respond-to("mobile-device") {
+    flex-direction: column;
+  }
   .overview {
     width: 80%;
     height: 90%;
@@ -15,6 +18,17 @@
     padding: 10px;
     display: flex;
     gap: 15px;
+
+    @include mq.respond-to("laptop-device") {
+      width: 100%;
+    }
+
+    @include mq.respond-to("tablet-device") {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 100%;
+      margin-top: 100px;
+    }
 
     .left-side-wrapper {
       flex: 2;
@@ -43,6 +57,18 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+
+      @include mq.respond-to("tablet-device") {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+      }
+
+      @include mq.respond-to("mobile-device") {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
 
       .my-stats-wrapper {
         flex: 1.2;

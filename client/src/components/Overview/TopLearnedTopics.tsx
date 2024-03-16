@@ -7,7 +7,7 @@ import { useUserStore } from "../../store/AuthStore";
 const TopLearnedTopics = () => {
   const { topWorkspaces, getTopWorkspaces } = useTaskStore();
   const { user } = useUserStore();
-  
+
   useEffect(() => {
     if (user) {
       getTopWorkspaces();
@@ -67,7 +67,10 @@ const TopLearnedTopics = () => {
   };
 
   return (
-    <EChartsReact option={option} style={{ width: "100%", height: "100%" }} />
+    <EChartsReact
+      option={option}
+      style={{ width: "100%", minHeight: "300px" }}
+    />
   );
 };
 

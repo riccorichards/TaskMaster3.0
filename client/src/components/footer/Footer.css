@@ -14,25 +14,40 @@ footer span {
   color: #fff;
   font-weight: 700;
 }
-footer .introduce-myself {
+footer .footer-content {
+  display: flex;
+}
+@media (max-width: 768px) {
+  footer .footer-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+@media (max-width: 425px) {
+  footer .footer-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+footer .footer-content .introduce-myself {
   flex: 3;
   display: flex;
   flex-direction: column;
   gap: 5px;
   color: #fff;
 }
-footer .introduce-myself .author-img {
+footer .footer-content .introduce-myself .author-img {
   width: 75px;
   height: 75px;
   border-radius: 50%;
 }
-footer .introduce-myself .author-img img {
+footer .footer-content .introduce-myself .author-img img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   border: #6c6885 1px solid;
 }
-footer .introduce-myself button {
+footer .footer-content .introduce-myself button {
   border: none;
   background-color: transparent;
   text-decoration: underline;
@@ -40,24 +55,30 @@ footer .introduce-myself button {
   cursor: pointer;
   color: orangered;
 }
-footer .introduce-myself button:active {
+footer .footer-content .introduce-myself button:active {
   transform: scale(0.95);
 }
-footer .introduce-myself .networks {
+footer .footer-content .introduce-myself .networks {
   color: #8b847d;
   display: flex;
   gap: 15px;
   align-items: center;
 }
-footer .introduce-myself .networks .network-item {
+@media (max-width: 425px) {
+  footer .footer-content .introduce-myself .networks {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+footer .footer-content .introduce-myself .networks .network-item {
   font-size: 24px;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
 }
-footer .introduce-myself .networks .network-item:hover {
+footer .footer-content .introduce-myself .networks .network-item:hover {
   color: aliceblue;
 }
-footer .my-projects {
+footer .footer-content .my-projects {
   flex: 1;
   display: flex;
   align-items: center;
@@ -67,14 +88,29 @@ footer .my-projects {
   color: #fff;
   border-left: 2px solid;
 }
-footer .my-projects .new {
+@media (max-width: 768px) {
+  footer .footer-content .my-projects {
+    border: none;
+  }
+}
+@media (max-width: 425px) {
+  footer .footer-content .my-projects {
+    border: none;
+  }
+}
+footer .footer-content .my-projects .new {
   background-color: orangered;
   padding: 5px;
   border-radius: 5px;
 }
-footer .my-projects ul {
+footer .footer-content .my-projects ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+@media (max-width: 768px) {
+  footer .footer-content .my-projects ul {
+    align-items: center;
+  }
 }

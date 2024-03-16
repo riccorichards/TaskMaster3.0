@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .auth-wrapper {
   width: 100%;
@@ -13,6 +14,15 @@
     border-radius: 15px;
     box-shadow: 0 0 10px v.$example;
     display: flex;
+
+    @include mq.respond-to("tablet-device") {
+      width: 100%;
+    }
+
+    @include mq.respond-to("mobile-device") {
+      flex-direction: column;
+      height: 100%;
+    }
 
     .auth-panel {
       flex: 1.3;
@@ -34,7 +44,6 @@
           text-decoration: underline;
           text-shadow: 0 0 1.5px black;
           cursor: pointer;
-
         }
       }
 

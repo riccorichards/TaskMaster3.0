@@ -1,17 +1,23 @@
+import React, { Suspense } from "react";
 import Footer from "../../components/footer/Footer";
 import Intro from "../../components/intro/Intro";
-import OurOffers from "../../components/ourOffers/OurOffers";
+const OurOffers = React.lazy(
+  () => import("../../components/ourOffers/OurOffers")
+);
 import { offers_pres } from "../../const";
 import "./Langding.scss";
+import Loader from "../../components/Loader/Loader";
 
 const Langding = () => {
   return (
     <div className="landing-page">
       <Intro />
       <main className="offers">
-        {offers_pres.map((offer, i) => (
-          <OurOffers offer={offer} index={i} key={i} />
-        ))}
+        <Suspense fallback={<Loader />}>
+          {offers_pres.map((offer, i) => (
+            <OurOffers offer={offer} index={i} key={i} />
+          ))}
+        </Suspense>
       </main>
       <Footer />
     </div>

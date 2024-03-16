@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { SignUpValidation } from "../../pages/auth/signValidation";
 import { useUserStore } from "../../store/AuthStore";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 
 const SingUp: FC<{ setIsSignUp: (v: boolean) => void }> = ({ setIsSignUp }) => {
@@ -18,6 +18,11 @@ const SingUp: FC<{ setIsSignUp: (v: boolean) => void }> = ({ setIsSignUp }) => {
   } = useForm<SignUpInput>({
     resolver: zodResolver(SignUpValidation),
   });
+  const [googleError, setGoogleError] = useState<string | null>(null);
+
+  const loginWithGoogle = () => {
+    setGoogleError("Authentication with Google now is not available");
+  };
   const onSubmit = async (values: SignUpInput) => {
     signup(values);
     reset();
@@ -80,15 +85,20 @@ const SingUp: FC<{ setIsSignUp: (v: boolean) => void }> = ({ setIsSignUp }) => {
         </div>
 
         <button type="submit">Create</button>
-        {error && <p className="errors-wrapper">Error: {error}</p>}
+        {error && (
+          <p style={{ fontSize: "14px", color: "red" }}>Error: {error}</p>
+        )}
       </form>
 
       <span style={{ margin: "0 auto" }}>--OR--</span>
 
-      <button className="signup-with-google">
+      <button className="signup-with-google" onClick={loginWithGoogle}>
         <FcGoogle />
         Sign Up with Google
       </button>
+      {googleError && (
+        <p style={{ fontSize: "14px", color: "red" }}>{googleError}</p>
+      )}
     </div>
   );
 };

@@ -15,6 +15,11 @@
   flex-direction: column;
   gap: 35px;
 }
+@media (max-width: 1024px) {
+  .task-generator-wrapper .task-generator {
+    width: 100%;
+  }
+}
 .task-generator-wrapper .store-daily-result {
   border: none;
   box-shadow: 0 0 10px #6c6885;

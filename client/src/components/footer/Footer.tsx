@@ -7,7 +7,7 @@ import "./Footer.scss";
 const Footer = () => {
   return (
     <footer>
-      <div style={{ display: "flex" }}>
+      <div className="footer-content">
         <div className="introduce-myself">
           <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
             <div className="author-img">

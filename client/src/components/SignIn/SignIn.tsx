@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { SignInValidation } from "../../pages/auth/signValidation";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/AuthStore";
 import Loader from "../Loader/Loader";
 
@@ -23,6 +23,11 @@ const SignIn = () => {
   const onSubmit = async (values: SignInInput) => {
     login(values);
     reset();
+  };
+  const [googleError, setGoogleError] = useState<string | null>(null);
+
+  const loginWithGoogle = () => {
+    setGoogleError("Authentication with Google now is not available");
   };
 
   useEffect(() => {
@@ -66,10 +71,13 @@ const SignIn = () => {
 
       <span style={{ margin: "0 auto" }}>--OR--</span>
 
-      <button className="signup-with-google">
+      <button className="signup-with-google" onClick={loginWithGoogle}>
         <FcGoogle />
         Sign In with Google
       </button>
+      {googleError && (
+        <p style={{ fontSize: "14px", color: "red" }}>{googleError}</p>
+      )}
     </div>
   );
 };

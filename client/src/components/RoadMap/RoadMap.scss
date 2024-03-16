@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .roadmap-wrapper {
   height: 90vh;
@@ -16,6 +17,9 @@
     gap: 15px;
     padding: 5px;
 
+    @include mq.respond-to("mobile-device") {
+      flex-direction: column;
+    }
     .roadmap-setup {
       flex: 1;
       display: flex;

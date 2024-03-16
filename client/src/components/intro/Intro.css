@@ -7,6 +7,13 @@
   display: flex;
   gap: 25px;
 }
+@media (max-width: 425px) {
+  .intro-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
 .intro-wrapper .intro-title {
   flex: 1;
   font-family: "Patua One", serif;
@@ -17,15 +24,45 @@
   justify-content: center;
   padding: 15px;
 }
+@media (max-width: 425px) {
+  .intro-wrapper .intro-title {
+    margin-top: 100px;
+  }
+}
 .intro-wrapper .intro-title h1 {
   display: flex;
   flex-direction: column;
   font-size: 85px;
   text-shadow: 0 0 10px #1e6c82;
 }
+@media (max-width: 1024px) {
+  .intro-wrapper .intro-title h1 {
+    font-size: 65px;
+  }
+}
+@media (max-width: 768px) {
+  .intro-wrapper .intro-title h1 {
+    font-size: 45px;
+  }
+}
+@media (max-width: 425px) {
+  .intro-wrapper .intro-title h1 {
+    text-align: center;
+  }
+}
 .intro-wrapper .intro-title p {
   color: #5f402d;
   font-family: "Roboto Condensed", sans-serif;
+}
+@media (max-width: 768px) {
+  .intro-wrapper .intro-title p {
+    font-size: 15px;
+  }
+}
+@media (max-width: 425px) {
+  .intro-wrapper .intro-title p {
+    text-align: center;
+  }
 }
 .intro-wrapper .intro-title button {
   padding: 15px;
@@ -41,6 +78,23 @@
 .intro-wrapper .intro-title button:active {
   transform: scale(0.95);
 }
+@media (max-width: 1024px) {
+  .intro-wrapper .intro-title button {
+    padding: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Patua One", serif;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px #8b847d;
+    letter-spacing: 1px;
+  }
+}
+@media (max-width: 425px) {
+  .intro-wrapper .intro-title button {
+    width: 100%;
+  }
+}
 .intro-wrapper .product-showcases {
   flex: 1;
   display: flex;
@@ -48,8 +102,8 @@
   justify-content: center;
 }
 .intro-wrapper .product-showcases .product-wrapper {
-  width: 400px;
-  height: 400px;
+  width: 70%;
+  height: 250px;
   border-radius: 5px;
   box-shadow: 10px 10px 10px #6c6885;
 }
@@ -83,4 +137,25 @@
 }
 .intro-wrapper .product-showcases .products .product:hover {
   opacity: 0.7;
+}
+@media (max-width: 1024px) {
+  .intro-wrapper .product-showcases .products .product:hover {
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .intro-wrapper .product-showcases .products .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .intro-wrapper .product-showcases .products .product p {
+    display: none;
+  }
+}
+@media (max-width: 425px) {
+  .intro-wrapper .product-showcases .products {
+    display: flex;
+    flex-direction: column;
+  }
 }

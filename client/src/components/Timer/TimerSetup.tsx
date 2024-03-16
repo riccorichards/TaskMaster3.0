@@ -16,13 +16,20 @@ const Timer = () => {
   return (
     <section className="timer-wrapper" id="Timer">
       <div className="timer">
-        <div className="timer-setup">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-          >
+        <div className="timer-setup-wrapper">
+          <div className="timer-setup">
             <div className="define-task">
               <span>You need to select task to define working hours</span>
-              <div style={{}}>Select:</div>
+              <div
+                style={{
+                  padding: "5px",
+                  backgroundColor: "#14bc87",
+                  width: "fit-content",
+                  borderRadius: "3.5px",
+                }}
+              >
+                Select:
+              </div>
               <div className="define-task-box">
                 {tasks.map((task, i) => (
                   <button

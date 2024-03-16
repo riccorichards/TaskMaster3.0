@@ -73,7 +73,7 @@ const TaskInput: FC<{
         placeholder="Task, description.../priority; (example) => Blockchain, this is example of blockchain/high"
       />
       <button className="add-task-btn" onClick={handleCreateTask}>
-        Add new task
+        Add task
       </button>
       {errorhandler && (
         <p

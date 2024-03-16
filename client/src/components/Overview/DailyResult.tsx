@@ -6,7 +6,7 @@ import { useUserStore } from "../../store/AuthStore";
 const DailyResult = () => {
   const { dailyResult, fetchDailyResult } = useTaskStore();
   const { user } = useUserStore();
-  
+
   useEffect(() => {
     if (user) {
       fetchDailyResult();
@@ -58,7 +58,7 @@ const DailyResult = () => {
     },
   };
   return (
-    <EChartsReact option={option} style={{ width: "100%", height: "100%" }} />
+    <EChartsReact option={option} style={{ width: "100%", height: "300px" }} />
   );
 };
 
