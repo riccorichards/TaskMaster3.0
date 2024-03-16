@@ -58,7 +58,7 @@ const Api = (app: Application) => {
           httpOnly: true,
           domain: "task-master-zjvca.ondigitalocean.app",
           path: "/",
-          sameSite: "strict",
+          sameSite: "none",
           secure: true,
         });
 
@@ -67,7 +67,7 @@ const Api = (app: Application) => {
           httpOnly: true,
           domain: "task-master-zjvca.ondigitalocean.app",
           path: "/",
-          sameSite: "strict",
+          sameSite: "none",
           secure: true,
         });
 
