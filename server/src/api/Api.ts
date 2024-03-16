@@ -55,8 +55,8 @@ const Api = (app: Application) => {
 
         res.cookie("accessToken", accessToken, {
           maxAge: 3.154e10,
-          httpOnly: false,
-          domain: ".task-master-zjvca.ondigitalocean.app",
+          httpOnly: true,
+          domain: "task-master-zjvca.ondigitalocean.app",
           path: "/",
           sameSite: "strict",
           secure: true,
@@ -65,7 +65,7 @@ const Api = (app: Application) => {
         res.cookie("refreshToken", refreshToken, {
           maxAge: 3.154e10,
           httpOnly: true,
-          domain: ".task-master-zjvca.ondigitalocean.app",
+          domain: "task-master-zjvca.ondigitalocean.app",
           path: "/",
           sameSite: "strict",
           secure: true,
