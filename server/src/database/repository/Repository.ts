@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import {
   CreateNodeType,
   ReadNodeType,
@@ -15,6 +16,7 @@ import {
 } from "../../api/middleware/zodSchemas/UserAuthZodSchema";
 import { AuthorisedError, NotFoundError } from "../../utils/Error";
 import Utils from "../../utils/Utils";
+import BotModel from "../model/Bot.model";
 import HistoryModel from "../model/History.model";
 import NodeModel from "../model/NodeTree.model";
 import SessionModel from "../model/Session.model";
@@ -59,7 +61,7 @@ class Repository {
   }
 
   async CreateNode(input: CreateNodeType["body"]) {
-    await NodeModel.create(input);
+    return await NodeModel.create(input);
   }
 
   async InsertNode(input: CreateNodeType["body"]) {
@@ -186,6 +188,16 @@ class Repository {
     return await HistoryModel.find(query);
   }
 
+  async NewQuestionForBot(userId: string, question: string) {
+    return await BotModel.create({ user: userId, question });
+  }
+
+  async GetQuestionFromBotMemory(userId: string) {
+    return await BotModel.aggregate([
+      { $match: { user: userId } },
+      { $sample: { size: 1 } },
+    ]);
+  }
 }
 
 export default Repository;

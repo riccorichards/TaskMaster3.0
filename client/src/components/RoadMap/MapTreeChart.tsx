@@ -46,9 +46,9 @@ const MapTreeChart = () => {
         orient: "BT",
         expandAndCollapse: true,
         lineStyle: {
-          color: "#424243",
+          color: "#4a5c6a",
           width: 2,
-          shadowColor: "rgba(0, 0, 0, 0.5)",
+          shadowColor: "#06141b",
           shadowBlur: 5,
         },
         label: {
@@ -56,7 +56,7 @@ const MapTreeChart = () => {
           rotate: 0,
           verticalAlign: "top",
           align: "center",
-          color: "#1e6c82",
+          color: "#4a5c6a",
           fontSize: 14,
           fontWeight: "bold",
         },
@@ -80,9 +80,8 @@ const MapTreeChart = () => {
       style={{
         width: "100%",
         height: "100%",
-        backgroundColor: "black",
-        borderRadius: "15px",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+        borderRadius: "5px",
+        boxShadow: "0 0 1px #ccd0cf",
       }}
     >
       {isLoading ? (

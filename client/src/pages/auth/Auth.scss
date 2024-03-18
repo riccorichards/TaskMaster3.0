@@ -12,7 +12,7 @@
     width: 50%;
     height: 80vh;
     border-radius: 15px;
-    box-shadow: 0 0 10px v.$example;
+    box-shadow: 0 0 1px v.$cadet-gray;
     display: flex;
 
     @include mq.respond-to("tablet-device") {
@@ -26,13 +26,14 @@
 
     .auth-panel {
       flex: 1.3;
-      color: #fff;
-      background-color: v.$nice_blue;
+      color: v.$light-gray;
+      background-color: v.$charcoal_blue;
       border-radius: 15px 0 0 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 15px;
+      position: relative;
 
       span {
         button {
@@ -48,7 +49,7 @@
       }
 
       p {
-        color: v.$light_grey;
+        color: v.$cadet-gray;
       }
     }
 

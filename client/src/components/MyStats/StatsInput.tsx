@@ -44,20 +44,21 @@ const StatsInput = () => {
         <span
           style={{
             padding: "3.5px",
-            backgroundColor: "orangered",
+            backgroundColor: "#06141b",
             borderRadius: "3.5px",
-            color: "#fff",
+            color: "#ccd0cf",
           }}
         >
-          Journey duration
+          Journey Endpoint
         </span>
         {user?.journeyDuration ? (
           <span
             style={{
               padding: "3.5px",
-              backgroundColor: "#14bc87",
+              backgroundColor: "#9baab8",
               borderRadius: "3.5px",
-              color: "#fff",
+              border: "1px solid #06141b",
+              color: "#4a5c6a",
             }}
           >
             {user?.journeyDuration}
@@ -79,9 +80,9 @@ const StatsInput = () => {
         <span
           style={{
             padding: "3.5px",
-            backgroundColor: "#fb2985",
+            backgroundColor: "#06141b",
             borderRadius: "3.5px",
-            color: "#fff",
+            color: "#ccd0cf",
           }}
         >
           Allocated time
@@ -90,9 +91,10 @@ const StatsInput = () => {
           <span
             style={{
               padding: "3.5px",
-              backgroundColor: "#14bc87",
+              backgroundColor: "#9baab8",
               borderRadius: "3.5px",
-              color: "#fff",
+              border: "1px solid #06141b",
+              color: "#4a5c6a",
             }}
           >
             {user.allocatedTime} Hours

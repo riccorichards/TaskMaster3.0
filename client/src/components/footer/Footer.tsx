@@ -90,7 +90,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <span>© Copyright 2024. Made by RiccoRichards</span>
+      <span style={{ color: "#ccd0cf" }}>
+        © Copyright 2024. Made by RiccoRichards
+      </span>
     </footer>
   );
 };

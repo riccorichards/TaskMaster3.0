@@ -3,6 +3,7 @@ import "./Auth.css";
 import SingUp from "../../components/SingUp/SingUp";
 import SignIn from "../../components/SignIn/SignIn";
 import Logo from "../../components/header/logo/Logo";
+import authDecor from "../../assets/auth-decor-removebg-preview.png";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(true);
@@ -10,17 +11,20 @@ const Auth = () => {
     <div className="auth-wrapper">
       <div className="auth">
         <div className="auth-panel">
-          <Logo isAuth />
-          <div>
-            <h2>Embark on a Journey to Mastery with TaskMaster3.0</h2>
-            <p>
-              Craft a personalized path to professional excellence with
-              TaskMaster3.0 — your ally in mastering any field. Let's navigate
-              the road to success together!
-            </p>
-          </div>
+          <Logo where="header" />
+          <img
+            src={authDecor}
+            alt="decor"
+            style={{
+              width: "100%",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
           <span>
-            already has an account?{" "}
+            already have an account?{" "}
             <button onClick={() => setIsSignUp(!isSignUp)}>
               {!isSignUp ? "Sign Up" : "Sign In"}
             </button>

@@ -106,7 +106,7 @@ const RoadMap = () => {
   };
 
   return (
-    <div className="roadmap-wrapper" id="Road Map">
+    <div className="roadmap-wrapper">
       <div className="roadmap">
         <div className="roadmap-setup">
           <div
@@ -135,9 +135,9 @@ const RoadMap = () => {
                 You need to add{" "}
                 <span
                   style={{
-                    color: "#f07043",
+                    color: "#9baab8",
                     padding: "2.5px",
-                    backgroundColor: "#fff",
+                    backgroundColor: "#06141b",
                     borderRadius: "2.5px",
                   }}
                 >
@@ -153,7 +153,7 @@ const RoadMap = () => {
               <span
                 onClick={() => handleSetWorkspace(node)}
                 key={node}
-                style={{ backgroundColor: node === workspace ? "#1e6c82" : "" }}
+                style={{ backgroundColor: node === workspace ? "#4a5c6a" : "" }}
               >
                 <div
                   className="remove-node"

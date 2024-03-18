@@ -21,7 +21,7 @@
 
       input {
         font-family: v.$font;
-        border: 1px solid v.$nice_blue;
+        border: 1px solid v.$charcoal_blue;
         border-radius: 2.5px;
         padding: 5px;
 
@@ -37,11 +37,11 @@
 
     button {
       padding: 5px;
-      border: v.$nice_blue 1px solid;
+      border: v.$charcoal_blue 1px solid;
       border-radius: 5px;
-      background-color: v.$nice_blue;
+      background-color: v.$charcoal_blue;
       font-family: v.$intro_title;
-      color: #fff;
+      color: v.$light-gray;
       letter-spacing: 1px;
       cursor: pointer;
 
@@ -60,7 +60,7 @@
     border-radius: 5px;
     font-family: v.$intro_title;
     gap: 5px;
-    box-shadow: 5px 5px 10px v.$example;
+    box-shadow: 5px 5px 10px v.$cadet-gray;
     cursor: pointer;
 
     &:active {

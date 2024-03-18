@@ -76,13 +76,13 @@ const FilterController: FC<{ historyLen: number }> = ({ historyLen }) => {
         </button>
 
         <button
-          style={{ backgroundColor: "#14bc87", color: "#fff" }}
+          style={{ backgroundColor: "#06141b", color: "#fff" }}
           onClick={() => filterhandler("complete", "true")}
         >
           Done
         </button>
         <button
-          style={{ backgroundColor: "#fb2985", color: "#fff" }}
+          style={{ backgroundColor: "#9baab8", color: "#fff" }}
           onClick={() => filterhandler("complete", "false")}
         >
           Failed
@@ -100,6 +100,7 @@ const FilterController: FC<{ historyLen: number }> = ({ historyLen }) => {
               value={customFilter}
               onChange={handleSearchChange}
               placeholder="priority:high"
+              style={{ backgroundColor: "transparent" }}
             />
             {customFilter !== "" && (
               <IoMdCloseCircle onClick={() => setCustomFilter("")} />

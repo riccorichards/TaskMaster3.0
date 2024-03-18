@@ -67,10 +67,7 @@ const TopLearnedTopics = () => {
   };
 
   return (
-    <EChartsReact
-      option={option}
-      style={{ width: "100%", minHeight: "300px" }}
-    />
+    <EChartsReact option={option} style={{ width: "100%", height: "100%" }} />
   );
 };
 

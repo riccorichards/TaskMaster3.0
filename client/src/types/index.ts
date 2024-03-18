@@ -112,3 +112,15 @@ export interface FilteredType {
   priority?: string;
   workspace?: string;
 }
+
+export interface MessageType {
+  author: string;
+  msg: string;
+}
+
+export interface BotState {
+  messages: MessageType[];
+  bot: string;
+  isLoading: boolean;
+  error: string | null;
+}

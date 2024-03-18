@@ -49,3 +49,12 @@ export interface TaskDocument {
   complete: boolean;
   createdAt: Date;
 }
+
+export interface BotInput {
+  user: string;
+  question: string;
+}
+
+export interface BotDocument extends BotInput {
+  _id: mongoose.Schema.Types.ObjectId;
+}

@@ -24,10 +24,21 @@ const Intro = () => {
         >
           <h1>
             <span>
-              Master Your <span style={{ color: "orangered" }}>Time</span>,
+              Master Your{" "}
+              <span
+                style={{ color: "#253745", textShadow: "0 0 1.5px #ccd0cf" }}
+              >
+                Time
+              </span>
+              ,
             </span>
             <span>
-              Master Your <span style={{ color: "orangered" }}>Life</span>
+              Master Your{" "}
+              <span
+                style={{ color: "#253745", textShadow: "0 0 1.5px #ccd0cf" }}
+              >
+                Life
+              </span>
             </span>
           </h1>
           <p>

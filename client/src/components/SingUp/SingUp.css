@@ -18,7 +18,7 @@
 }
 .signup-wrapper form .input-wrapper input {
   font-family: "Roboto Condensed", sans-serif;
-  border: 1px solid #1e6c82;
+  border: 1px solid #11212d;
   border-radius: 2.5px;
   padding: 5px;
 }
@@ -31,11 +31,11 @@
 }
 .signup-wrapper form button {
   padding: 5px;
-  border: #1e6c82 1px solid;
+  border: #11212d 1px solid;
   border-radius: 5px;
-  background-color: #1e6c82;
+  background-color: #11212d;
   font-family: "Patua One", serif;
-  color: #fff;
+  color: #ccd0cf;
   letter-spacing: 1px;
   cursor: pointer;
 }
@@ -51,7 +51,7 @@
   border-radius: 5px;
   font-family: "Patua One", serif;
   gap: 5px;
-  box-shadow: 5px 5px 10px #6c6885;
+  box-shadow: 5px 5px 10px #9baab8;
   cursor: pointer;
 }
 .signup-wrapper .signup-with-google:active {

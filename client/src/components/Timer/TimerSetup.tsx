@@ -14,7 +14,7 @@ const Timer = () => {
   };
 
   return (
-    <section className="timer-wrapper" id="Timer">
+    <section className="timer-wrapper">
       <div className="timer">
         <div className="timer-setup-wrapper">
           <div className="timer-setup">
@@ -23,7 +23,7 @@ const Timer = () => {
               <div
                 style={{
                   padding: "5px",
-                  backgroundColor: "#14bc87",
+                  backgroundColor: "#11212d",
                   width: "fit-content",
                   borderRadius: "3.5px",
                 }}

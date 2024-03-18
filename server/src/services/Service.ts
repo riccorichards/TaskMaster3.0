@@ -80,7 +80,7 @@ class Service {
   }
 
   async CreateNewNodeService(input: CreateNodeType["body"]) {
-    const newNode = this.Repo.CreateNode(input);
+    const newNode = await this.Repo.CreateNode(input);
     if (!newNode) throw new BadRequestError("bad request or server issue");
     const nodeNames = await this.Repo.RetrieveNodeName(input.username);
     if (nodeNames.length < 1)
@@ -317,6 +317,35 @@ class Service {
     });
 
     return result.sort((a, b) => b.value - a.value);
+  }
+
+  async BotMessageService(cmd: string, userId: string) {
+    if (cmd === "" || cmd === "help" || cmd === "finish") {
+      return Utils.botInteraction(cmd);
+    }
+
+    const argument = cmd.split(":")[0];
+    const newRegaxedItems = /^new:\s*(.+)$/;
+
+    if (newRegaxedItems.test(cmd)) {
+      const matched = cmd.match(newRegaxedItems);
+      if (matched) {
+        const [, question] = matched;
+        const response = await this.Repo.NewQuestionForBot(userId, question);
+        if (!response)
+          throw new NotFoundError("Error while adding new question");
+        return Utils.botInteraction(cmd, argument);
+      }
+    } else if (cmd === "start" || cmd === "next") {
+      const response = await this.Repo.GetQuestionFromBotMemory(userId);
+      if (!response || response.length === 0)
+        return Utils.botInteraction("not found");
+      const question = {
+        author: "bot",
+        msg: response[0].question,
+      };
+      return question;
+    }
   }
 }
 

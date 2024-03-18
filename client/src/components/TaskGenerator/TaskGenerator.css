@@ -1,29 +1,21 @@
-.task-generator-wrapper {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.task-generator-wrapper .task-generator {
-  width: 80%;
-  height: 95%;
-  box-shadow: 0 0 1.5px #6c6885;
+.task-generator {
   border-radius: 5px;
+  height: 100%;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 35px;
 }
 @media (max-width: 1024px) {
-  .task-generator-wrapper .task-generator {
+  .task-generator {
     width: 100%;
   }
 }
-.task-generator-wrapper .store-daily-result {
+
+.store-daily-result {
   border: none;
-  box-shadow: 0 0 10px #6c6885;
-  background-color: orangered;
+  box-shadow: 0 0 1px #9baab8;
+  background-color: #9baab8;
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-end;
@@ -31,11 +23,11 @@
   padding: 5px;
   border-radius: 3.5px;
   cursor: pointer;
-  color: #fff;
+  color: #06141b;
   display: flex;
   align-items: center;
   gap: 2.5px;
 }
-.task-generator-wrapper .store-daily-result:active {
+.store-daily-result:active {
   transform: scale(0.95);
 }

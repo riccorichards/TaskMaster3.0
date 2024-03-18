@@ -6,7 +6,7 @@
 }
 .my-stats input {
   padding: 3.5px;
-  border: 1px solid #1e6c82;
+  border: 1px solid #11212d;
   border-radius: 3.5px;
   font-family: "Roboto Condensed", sans-serif;
 }
@@ -17,10 +17,10 @@
   border: none;
   font-family: "Patua One", serif;
   padding: 3.5px;
-  background-color: #1e6c82;
+  background-color: #11212d;
   border-radius: 3.5px;
   cursor: pointer;
-  color: #fff;
+  color: #ccd0cf;
   margin-top: 5px;
 }
 .my-stats .submit-journey-btn:active {
@@ -30,10 +30,10 @@
   border: none;
   font-family: "Patua One", serif;
   padding: 3.5px;
-  background-color: #fb2985;
+  background-color: #06141b;
   border-radius: 3.5px;
   cursor: pointer;
-  color: #fff;
+  color: #ccd0cf;
   margin-top: 5px;
 }
 .my-stats .reset-journey-btn:active {
@@ -44,5 +44,5 @@
   height: 15px;
   position: relative;
   border-radius: 2.5px;
-  box-shadow: 0 0 1px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
 }

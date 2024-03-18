@@ -10,7 +10,7 @@ import Profile from "./Profile";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user, myStats, logOut } = useUserStore();
+  const { user, myStats } = useUserStore();
   const { dailyResult } = useTaskStore();
   const [hasScrollDown, setHasScrollDown] = useState<boolean>(false);
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
@@ -51,11 +51,6 @@ const Header = () => {
     dailyResult &&
     dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;
 
-  const handleLogout = () => {
-    logOut();
-    navigate("/");
-  };
-
   const navigateToAuth = () => {
     navigate("/auth");
   };
@@ -67,7 +62,7 @@ const Header = () => {
         transition: "all 0.25s ease-in-out",
       }}
     >
-      <Logo hasScrollDown={hasScrollDown} />
+      <Logo where="header" />
       {user ? (
         <div
           style={{
@@ -99,9 +94,6 @@ const Header = () => {
                   <span style={{ fontSize: "14px" }}>
                     Per day: {myStats?.perDay?.toFixed(2)} hr
                   </span>
-                  <button className="log-out" onClick={handleLogout}>
-                    Log out
-                  </button>
                 </div>
               </div>
               {screenSize > 425 && (

@@ -6,11 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 
   .timer {
-    width: 80%;
-    height: 80%;
-    box-shadow: 0 0 1.5px v.$example;
+    width: 100%;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -36,30 +35,29 @@
           flex-direction: column;
           gap: 5px;
           position: relative;
-          color: #fff;
-          text-shadow: 0 0 1.5px black;
+          color: v.$light-gray;
 
           .define-task-box {
-            background-color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 1px v.$cadet-gray;
             padding: 5px;
             display: flex;
             flex-direction: column;
             gap: 5px;
             border-radius: 5px;
-            box-shadow: 0 0 10px v.$example;
             max-height: 25vh;
             overflow-y: scroll;
 
             .task-picker {
-              background-color: v.$orange;
+              background-color: v.$charcoal_blue;
               padding: 5px;
+              box-shadow: 0 0 1px v.$light-gray;
               border-radius: 2.5px;
-              font-family: v.$intro_title;
+              font-family: v.$font;
               border: none;
-              color: #fff;
+              color: v.$light-gray;
               cursor: pointer;
               transition: all 0.25s ease-in-out;
-              text-shadow: 0 0 1.5px black;
               text-align: left;
 
               &:hover {
@@ -81,22 +79,22 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: #fff;
           padding: 5px;
           min-height: 32vh;
           border-radius: 5px;
-          box-shadow: 0 0 10px v.$example;
+          color: v.$light-gray;
+          box-shadow: 0 0 1px v.$cadet-gray;
         }
         .run-timer-btn {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: #fff;
-          color: v.$nice_blue;
+          background-color: v.$cadet-gray;
+          color: v.$charcoal_blue;
           width: 70px;
           height: 70px;
           border-radius: 50%;
-          box-shadow: 5px 5px 15px v.$example;
+          box-shadow: 0 0 1px v.$gunmetal;
           cursor: pointer;
 
           &:active {
@@ -107,12 +105,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #fff;
-            color: v.$nice_blue;
+            background-color: v.$cadet-gray;
+            color: v.$charcoal_blue;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            box-shadow: 5px 5px 15px v.$example;
+            box-shadow: 5px 5px 15px v.$gunmetal;
           }
         }
       }
@@ -129,21 +127,23 @@
       @include mq.respond-to("mobile-device") {
         display: none;
       }
+
       .timer-output {
         width: 90%;
         height: 500px;
-        background-color: #fff;
+        background-color: transparent;
         border-radius: 5px;
-        box-shadow: 0 0 10px v.$example;
+        box-shadow: 0 0 1px v.$cadet-gray;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .timer-output-item {
           font-size: 150px;
-          color: #fff;
-          background-color: v.$orange;
+          color: v.$independence;
+          background-color: v.$charcoal_blue;
           border-radius: 5px;
+          box-shadow: 0 0 1px v.$cadet-gray;
 
           @include mq.respond-to("tablet-device") {
             font-size: 100px;
@@ -151,7 +151,7 @@
         }
         .timer-dots {
           font-size: 150px;
-          color: v.$nice_blue;
+          color: v.$charcoal_blue;
           @include mq.respond-to("tablet-device") {
             font-size: 100px;
           }

@@ -8,7 +8,7 @@
 
   input {
     padding: 3.5px;
-    border: 1px solid v.$nice_blue;
+    border: 1px solid v.$charcoal_blue;
     border-radius: 3.5px;
     font-family: v.$font;
 
@@ -21,10 +21,10 @@
     border: none;
     font-family: v.$intro_title;
     padding: 3.5px;
-    background-color: v.$nice_blue;
+    background-color: v.$charcoal_blue;
     border-radius: 3.5px;
     cursor: pointer;
-    color: #fff;
+    color: v.$light-gray;
     margin-top: 5px;
 
     &:active {
@@ -35,10 +35,10 @@
     border: none;
     font-family: v.$intro_title;
     padding: 3.5px;
-    background-color: v.$pink;
+    background-color: v.$gunmetal;
     border-radius: 3.5px;
     cursor: pointer;
-    color: #fff;
+    color: v.$light-gray;
     margin-top: 5px;
 
     &:active {
@@ -52,7 +52,7 @@
       height: 15px;
       position: relative;
       border-radius: 2.5px;
-      box-shadow: 0 0 1px v.$example;
+      box-shadow: 0 0 1px v.$cadet-gray;
     }
   }
 }

@@ -350,7 +350,7 @@ const Api = (app: Application) => {
       try {
         const author = res.locals.user.user;
         const response = await service.DailyResulyService(author);
-        return res.status(200).json(response);
+        return res.status(200).json(response.reverse());
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });
@@ -359,7 +359,7 @@ const Api = (app: Application) => {
       }
     }
   );
-
+  //api endpoint for retrieve users' stats
   app.get(
     "/api/my-stats",
     async (req: Request, res: Response, next: NextFunction) => {
@@ -375,14 +375,14 @@ const Api = (app: Application) => {
       }
     }
   );
-
+  //api endpoint for retrieve top workspaces
   app.get(
-    "/api/log-out",
+    "/api/top-workspaces",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.clearCookie("refreshToken");
-        res.clearCookie("accessToken");
-        return res.status(201).json(null);
+        const userId = res.locals.user.user;
+        const response = await service.TopLearnedTopicsService(userId);
+        return res.status(200).json(response);
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });
@@ -391,14 +391,27 @@ const Api = (app: Application) => {
       }
     }
   );
-
   app.get(
-    "/api/top-workspaces",
+    "/api/bot-message",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const userId = res.locals.user.user;
-        const response = await service.TopLearnedTopicsService(userId);
+        const cmd = typeof req.query.cmd === "string" ? req.query.cmd : "";
+        const response = await service.BotMessageService(cmd, userId);
         return res.status(200).json(response);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+  //logs out
+  app.get(
+    "/api/log-out",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        res.clearCookie("refreshToken");
+        res.clearCookie("accessToken");
+        return res.status(201).json(null);
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });

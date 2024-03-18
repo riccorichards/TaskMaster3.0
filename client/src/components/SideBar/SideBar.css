@@ -1,0 +1,105 @@
+.side-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 25px 0;
+}
+
+.tutorial {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #11212d;
+  padding: 5px;
+  border-radius: 3.5px;
+  color: #ccd0cf;
+  cursor: pointer;
+}
+.tutorial:active {
+  transform: scale(0.95);
+}
+.tutorial span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #9baab8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1.5px #06141b;
+}
+.tutorial span svg {
+  color: #06141b;
+}
+
+.bot-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #11212d;
+  padding: 5px;
+  border-radius: 3.5px;
+  color: #ccd0cf;
+  cursor: pointer;
+}
+.bot-btn:active {
+  transform: scale(0.95);
+}
+.bot-btn span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #9baab8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1.5px #06141b;
+}
+.bot-btn span svg {
+  color: #06141b;
+}
+
+.navigation-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.navigation-wrapper .nav-item {
+  font-size: 18px;
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  color: initial;
+  text-decoration: none;
+  padding: 10px;
+  transition: all 0.25s ease-in-out;
+  padding-left: 50px;
+}
+.navigation-wrapper .nav-item:hover {
+  color: #9baab8;
+  background-color: #11212d;
+}
+
+.log-out {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 5px;
+  background-color: #9baab8;
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  border-radius: 3.5px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.log-out:hover {
+  background-color: #253745;
+  color: #ccd0cf;
+}
+
+.active {
+  background-color: #253745;
+}

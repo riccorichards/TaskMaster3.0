@@ -2,24 +2,21 @@
 @use "../../utils/sass/f.scss" as mq;
 
 .roadmap-wrapper {
-  height: 90vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-self: center;
+  height: 100%;
 
   .roadmap {
-    width: 80%;
-    height: 90%;
-    box-shadow: 0 0 1px v.$example;
+    box-shadow: 0 0 1px v.$cadet-gray;
     border-radius: 5px;
     display: flex;
     gap: 15px;
     padding: 5px;
+    height: 100%;
 
     @include mq.respond-to("mobile-device") {
       flex-direction: column;
     }
+
     .roadmap-setup {
       flex: 1;
       display: flex;
@@ -30,9 +27,9 @@
         width: 80%;
         padding: 10px;
         border-radius: 3.5px;
-        box-shadow: 5px 5px 5px v.$example;
-        border: 1px solid v.$example;
-        font-family: v.$intro_title;
+        box-shadow: 0 0 1px v.$cadet-gray;
+        font-family: v.$font;
+        border: none;
 
         &:focus {
           outline: none;
@@ -42,11 +39,11 @@
       button {
         padding: 10px;
         font-family: v.$intro_title;
-        border: 1px solid v.$example;
-        background-color: v.$orange;
-        color: #fff;
+        border: 1px solid v.$cadet-gray;
+        background-color: v.$charcoal_blue;
+        color: v.$light-gray;
         border-radius: 3.5px;
-        box-shadow: 5px 5px 5px v.$example;
+        box-shadow: 0 0 1px v.$cadet-gray;
         cursor: pointer;
 
         &:active {
@@ -60,14 +57,14 @@
         gap: 5px;
 
         span {
-          background-color: v.$pink;
+          background-color: v.$gunmetal;
           padding: 5px;
           position: relative;
           border-radius: 3.5px;
-          color: #fff;
+          color: v.$light-gray;
           transition: all 0.25s ease-in-out;
           cursor: pointer;
-          box-shadow: 5px 5px 5px v.$example;
+          box-shadow: 0 0 1px v.$cadet-gray;
 
           &:active {
             transform: scale(0.95);

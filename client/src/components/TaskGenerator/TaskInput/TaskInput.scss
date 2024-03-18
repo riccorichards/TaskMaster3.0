@@ -10,12 +10,12 @@
   .stored-workspace {
     position: absolute;
     top: 115%;
-    background-color: v.$orange;
+    background-color: v.$steel-blue;
     padding: 5px;
     display: flex;
     align-items: center;
     border-radius: 5px;
-    color: #fff;
+    color: v.$light-gray;
   }
 
   input {
@@ -25,7 +25,7 @@
     padding: 8px;
     border-radius: 5px;
     border: none;
-    box-shadow: 0 0 5px v.$example;
+    box-shadow: 0 0 1px v.$cadet-gray;
 
     &:focus {
       outline: none;
@@ -37,7 +37,7 @@
     border: none;
     width: 100px;
     border-radius: 5px;
-    box-shadow: 0 0 10px v.$example;
+    box-shadow: 0 0 1px v.$cadet-gray;
     font-family: v.$intro_title;
     cursor: pointer;
 

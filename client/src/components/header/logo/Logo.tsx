@@ -1,25 +1,20 @@
 import { FC } from "react";
 import "./Logo.scss";
-import { useUserStore } from "../../../store/AuthStore";
 
-const Logo: FC<{ hasScrollDown?: boolean; isAuth?: boolean }> = ({
-  hasScrollDown,
-  isAuth = false,
-}) => {
-  const { user } = useUserStore();
+const Logo: FC<{ where: string }> = ({ where }) => {
   return (
     <div
       className="logo-container"
       style={{
         transition: "all 0.25s ease-in-out",
-        border: (user && hasScrollDown) || isAuth ? "5px solid #fff" : "",
+        border: where === "header" ? "5px solid #ccd0cf" : "",
       }}
     >
       <span
         className="logo-text"
         style={{
-          color: (user && hasScrollDown) || isAuth ? "orangered" : "",
-          transition: "all 0.25s ease-in-out",
+          color: where === "header" ? "#06141b" : "",
+          textShadow: where === "header" ? "0 0 1px #ccd0cf" : "",
         }}
       >{`<n+1/>`}</span>
     </div>

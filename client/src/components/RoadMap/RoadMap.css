@@ -1,18 +1,14 @@
 .roadmap-wrapper {
-  height: 90vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-self: center;
+  height: 100%;
 }
 .roadmap-wrapper .roadmap {
-  width: 80%;
-  height: 90%;
-  box-shadow: 0 0 1px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
   border-radius: 5px;
   display: flex;
   gap: 15px;
   padding: 5px;
+  height: 100%;
 }
 @media (max-width: 425px) {
   .roadmap-wrapper .roadmap {
@@ -29,9 +25,9 @@
   width: 80%;
   padding: 10px;
   border-radius: 3.5px;
-  box-shadow: 5px 5px 5px #6c6885;
-  border: 1px solid #6c6885;
-  font-family: "Patua One", serif;
+  box-shadow: 0 0 1px #9baab8;
+  font-family: "Roboto Condensed", sans-serif;
+  border: none;
 }
 .roadmap-wrapper .roadmap .roadmap-setup input:focus {
   outline: none;
@@ -39,11 +35,11 @@
 .roadmap-wrapper .roadmap .roadmap-setup button {
   padding: 10px;
   font-family: "Patua One", serif;
-  border: 1px solid #6c6885;
-  background-color: orangered;
-  color: #fff;
+  border: 1px solid #9baab8;
+  background-color: #11212d;
+  color: #ccd0cf;
   border-radius: 3.5px;
-  box-shadow: 5px 5px 5px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
   cursor: pointer;
 }
 .roadmap-wrapper .roadmap .roadmap-setup button:active {
@@ -55,14 +51,14 @@
   gap: 5px;
 }
 .roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span {
-  background-color: #fb2985;
+  background-color: #06141b;
   padding: 5px;
   position: relative;
   border-radius: 3.5px;
-  color: #fff;
+  color: #ccd0cf;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
-  box-shadow: 5px 5px 5px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
 }
 .roadmap-wrapper .roadmap .roadmap-setup .existing-workspace-list span:active {
   transform: scale(0.95);

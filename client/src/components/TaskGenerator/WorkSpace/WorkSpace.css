@@ -4,10 +4,11 @@
   gap: 15px;
 }
 .workspace-wrapper .workspace {
-  background-color: orangered;
+  background-color: #06141b;
   padding: 5px;
+  box-shadow: 0 0 1px #9baab8;
   border-radius: 3.5px;
-  color: #fff;
+  color: #ccd0cf;
   cursor: pointer;
 }
 .workspace-wrapper .workspace:active {

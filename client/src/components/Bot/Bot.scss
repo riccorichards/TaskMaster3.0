@@ -1,0 +1,119 @@
+@use "../../utils/sass/v.scss";
+
+.bot-wrapper {
+  position: absolute;
+  bottom: 2.5%;
+  right: 2.5%;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: v.$cadet-gray;
+  height: 350px;
+  z-index: 1;
+
+  .bot-header {
+    flex: 1;
+    background-color: v.$charcoal_blue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  .bot-chat {
+    flex: 8;
+    background-color: v.$light-gray;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px 3.5px;
+    overflow-y: auto;
+
+    .single-msg {
+      display: flex;
+      gap: 5px;
+
+      .bot-icon-wrapper {
+        border: 1px solid;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          font-size: 24px;
+        }
+      }
+
+      .message-wrapper {
+        padding: 5px;
+        box-shadow: 0 0 1px;
+        background-color: v.$charcoal_blue;
+        color: v.$light-gray;
+        border-radius: 0 10px 10px 10px;
+      }
+
+      .user-icon-wrapper {
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border: v.$gunmetal 1px solid;
+        border-radius: 50%;
+        letter-spacing: 1px;
+        font-weight: 700;
+        justify-content: center;
+        font-family: v.$intro_title;
+      }
+    }
+  }
+  .send-message {
+    flex: 1;
+    background-color: v.$gunmetal;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      padding: 2.5px;
+      font-family: v.$font;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: v.$gunmetal;
+      cursor: pointer;
+    }
+  }
+}
+
+.bot-header {
+  flex: 1;
+  background-color: v.$charcoal_blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  height: 100%;
+}
+
+.hidden-bot {
+  position: absolute;
+  bottom: 2.5%;
+  right: 2.5%;
+  width: 280px;
+  height: 5vh;
+}

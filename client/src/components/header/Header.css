@@ -1,9 +1,11 @@
 header {
   height: 10vh;
-  position: fixed;
+  position: absolute;
   width: 100%;
   padding: 15px;
   display: flex;
+  top: 0;
+  left: 0;
   z-index: 1;
   align-items: center;
   justify-content: space-between;
@@ -14,8 +16,8 @@ header .logo-wrapper {
   flex-direction: column;
   font-family: "Patua One", serif;
   border-radius: 0 10px 0 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1882352941);
-  color: #fff;
+  box-shadow: 0 0 10px #9baab8;
+  color: #ccd0cf;
   padding: 5px;
 }
 header .logo-wrapper svg {
@@ -24,11 +26,12 @@ header .logo-wrapper svg {
 header button {
   padding: 10px;
   border: none;
-  box-shadow: 0 0 10px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
   font-family: "Patua One", serif;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  background-color: #ccd0cf;
   align-items: center;
   gap: 5px;
 }
@@ -39,7 +42,7 @@ header .profile-wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #fff;
+  color: #ccd0cf;
 }
 header .profile-wrapper .profile-img {
   width: 50px;
@@ -63,8 +66,8 @@ header .profile-wrapper .log-out {
   top: 125%;
   display: flex;
   padding: 5px;
-  background-color: #6c6885;
-  color: #fff;
+  background-color: #9baab8;
+  color: #ccd0cf;
   right: 0;
 }
 header .profile-wrapper .log-out:active {
@@ -78,11 +81,11 @@ header ul {
 header ul li {
   font-size: 18px;
   font-weight: 700;
-  color: #6c6885;
-  text-shadow: 0 0 1.5px #fff;
+  color: #9baab8;
+  text-shadow: 0 0 1.5px #ccd0cf;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
 }
 header ul li:hover {
-  color: #fff;
+  color: #ccd0cf;
 }

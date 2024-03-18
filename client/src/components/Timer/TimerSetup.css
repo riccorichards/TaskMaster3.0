@@ -3,11 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 .timer-wrapper .timer {
-  width: 80%;
-  height: 80%;
-  box-shadow: 0 0 1.5px #6c6885;
+  width: 100%;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -34,30 +33,29 @@
   flex-direction: column;
   gap: 5px;
   position: relative;
-  color: #fff;
-  text-shadow: 0 0 1.5px black;
+  color: #ccd0cf;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box {
-  background-color: #fff;
+  background-color: transparent;
+  box-shadow: 0 0 1px #9baab8;
   padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 5px;
   border-radius: 5px;
-  box-shadow: 0 0 10px #6c6885;
   max-height: 25vh;
   overflow-y: scroll;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker {
-  background-color: orangered;
+  background-color: #11212d;
   padding: 5px;
+  box-shadow: 0 0 1px #ccd0cf;
   border-radius: 2.5px;
-  font-family: "Patua One", serif;
+  font-family: "Roboto Condensed", sans-serif;
   border: none;
-  color: #fff;
+  color: #ccd0cf;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
-  text-shadow: 0 0 1.5px black;
   text-align: left;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker:hover {
@@ -75,22 +73,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
   padding: 5px;
   min-height: 32vh;
   border-radius: 5px;
-  box-shadow: 0 0 10px #6c6885;
+  color: #ccd0cf;
+  box-shadow: 0 0 1px #9baab8;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  color: #1e6c82;
+  background-color: #9baab8;
+  color: #11212d;
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  box-shadow: 5px 5px 15px #6c6885;
+  box-shadow: 0 0 1px #06141b;
   cursor: pointer;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn:active {
@@ -101,12 +99,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
-    color: #1e6c82;
+    background-color: #9baab8;
+    color: #11212d;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 5px 5px 15px #6c6885;
+    box-shadow: 5px 5px 15px #06141b;
   }
 }
 .timer-wrapper .timer .timer-output-wrapper {
@@ -125,18 +123,19 @@
 .timer-wrapper .timer .timer-output-wrapper .timer-output {
   width: 90%;
   height: 500px;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 5px;
-  box-shadow: 0 0 10px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-output-item {
   font-size: 150px;
-  color: #fff;
-  background-color: orangered;
+  color: #253745;
+  background-color: #11212d;
   border-radius: 5px;
+  box-shadow: 0 0 1px #9baab8;
 }
 @media (max-width: 768px) {
   .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-output-item {
@@ -145,7 +144,7 @@
 }
 .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {
   font-size: 150px;
-  color: #1e6c82;
+  color: #11212d;
 }
 @media (max-width: 768px) {
   .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {

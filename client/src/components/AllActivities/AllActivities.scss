@@ -10,6 +10,7 @@
     gap: 15px;
     align-items: center;
     position: relative;
+
     button {
       font-family: v.$intro_title;
       border: none;
@@ -38,7 +39,7 @@
       }
 
       svg {
-        color: v.$example;
+        color: v.$cadet-gray;
         cursor: pointer;
 
         &:active {
@@ -56,10 +57,10 @@
 
     .act-header-item {
       flex: 1;
-      background-color: v.$nice_blue;
-      color: #fff;
+      background-color: v.$charcoal_blue;
+      color: v.$light-gray;
       border-radius: 5px;
-      box-shadow: 0 0 5px v.$example;
+      box-shadow: 0 0 5px v.$cadet-gray;
       padding: 3px;
     }
   }
@@ -79,7 +80,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 5px;
-      box-shadow: 0 0 1px v.$example;
+      box-shadow: 0 0 1px v.$cadet-gray;
       border-radius: 5px;
 
       span {

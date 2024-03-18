@@ -1,8 +1,23 @@
 .dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   position: relative;
 }
 .dashboard-wrapper .dashboard {
-  margin-top: 10vh;
   display: flex;
-  flex-direction: column;
+  width: 95%;
+  height: 95%;
+}
+.dashboard-wrapper .dashboard aside {
+  flex: 1;
+  background-color: #4a5c6a;
+}
+.dashboard-wrapper .dashboard main {
+  flex: 5;
+  border-bottom: 1px #253745 solid;
+  border-right: 1px #253745 solid;
+  border-top: 1px #253745 solid;
 }

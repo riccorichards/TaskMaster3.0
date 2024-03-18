@@ -32,7 +32,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (session) {
-      navigate("/dashboard");
+      navigate("/dashboard/workspace");
     }
   }, [session, navigate]);
 

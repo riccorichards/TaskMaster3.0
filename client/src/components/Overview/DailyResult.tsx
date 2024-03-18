@@ -18,14 +18,14 @@ const DailyResult = () => {
       type: "category",
       data: dailyResult.map((day) => day.date),
       axisLabel: {
-        color: "#01c380",
+        color: "#4a5c6a",
         fontSize: 12,
       },
     },
     yAxis: {
       type: "value",
       axisLabel: {
-        color: "#01c380",
+        color: "#4a5c6a",
         fontSize: 12,
       },
       axisTick: {
@@ -38,18 +38,18 @@ const DailyResult = () => {
         type: "line",
         smooth: true,
         lineStyle: {
-          color: "#01c380",
+          color: "#4a5c6a",
           width: 4,
         },
         symbol: "circle",
         symbolSize: 10,
         itemStyle: {
-          color: "#01c380",
+          color: "#4a5c6a",
         },
       },
     ],
     tooltip: {
-      backgroundColor: "#01c380",
+      backgroundColor: "#4a5c6a",
       borderColor: "white",
       textStyle: {
         color: "black",

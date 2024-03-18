@@ -6,36 +6,23 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: v.$nice_blue;
-  box-shadow: 5px 5px 10px v.$example;
+  box-shadow: 0 0 1px v.$cadet-gray;
   border-radius: 5px;
-  color: #fff;
+  color: v.$light-gray;
   position: relative;
+  height: 25vh;
 
   @include mq.respond-to("mobile-device") {
     width: 100%;
-  }
-  .complete-btn {
-    font-family: v.$intro_title;
-    border: none;
-    background-color: v.$dark_green;
-    padding: 5px;
-    border-radius: 3.5px;
-    color: #fff;
-    cursor: pointer;
-
-    &:active {
-      transform: scale(0.95);
-    }
   }
 
   .remove-btn {
     font-family: v.$intro_title;
     border: none;
-    background-color: rgb(250, 36, 36);
+    background-color: v.$orange;
     padding: 5px;
     border-radius: 3.5px;
-    color: #fff;
+    color: v.$light-gray;
     width: fit-content;
     align-self: flex-end;
     cursor: pointer;
@@ -43,5 +30,17 @@
     &:active {
       transform: scale(0.95);
     }
+  }
+
+  .task-created-at {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    padding: 1.5px;
+    background-color: v.$independence;
+    color: v.$light-gray;
+    border-radius: 2.5px;
+    font-weight: bold;
+    font-size: 14px;
   }
 }

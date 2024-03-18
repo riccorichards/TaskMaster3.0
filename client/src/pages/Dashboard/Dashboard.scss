@@ -1,11 +1,28 @@
 @use "../../utils/sass/v.scss";
 
 .dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   position: relative;
 
   .dashboard {
-    margin-top: 10vh;
     display: flex;
-    flex-direction: column;
+    width: 95%;
+    height: 95%;
+
+    aside {
+      flex: 1;
+      background-color: v.$steel-blue;
+    }
+
+    main {
+      flex: 5;
+      border-bottom: 1px v.$independence solid;
+      border-right: 1px v.$independence solid;
+      border-top: 1px v.$independence solid;
+    }
   }
 }

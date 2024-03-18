@@ -50,32 +50,9 @@ const AllActivities = () => {
           history.map((active, i) => (
             <div className="single-active" key={i}>
               <span>{active.workspace}</span>
-              <span
-                style={{
-                  color: "#fff",
-                  padding: "2.5px",
-                  borderRadius: "2.5px",
-                  backgroundColor: active.complete ? "#01c380" : "#fb2985",
-                }}
-              >
-                {active.complete ? "True" : "Failed"}
-              </span>
+              <span>{active.complete ? "True" : "Failed"}</span>
               <span>{Utils.formatDuration(active.storedTime)}</span>
-              <span
-                style={{
-                  backgroundColor:
-                    active.priority === "high"
-                      ? "#85170e"
-                      : active.priority === "medium"
-                      ? "#dbba25"
-                      : "#4efb94",
-                  padding: "2.5px",
-                  color: "#fff",
-                  borderRadius: "2.5px",
-                }}
-              >
-                {active.priority}
-              </span>
+              <span>{active.priority}</span>
               <span>{Utils.extractDate(active.createdAt)}</span>
             </div>
           ))}

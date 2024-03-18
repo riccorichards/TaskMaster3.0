@@ -8,7 +8,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Langding />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/*" element={<Dashboard />} />
     </Routes>
   );
 }

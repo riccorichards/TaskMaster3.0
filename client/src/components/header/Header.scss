@@ -3,10 +3,12 @@
 
 header {
   height: 10vh;
-  position: fixed;
+  position: absolute;
   width: 100%;
   padding: 15px;
   display: flex;
+  top: 0;
+  left: 0;
   z-index: 1;
   align-items: center;
   justify-content: space-between;
@@ -17,8 +19,8 @@ header {
     flex-direction: column;
     font-family: v.$intro_title;
     border-radius: 0 10px 0 10px;
-    box-shadow: 0 0 10px #ffffff30;
-    color: #fff;
+    box-shadow: 0 0 10px v.$cadet-gray;
+    color: v.$light-gray;
     padding: 5px;
 
     svg {
@@ -29,11 +31,12 @@ header {
   button {
     padding: 10px;
     border: none;
-    box-shadow: 0 0 10px v.$example;
+    box-shadow: 0 0 1px v.$cadet-gray;
     font-family: v.$intro_title;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
+    background-color: v.$light-gray;
     align-items: center;
     gap: 5px;
 
@@ -46,7 +49,8 @@ header {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: #fff;
+    color: v.$light-gray;
+
     .profile-img {
       width: 50px;
       height: 50px;
@@ -70,8 +74,8 @@ header {
       top: 125%;
       display: flex;
       padding: 5px;
-      background-color: v.$example;
-      color: #fff;
+      background-color: v.$cadet-gray;
+      color: v.$light-gray;
       right: 0;
 
       &:active {
@@ -88,12 +92,12 @@ header {
     li {
       font-size: 18px;
       font-weight: 700;
-      color: v.$example;
-      text-shadow: 0 0 1.5px #fff;
+      color: v.$cadet-gray;
+      text-shadow: 0 0 1.5px v.$light-gray;
       transition: all 0.25s ease-in-out;
       cursor: pointer;
       &:hover {
-        color: #fff;
+        color: v.$light-gray;
       }
     }
   }

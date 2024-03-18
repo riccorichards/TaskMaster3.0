@@ -6,12 +6,13 @@
   gap: 15px;
 
   .workspace {
-    background-color: v.$orange;
+    background-color: v.$gunmetal;
     padding: 5px;
+    box-shadow: 0 0 1px v.$cadet-gray;
     border-radius: 3.5px;
-    color: #fff;
+    color: v.$light-gray;
     cursor: pointer;
-    
+
     &:active {
       transform: scale(0.95);
     }

@@ -7,45 +7,18 @@ const DefinedTask: FC<{ taskIndex: number }> = ({ taskIndex }) => {
     <div className="defined-task-wrapper">
       <h3>WorkSpace: {tasks[taskIndex].workspace}</h3>
       <p>
-        Task:{" "}
-        <span
-          style={{
-            backgroundColor: "#14bc87",
-            padding: "2.5px",
-            color: "#fff",
-            borderRadius: "2.5px",
-          }}
-        >
-          {tasks[taskIndex].task}
-        </span>
+        Task: <span>{tasks[taskIndex].task}</span>
       </p>
       <p>
         Description:{" "}
-        <span
-          style={{
-            backgroundColor: "#fb2985",
-            padding: "2.5px",
-            color: "#fff",
-            borderRadius: "2.5px",
-          }}
-        >
+        <span>
           {tasks[taskIndex].desc.length > 25
             ? tasks[taskIndex].desc.slice(0, 25) + "..."
             : tasks[taskIndex].desc}
         </span>
       </p>
       <p>
-        Stored Timer:{" "}
-        <span
-          style={{
-            backgroundColor: "#f07043",
-            padding: "2.5px",
-            color: "#fff",
-            borderRadius: "2.5px",
-          }}
-        >
-          {tasks[taskIndex].storedTime}
-        </span>
+        Stored Timer: <span>{tasks[taskIndex].storedTime}</span>
       </p>
       <p>
         Priority:{" "}

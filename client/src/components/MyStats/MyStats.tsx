@@ -5,7 +5,7 @@ import "./MyStats.css";
 import StatsInput from "./StatsInput";
 
 const MyStats = () => {
-  const { myStats, getMyStats, user } = useUserStore();
+  const { myStats, getMyStats, user, isLoading } = useUserStore();
 
   useEffect(() => {
     if (user) {
@@ -13,23 +13,23 @@ const MyStats = () => {
     }
   }, [user, getMyStats]);
 
-  if (!myStats) return <Loader />;
-
+  if (isLoading) return <Loader />;
+  if (!myStats) return null;
   return (
     <div className="my-stats">
       <h3>Welcome to your journey!</h3>
       <StatsInput />
       <div className="journey-stats">
         <div>
-          <span style={{ fontSize: "14px" }}>Remain days</span>
+          <span style={{ fontSize: "14px" }}>Remaining days</span>
           <div className="custom-chart">
             <div
               style={{
                 position: "absolute",
                 height: "100%",
-                backgroundColor: "orangered",
+                backgroundColor: "#253745",
                 borderRadius: "3.5px",
-                width: `${myStats.remainingDays}%`,
+                width: `${myStats?.remainingDays}%`,
               }}
             />
             <span
@@ -41,7 +41,7 @@ const MyStats = () => {
                 color: myStats.remainingDays > 45 ? "#fff" : "",
               }}
             >
-              {myStats.remainingDays}%
+              {myStats?.remainingDays}%
             </span>
           </div>
         </div>
@@ -52,7 +52,7 @@ const MyStats = () => {
               style={{
                 position: "absolute",
                 height: "100%",
-                backgroundColor: " #fb2985",
+                backgroundColor: " #253745",
                 width: `${myStats.usedTime}%`,
                 borderRadius: "3.5px",
               }}

@@ -3,36 +3,24 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #1e6c82;
-  box-shadow: 5px 5px 10px #6c6885;
+  box-shadow: 0 0 1px #9baab8;
   border-radius: 5px;
-  color: #fff;
+  color: #ccd0cf;
   position: relative;
+  height: 25vh;
 }
 @media (max-width: 425px) {
   .single-task {
     width: 100%;
   }
 }
-.single-task .complete-btn {
-  font-family: "Patua One", serif;
-  border: none;
-  background-color: #093b1f;
-  padding: 5px;
-  border-radius: 3.5px;
-  color: #fff;
-  cursor: pointer;
-}
-.single-task .complete-btn:active {
-  transform: scale(0.95);
-}
 .single-task .remove-btn {
   font-family: "Patua One", serif;
   border: none;
-  background-color: rgb(250, 36, 36);
+  background-color: orangered;
   padding: 5px;
   border-radius: 3.5px;
-  color: #fff;
+  color: #ccd0cf;
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-end;
@@ -40,4 +28,15 @@
 }
 .single-task .remove-btn:active {
   transform: scale(0.95);
+}
+.single-task .task-created-at {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  padding: 1.5px;
+  background-color: #253745;
+  color: #ccd0cf;
+  border-radius: 2.5px;
+  font-weight: bold;
+  font-size: 14px;
 }

@@ -1,4 +1,5 @@
-import { NodeDocument, TaskDocument } from "../database/type";
+import { help } from "../const";
+import { NodeDocument } from "../database/type";
 
 class Utils {
   static defineAbsolutePath(nodes: NodeDocument[], path: string) {
@@ -54,6 +55,30 @@ class Utils {
 
     const result = ((usedDays / journeyDurationDays) * 100).toFixed(2);
     return { result, differenceInDays };
+  }
+
+  static botInteraction(cmd: string, argument?: any) {
+    let response: { author: string; msg: string } = { author: "bot", msg: "" };
+    if (cmd === "") {
+      response.msg =
+        "Hi, I'm Matthew, I'm here to check our knowledge. For more instructions, please type 'help'.";
+      return response;
+    } else if (cmd === "help") {
+      response.msg = "It's temporary response...";
+      return response;
+    } else if (argument === "new") {
+      response.msg = `Thanks for adding new question into my memory.`;
+      return response;
+    } else if (cmd === "finish") {
+      response.msg = `I guess you are tired, let's finish...`;
+      return response;
+    } else if (cmd === "not found") {
+      response.msg = `Question was not found...`;
+      return response;
+    } else {
+      response.msg = "sorry, I can not response...";
+      return response;
+    }
   }
 }
 

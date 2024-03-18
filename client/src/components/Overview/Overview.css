@@ -1,20 +1,30 @@
 .overview-wrapper {
   width: 100%;
+  height: 100%;
+  padding: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 @media (max-width: 425px) {
   .overview-wrapper {
     flex-direction: column;
   }
 }
-.overview-wrapper .overview {
-  width: 80%;
-  height: 90%;
-  box-shadow: 0 0 1.5px #6c6885;
-  border-radius: 5px;
+.overview-wrapper .new-user-btn {
   padding: 10px;
+  font-family: "Patua One", serif;
+  border-radius: 3.5px;
+  border: none;
+  box-shadow: 0 0 1px #06141b;
+  cursor: pointer;
+}
+.overview-wrapper .new-user-btn:active {
+  transform: scale(0.95);
+}
+.overview-wrapper .overview {
+  border-radius: 5px;
   display: flex;
   gap: 15px;
 }
@@ -35,20 +45,22 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 15px;
 }
 .overview-wrapper .overview .left-side-wrapper .daily-result-wrapper {
   flex: 1.5;
-  background-color: #1e6c82;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #6c6885;
+  border-radius: 5px;
+  box-shadow: 0 0 1px #9baab8;
+}
+.overview-wrapper .overview .left-side-wrapper .daily-result-wrapper h1 {
+  color: #9baab8;
 }
 .overview-wrapper .overview .left-side-wrapper .active-history-wrapper {
   flex: 1;
   padding: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px #6c6885;
-  border-radius: 15px;
+  background-color: #ccd0cf;
+  box-shadow: 0 0 1px #9baab8;
+  border-radius: 5px;
 }
 .overview-wrapper .overview .right-side-wrapper {
   flex: 1;
@@ -71,14 +83,13 @@
   }
 }
 .overview-wrapper .overview .right-side-wrapper .my-stats-wrapper {
-  flex: 1.2;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #6c6885;
+  flex: 1.5;
+  background-color: #ccd0cf;
+  border-radius: 5px;
+  box-shadow: 0 0 1px #9baab8;
 }
 .overview-wrapper .overview .right-side-wrapper .top-learned-wrapper {
   flex: 2;
-  background-color: #1e6c82;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #6c6885;
+  border-radius: 5px;
+  box-shadow: 0 0 1px #9baab8;
 }

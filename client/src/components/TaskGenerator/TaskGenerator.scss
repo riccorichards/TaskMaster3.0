@@ -1,45 +1,35 @@
 @use "../../utils/sass/v.scss";
 @use "../../utils/sass/f.scss" as mq;
 
-.task-generator-wrapper {
+.task-generator {
+  border-radius: 5px;
   height: 100%;
-  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+
+  @include mq.respond-to("laptop-device") {
+    width: 100%;
+  }
+}
+
+.store-daily-result {
+  border: none;
+  box-shadow: 0 0 1px v.$cadet-gray;
+  background-color: v.$cadet-gray;
+  width: fit-content;
+  align-self: flex-end;
+  font-family: v.$intro_title;
+  padding: 5px;
+  border-radius: 3.5px;
+  cursor: pointer;
+  color: v.$gunmetal;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 2.5px;
 
-  .task-generator {
-    width: 80%;
-    height: 95%;
-    box-shadow: 0 0 1.5px v.$example;
-    border-radius: 5px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-
-    @include mq.respond-to("laptop-device") {
-      width: 100%;
-    }
-  }
-
-  .store-daily-result {
-    border: none;
-    box-shadow: 0 0 10px v.$example;
-    background-color: v.$orange;
-    width: fit-content;
-    align-self: flex-end;
-    font-family: v.$intro_title;
-    padding: 5px;
-    border-radius: 3.5px;
-    cursor: pointer;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 2.5px;
-
-    &:active {
-      transform: scale(0.95);
-    }
+  &:active {
+    transform: scale(0.95);
   }
 }
