@@ -53,7 +53,7 @@ const TopLearnedTopics = () => {
         type: "pie",
         radius: "55%",
         center: ["50%", "50%"],
-        data: topWorkspaces,
+        data: topWorkspaces.slice(0, 10),
         roseType: "radius",
         label: {
           color: "#fff",
