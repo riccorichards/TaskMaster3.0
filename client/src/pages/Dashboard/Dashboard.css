@@ -11,6 +11,11 @@
   width: 95%;
   height: 95%;
 }
+@media (max-width: 769px) {
+  .dashboard-wrapper .dashboard {
+    flex-direction: column;
+  }
+}
 .dashboard-wrapper .dashboard aside {
   flex: 1;
   background-color: #4a5c6a;

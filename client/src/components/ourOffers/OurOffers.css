@@ -2,6 +2,7 @@
   display: flex;
   border-radius: 3.5px;
   box-shadow: 0 0 1px #9baab8;
+  transition: all 1.55s ease-in-out;
 }
 .our-offer-wrapper .offer-info {
   flex: 1;
@@ -11,6 +12,9 @@
   align-items: center;
   padding: 10px;
 }
+.our-offer-wrapper .offer-info .offer-info-desc {
+  color: #ccd0cf;
+}
 .our-offer-wrapper .offer-info span {
   position: absolute;
   font-size: 250px;
@@ -18,7 +22,7 @@
   opacity: 0.3;
 }
 .our-offer-wrapper .offer-info h1 {
-  font-size: 100px;
+  font-size: 80px;
   color: #4a5c6a;
   text-shadow: 0 0 10px black;
 }
@@ -40,60 +44,71 @@
 .our-offer-wrapper .offer-info button:active {
   transform: scale(0.95);
 }
-@media (max-width: 768px) {
-  .our-offer-wrapper .offer-info button {
-    position: absolute;
-    top: 98%;
-    left: 85%;
-    border: none;
-    width: -moz-fit-content;
-    width: fit-content;
-    background-color: transparent;
-    font-family: "Patua One", serif;
-    text-decoration: underline;
-    display: flex;
-    align-self: flex-end;
-  }
-}
-@media (max-width: 425px) {
+@media (max-width: 1025px) {
   .our-offer-wrapper .offer-info {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    color: #ccd0cf;
   }
   .our-offer-wrapper .offer-info span {
-    position: absolute;
+    font-size: 200px;
+    opacity: 0.2;
+    color: #ccd0cf;
+  }
+  .our-offer-wrapper .offer-info h1 {
     font-size: 50px;
-    font-family: "Lilita One", sans-serif;
-    opacity: 0.3;
-    bottom: -15%;
+  }
+  .our-offer-wrapper .offer-info p {
+    font-size: 18px;
+  }
+  .our-offer-wrapper .offer-info button {
+    bottom: 5%;
+    left: 5%;
+    color: #ccd0cf;
+  }
+}
+@media (max-width: 769px) {
+  .our-offer-wrapper .offer-info {
+    color: #ccd0cf;
+  }
+  .our-offer-wrapper .offer-info span {
+    font-size: 200px;
+    opacity: 0.2;
+    color: #ccd0cf;
+  }
+  .our-offer-wrapper .offer-info h1 {
+    font-size: 50px;
+  }
+  .our-offer-wrapper .offer-info p {
+    font-size: 18px;
+  }
+  .our-offer-wrapper .offer-info button {
+    bottom: 5%;
+    left: 5%;
+    font-size: 10px;
+  }
+}
+@media (max-width: 426px) {
+  .our-offer-wrapper .offer-info {
+    color: #ccd0cf;
+  }
+  .our-offer-wrapper .offer-info span {
+    font-size: 35px;
+    top: 0%;
     right: 0;
   }
   .our-offer-wrapper .offer-info h1 {
-    font-size: 60px;
-    color: #4a5c6a;
-    text-shadow: 0 0 10px black;
+    font-size: 50px;
   }
   .our-offer-wrapper .offer-info p {
-    color: #4a5c6a;
     font-size: 18px;
-    text-shadow: 0 0 10px black;
   }
   .our-offer-wrapper .offer-info button {
-    position: absolute;
-    top: 98%;
-    left: 2%;
-    border: none;
-    background-color: transparent;
-    font-family: "Patua One", serif;
-    text-decoration: underline;
+    top: 100%;
+    left: 85%;
+    font-size: 10px;
   }
 }
 .our-offer-wrapper .video-wrapper {
-  flex: 1.5;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,12 +120,12 @@
   border-radius: 3.5px;
   border: 15px solid #4a5c6a;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .our-offer-wrapper .video-wrapper video {
     border: 5px solid #4a5c6a;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .our-offer-wrapper .video-wrapper video {
     border: 10px solid #4a5c6a;
   }

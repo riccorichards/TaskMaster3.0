@@ -1,0 +1,24 @@
+.dashboard-header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-header .dashboard-header-navs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 426px) {
+  .dashboard-header .dashboard-header-navs {
+    display: none;
+  }
+}
+.dashboard-header .header-timer-wrapper {
+  display: none;
+}
+@media (max-width: 426px) {
+  .dashboard-header .header-timer-wrapper {
+    display: flex;
+  }
+}

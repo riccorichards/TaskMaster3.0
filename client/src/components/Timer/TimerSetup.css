@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .timer-wrapper .timer {
     width: 100%;
   }
@@ -94,7 +94,7 @@
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn:active {
   transform: scale(0.95);
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .timer-wrapper .timer .timer-setup-wrapper .timer-setup .run-timer-btn {
     display: flex;
     align-items: center;
@@ -115,7 +115,7 @@
   align-items: center;
   width: 100%;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .timer-wrapper .timer .timer-output-wrapper {
     display: none;
   }
@@ -137,7 +137,7 @@
   border-radius: 5px;
   box-shadow: 0 0 1px #9baab8;
 }
-@media (max-width: 768px) {
+@media (max-width: 1025px) {
   .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-output-item {
     font-size: 100px;
   }
@@ -146,7 +146,7 @@
   font-size: 150px;
   color: #11212d;
 }
-@media (max-width: 768px) {
+@media (max-width: 1025px) {
   .timer-wrapper .timer .timer-output-wrapper .timer-output .timer-dots {
     font-size: 100px;
   }

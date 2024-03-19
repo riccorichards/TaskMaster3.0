@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { OffersType } from "../../types";
 import "./OurOffers.scss";
 
@@ -8,6 +8,8 @@ const OurOffers: FC<{ offer: OffersType; index: number }> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const offerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handlerScreen = () => {
       setScreenSize(window.innerWidth);
@@ -18,12 +20,36 @@ const OurOffers: FC<{ offer: OffersType; index: number }> = ({
     return () => window.removeEventListener("resize", handlerScreen);
   }, [screenSize]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = offerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   const isMobileSize = screenSize < 425;
   const isTabletSize = screenSize < 768;
   return (
     <section
+      ref={offerRef}
       style={{
         display: "flex",
+        opacity: isVisible ? "1" : "0",
         flexDirection:
           isMobileSize || isTabletSize
             ? "column"
@@ -55,7 +81,7 @@ const OurOffers: FC<{ offer: OffersType; index: number }> = ({
       ) : (
         <div className="offer-info">
           {isOpen ? (
-            <div>{offer.description}</div>
+            <div className="offer-info-desc">{offer.description}</div>
           ) : (
             <>
               <span>{`0${index + 1}`}</span>

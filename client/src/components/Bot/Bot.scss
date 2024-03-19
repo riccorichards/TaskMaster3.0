@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .bot-wrapper {
   position: absolute;

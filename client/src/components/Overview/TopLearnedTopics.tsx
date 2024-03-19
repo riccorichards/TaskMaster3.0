@@ -1,12 +1,23 @@
 import EChartsReact from "echarts-for-react";
 import { useTaskStore } from "../../store/TaskStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import { useUserStore } from "../../store/AuthStore";
 
 const TopLearnedTopics = () => {
   const { topWorkspaces, getTopWorkspaces } = useTaskStore();
   const { user } = useUserStore();
+  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [screenSize]);
 
   useEffect(() => {
     if (user) {
@@ -67,7 +78,10 @@ const TopLearnedTopics = () => {
   };
 
   return (
-    <EChartsReact option={option} style={{ width: "100%", height: "100%" }} />
+    <EChartsReact
+      option={option}
+      style={{ width: "100%", height: screenSize > 425 ? "100%" : "300px" }}
+    />
   );
 };
 

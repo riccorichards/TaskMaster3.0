@@ -1,0 +1,26 @@
+@use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
+
+.dashboard-header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .dashboard-header-navs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    @include mq.respond-to("mobile-device") {
+      display: none;
+    }
+  }
+
+  .header-timer-wrapper {
+    display: none;
+    @include mq.respond-to("mobile-device") {
+      display: flex;
+    }
+  }
+}

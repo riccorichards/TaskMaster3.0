@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .dashboard-wrapper {
   display: flex;
@@ -12,6 +13,9 @@
     display: flex;
     width: 95%;
     height: 95%;
+    @include mq.respond-to("tablet-device") {
+      flex-direction: column;
+    }
 
     aside {
       flex: 1;

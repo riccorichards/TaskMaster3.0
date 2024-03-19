@@ -25,7 +25,7 @@ const AllActivities = () => {
           justifyContent: "space-between",
         }}
       >
-        <h3>Recently activities</h3>
+        <h3>Activities</h3>
         <FilterController historyLen={historyLen} />
       </div>
       <div className="all-acts-header">

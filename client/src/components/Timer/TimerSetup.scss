@@ -145,14 +145,14 @@
           border-radius: 5px;
           box-shadow: 0 0 1px v.$cadet-gray;
 
-          @include mq.respond-to("tablet-device") {
+          @include mq.respond-to("laptop-device") {
             font-size: 100px;
           }
         }
         .timer-dots {
           font-size: 150px;
           color: v.$charcoal_blue;
-          @include mq.respond-to("tablet-device") {
+          @include mq.respond-to("laptop-device") {
             font-size: 100px;
           }
         }

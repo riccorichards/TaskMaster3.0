@@ -4,6 +4,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.auth-wrapper .switch-login {
+  display: none;
+}
+@media (max-width: 426px) {
+  .auth-wrapper .switch-login {
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    color: #ccd0cf;
+  }
+  .auth-wrapper .switch-login button {
+    border: none;
+    background-color: transparent;
+    font-family: "Patua One", serif;
+    color: orangered;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    text-shadow: 0 0 1.5px black;
+    cursor: pointer;
+  }
 }
 .auth-wrapper .auth {
   width: 50%;
@@ -12,15 +34,31 @@
   box-shadow: 0 0 1px #9baab8;
   display: flex;
 }
-@media (max-width: 768px) {
+@media (max-width: 1025px) {
+  .auth-wrapper .auth {
+    width: 80%;
+  }
+}
+@media (max-width: 769px) {
   .auth-wrapper .auth {
     width: 100%;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .auth-wrapper .auth {
     flex-direction: column;
     height: 100%;
+  }
+}
+.auth-wrapper .auth .auth-logo {
+  display: none;
+}
+@media (max-width: 426px) {
+  .auth-wrapper .auth .auth-logo {
+    display: flex;
+    position: absolute;
+    top: 5%;
+    left: 5%;
   }
 }
 .auth-wrapper .auth .auth-panel {
@@ -47,6 +85,18 @@
 .auth-wrapper .auth .auth-panel p {
   color: #9baab8;
 }
+@media (max-width: 426px) {
+  .auth-wrapper .auth .auth-panel {
+    display: none;
+  }
+}
 .auth-wrapper .auth .auth-form {
   flex: 1;
+}
+@media (max-width: 426px) {
+  .auth-wrapper .auth .auth-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

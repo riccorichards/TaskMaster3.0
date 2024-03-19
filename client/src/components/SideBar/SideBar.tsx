@@ -8,11 +8,14 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { HiMiniVideoCamera } from "react-icons/hi2";
 import { GrRobot } from "react-icons/gr";
 import { useBotStore } from "../../store/BotStore";
+import { useTaskStore } from "../../store/TaskStore";
 
 const SideBar = () => {
-  const { logOut, user } = useUserStore();
+  const { logOut, user, myStats } = useUserStore();
   const navigate = useNavigate();
   const { botAction, bot } = useBotStore();
+  const { dailyResult } = useTaskStore();
+
   const handleLogout = () => {
     logOut();
     navigate("/");
@@ -26,6 +29,9 @@ const SideBar = () => {
     }
   };
 
+  const quality =
+    dailyResult &&
+    dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;
   return (
     <div className="side-bar-wrapper">
       <div
@@ -37,9 +43,25 @@ const SideBar = () => {
         }}
       >
         <Logo where="" />
-        <h1 style={{ fontSize: "24px", color: "#06141b" }}>
-          {Utils.capitalized(user?.username || "")}
-        </h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            color: "#9baab8",
+          }}
+        >
+          <h1 style={{ fontSize: "24px", color: "#06141b" }}>
+            {Utils.capitalized(user?.username || "")}
+          </h1>
+          <span style={{ fontSize: "14px" }}>
+            Quality: {quality ? quality.toFixed(2) : 0}%
+          </span>
+          <span style={{ fontSize: "14px" }}>
+            Per day: {myStats?.perDay?.toFixed(2)} hr
+          </span>
+        </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
         <div className="tutorial">

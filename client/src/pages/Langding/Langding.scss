@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .landing-page {
   display: flex;
@@ -12,5 +13,12 @@
     width: 80%;
     margin: 0 auto;
     padding: 25px;
+
+    @include mq.respond-to("tablet-device") {
+      width: 100%;
+    }
+    @include mq.respond-to("mobile-device") {
+      width: 100%;
+    }
   }
 }

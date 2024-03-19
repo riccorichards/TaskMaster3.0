@@ -55,6 +55,11 @@
   box-shadow: 0 0 5px #9baab8;
   padding: 3px;
 }
+@media (max-width: 426px) {
+  .all-activities-wapper .all-acts-header .act-header-item {
+    font-size: 14px;
+  }
+}
 .all-activities-wapper .active-wrapper {
   display: flex;
   flex-direction: column;

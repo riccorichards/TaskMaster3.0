@@ -10,7 +10,7 @@
   padding: 5px;
   height: 100%;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .roadmap-wrapper .roadmap {
     flex-direction: column;
   }

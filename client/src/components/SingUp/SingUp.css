@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 15px;
   padding: 25px;
+  width: 100%;
 }
 .signup-wrapper h1 {
   font-size: 45px;

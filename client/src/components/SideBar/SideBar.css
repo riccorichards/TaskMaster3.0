@@ -6,6 +6,11 @@
   height: 100%;
   padding: 25px 0;
 }
+@media (max-width: 769px) {
+  .side-bar-wrapper {
+    flex-direction: row;
+  }
+}
 
 .tutorial {
   display: flex;
@@ -80,6 +85,11 @@
 .navigation-wrapper .nav-item:hover {
   color: #9baab8;
   background-color: #11212d;
+}
+@media (max-width: 1025px) {
+  .navigation-wrapper .nav-item {
+    padding-left: 20px;
+  }
 }
 
 .log-out {

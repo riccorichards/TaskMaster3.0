@@ -1,4 +1,5 @@
 @use "../../utils/sass/v.scss";
+@use "../../utils/sass/f.scss" as mq;
 
 .all-activities-wapper {
   display: flex;
@@ -62,6 +63,9 @@
       border-radius: 5px;
       box-shadow: 0 0 5px v.$cadet-gray;
       padding: 3px;
+      @include mq.respond-to("mobile-device") {
+        font-size: 14px;
+      }
     }
   }
 

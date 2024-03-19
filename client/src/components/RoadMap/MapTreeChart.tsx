@@ -1,18 +1,29 @@
 import Echart from "echarts-for-react";
 import { useNodeTree } from "../../store/NodeTreeStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/AuthStore";
 import Loader from "../Loader/Loader";
 
 const MapTreeChart = () => {
   const { fetchEntireNodeTree, isLoading, error, nodeTree } = useNodeTree();
   const { user } = useUserStore();
+  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     if (user?.username) {
       fetchEntireNodeTree(user?.username);
     }
   }, [fetchEntireNodeTree, user?.username]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [screenSize]);
 
   if (error)
     return (
@@ -75,14 +86,16 @@ const MapTreeChart = () => {
       },
     ],
   };
+
   return (
     <div
       style={{
         width: "100%",
-        height: "100%",
+        height: screenSize > 425 ? "100%" : "500px",
         borderRadius: "5px",
         boxShadow: "0 0 1px #ccd0cf",
       }}
+      className="map-tree-wrapper"
     >
       {isLoading ? (
         <Loader />

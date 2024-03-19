@@ -48,7 +48,7 @@ export const offers_pres = [
   {
     id: "Overview",
     title: "Overview",
-    desc: "You can check your result in this section.",
+    desc: "You can check your daily result in this section.",
     source: overview,
     reverse: true,
     description:

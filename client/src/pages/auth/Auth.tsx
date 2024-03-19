@@ -10,8 +10,12 @@ const Auth = () => {
   return (
     <div className="auth-wrapper">
       <div className="auth">
+        <div className="auth-logo">
+          <Logo where="header" />
+        </div>
         <div className="auth-panel">
           <Logo where="header" />
+
           <img
             src={authDecor}
             alt="decor"
@@ -34,6 +38,12 @@ const Auth = () => {
           {isSignUp ? <SingUp setIsSignUp={setIsSignUp} /> : <SignIn />}
         </div>
       </div>
+      <span className="switch-login">
+        already have an account?{" "}
+        <button onClick={() => setIsSignUp(!isSignUp)}>
+          {!isSignUp ? "Sign Up" : "Sign In"}
+        </button>
+      </span>
     </div>
   );
 };
