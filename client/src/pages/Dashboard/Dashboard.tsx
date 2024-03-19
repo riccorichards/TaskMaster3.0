@@ -5,13 +5,28 @@ import MainDashboard from "./MainDashboard/MainDashboard";
 import SideBar from "../../components/SideBar/SideBar";
 import Bot from "../../components/Bot/Bot";
 import { useBotStore } from "../../store/BotStore";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const { getMe } = useUserStore();
+  const { getMe, user } = useUserStore();
   const { bot } = useBotStore();
+  const navigate = useNavigate();
   useEffect(() => {
     getMe();
   }, [getMe]);
+
+  useEffect(() => {
+    let timeOut: ReturnType<typeof setTimeout>;
+    if (!user) {
+      timeOut = setTimeout(() => {
+        if (!user) {
+          navigate("/auth");
+        }
+      }, 15000);
+    }
+
+    return () => clearTimeout(timeOut);
+  }, [user, navigate]);
 
   return (
     <section className="dashboard-wrapper">

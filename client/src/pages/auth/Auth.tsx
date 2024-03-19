@@ -3,7 +3,7 @@ import "./Auth.css";
 import SingUp from "../../components/SingUp/SingUp";
 import SignIn from "../../components/SignIn/SignIn";
 import Logo from "../../components/header/logo/Logo";
-import authDecor from "../../assets/auth-decor-removebg-preview.png";
+import authDecor from "../../assets/auth_decor.png";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(true);
