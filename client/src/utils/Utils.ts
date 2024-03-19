@@ -17,7 +17,6 @@ class Utils {
     document.body.removeChild(link);
   };
 
-  //https://task-master-zjvca.ondigitalocean.app
   static async makeRequest<T>(
     url: string,
     method: Method = "GET",
@@ -25,7 +24,7 @@ class Utils {
   ): Promise<T> {
     try {
       const response = await axios({
-        url: `http://localhost:5000/api/${url}`,
+        url: `https://task-master-zjvca.ondigitalocean.app/api/${url}`,
         method,
         data,
         withCredentials: true,
