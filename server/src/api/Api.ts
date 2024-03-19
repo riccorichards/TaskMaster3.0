@@ -56,7 +56,7 @@ const Api = (app: Application) => {
         res.cookie("accessToken", accessToken, {
           maxAge: 3.154e10,
           httpOnly: true,
-          domain: "https://task-master3-0.vercel.app",
+          domain: "task-master3-0.vercel.app",
           path: "/",
           sameSite: "none",
           secure: true,
@@ -65,7 +65,7 @@ const Api = (app: Application) => {
         res.cookie("refreshToken", refreshToken, {
           maxAge: 3.154e10,
           httpOnly: true,
-          domain: "https://task-master3-0.vercel.app",
+          domain: "task-master3-0.vercel.app",
           path: "/",
           sameSite: "none",
           secure: true,
