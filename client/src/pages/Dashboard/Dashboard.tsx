@@ -13,6 +13,7 @@ const Dashboard = () => {
   const { bot } = useBotStore();
   const navigate = useNavigate();
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
+  const [authChecking, setAuthChecking] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,21 +26,28 @@ const Dashboard = () => {
   }, [screenSize]);
 
   useEffect(() => {
-    getMe();
+    const checkUser = async () => {
+      await getMe();
+      setAuthChecking(false);
+    };
+
+    checkUser();
   }, [getMe]);
 
   useEffect(() => {
-    let timeOut: ReturnType<typeof setTimeout>;
-    if (!user) {
-      timeOut = setTimeout(() => {
-        if (!user) {
+    if (!authChecking) {
+      if (!user) {
+        const isValidUser = JSON.parse(
+          localStorage.getItem("valid-user") || "false"
+        );
+        if (!isValidUser) {
           navigate("/auth");
         }
-      }, 15000);
+      } else {
+        localStorage.setItem("valid-user", JSON.stringify(true));
+      }
     }
-
-    return () => clearTimeout(timeOut);
-  }, [user, navigate]);
+  }, [user, navigate, authChecking]);
 
   return (
     <section className="dashboard-wrapper">

@@ -54,7 +54,7 @@ export interface NodeTreeState {
 export interface UserType {
   username: string;
   email: string;
-  url: string;
+  picture: string;
   journeyDuration: string;
   allocatedTime: number;
 }

@@ -96,7 +96,7 @@ const OpenedProfile = () => {
       <div
         style={{ width: "100%", height: "1px", backgroundColor: "#9baab8" }}
       />
-      <NavLink style={navlinkStyle} to="/dashboard/workspace">
+      <NavLink style={navlinkStyle} to="/dashboard/overview">
         <TbHomeStats />
         Overview
       </NavLink>

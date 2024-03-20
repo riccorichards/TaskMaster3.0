@@ -1,6 +1,7 @@
 import TaskCard from "../TaskCard/TaskCard";
 import "./TasksWrapper.css";
 import { useTaskStore } from "../../store/TaskStore";
+import { BsDatabaseExclamation } from "react-icons/bs";
 
 const TasksWrapper = () => {
   const { tasks } = useTaskStore();
@@ -18,7 +19,23 @@ const TasksWrapper = () => {
             justifyContent: "center",
           }}
         >
-          <span>Task was not defined...</span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "fit-content",
+              flexDirection: "column",
+              padding: "15px",
+              borderRadius: "5px",
+              backgroundColor: "#ccd0cf",
+              margin: "0 auto",
+              gap: "10px",
+            }}
+          >
+            <BsDatabaseExclamation />
+            <span>Task was not found!</span>
+          </div>
         </div>
       )}
     </div>

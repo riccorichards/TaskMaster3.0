@@ -1,5 +1,8 @@
-import { help } from "../const";
-import { NodeDocument } from "../database/type";
+import config from "../../config";
+import { GoogleUserResult, NodeDocument } from "../database/type";
+import { ApiError } from "./Error";
+import axios from "axios";
+import qs from "qs";
 
 class Utils {
   static defineAbsolutePath(nodes: NodeDocument[], path: string) {
@@ -78,6 +81,53 @@ class Utils {
     } else {
       response.msg = "sorry, I can not response...";
       return response;
+    }
+  }
+
+  static async getGoogleOauthToken({ code }: { code: string }) {
+    const url = config.googleOauthTokenUrl;
+
+    const value = {
+      code,
+      client_id: config.googleClientID,
+      client_secret: config.googleClientSecret,
+      redirect_uri: config.googleRedirectURI,
+      grant_type: "authorization_code",
+    };
+
+    try {
+      const { data } = await axios.post(url, qs.stringify(value), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+
+      return data;
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      throw new ApiError(error.response.data.error);
+    }
+  }
+
+  static async getGoogleUser({
+    id_token,
+    access_token,
+  }: {
+    id_token: string;
+    access_token: string;
+  }): Promise<GoogleUserResult> {
+    try {
+      const res = await axios.get<GoogleUserResult>(
+        `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,
+        {
+          headers: {
+            Authorization: `Bearer ${id_token}`,
+          },
+        }
+      );
+      return res.data;
+    } catch (error: any) {
+      throw new ApiError(error.message);
     }
   }
 }

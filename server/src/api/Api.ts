@@ -19,6 +19,7 @@ import {
   DeleteTaskSchema,
   UpdateTaskSchema,
 } from "./middleware/zodSchemas/TaskZodSchema";
+import config from "../../config";
 
 const Api = (app: Application) => {
   const service = new Service();
@@ -56,7 +57,6 @@ const Api = (app: Application) => {
         res.cookie("accessToken", accessToken, {
           maxAge: 3.154e10,
           httpOnly: true,
-          domain: "https://task-master3-0.vercel.app/",
           path: "/",
           sameSite: "none",
           secure: true,
@@ -65,7 +65,6 @@ const Api = (app: Application) => {
         res.cookie("refreshToken", refreshToken, {
           maxAge: 3.154e10,
           httpOnly: true,
-          domain: "https://task-master3-0.vercel.app/",
           path: "/",
           sameSite: "none",
           secure: true,
@@ -80,7 +79,43 @@ const Api = (app: Application) => {
       }
     }
   );
+  //oauth wit google
+  app.get(
+    "/api/session/oauth/google",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const code = req.query.code as string;
+        const response = await service.AuthWithGoogleOauth(
+          { code },
+          req.get("user-agent") || ""
+        );
 
+        if (response) {
+          const { accessToken, refreshToken } = response;
+
+          res.cookie("accessToken", accessToken, {
+            maxAge: 3.154e10,
+            httpOnly: true,
+            path: "/",
+            sameSite: "none",
+            secure: true,
+          });
+
+          res.cookie("refreshToken", refreshToken, {
+            maxAge: 3.154e10,
+            httpOnly: true,
+            path: "/",
+            sameSite: "none",
+            secure: true,
+          });
+
+          return res.redirect(`${config.origin}/dashboard/overview`);
+        }
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
   //after this line each request needs user authentication
   app.use([deserializeUser, requestUser]);
 

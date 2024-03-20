@@ -1,7 +1,5 @@
-import mongoose from "mongoose";
 import {
   CreateNodeType,
-  ReadNodeType,
   UpdateNodeType,
 } from "../../api/middleware/zodSchemas/NoteTreeZodSchema";
 import {
@@ -10,19 +8,17 @@ import {
   UpdateTaskType,
 } from "../../api/middleware/zodSchemas/TaskZodSchema";
 import {
-  LoginUserType,
   NewJourneyType,
   RegisterUserType,
 } from "../../api/middleware/zodSchemas/UserAuthZodSchema";
-import { AuthorisedError, NotFoundError } from "../../utils/Error";
-import Utils from "../../utils/Utils";
+import { NotFoundError } from "../../utils/Error";
 import BotModel from "../model/Bot.model";
 import HistoryModel from "../model/History.model";
 import NodeModel from "../model/NodeTree.model";
 import SessionModel from "../model/Session.model";
 import TaskModel from "../model/Task.model";
 import UserModel from "../model/User.model";
-import { TaskDocument } from "../type";
+import { TaskDocument, UpsertUser } from "../type";
 
 class Repository {
   async Register(input: RegisterUserType["body"]) {
@@ -197,6 +193,13 @@ class Repository {
       { $match: { user: userId } },
       { $sample: { size: 1 } },
     ]);
+  }
+
+  async FindAndUpdateUser(email: string, input: UpsertUser, options: {}) {
+    return await UserModel.findOneAndUpdate({ email }, input, {
+      ...options,
+      returnDocument: "after",
+    });
   }
 }
 

@@ -1,3 +1,4 @@
+import { Schema } from "zod";
 import {
   CreateNodeType,
   ReadNodeType,
@@ -15,6 +16,7 @@ import {
 } from "../api/middleware/zodSchemas/UserAuthZodSchema";
 import Repository from "../database/repository/Repository";
 import {
+  ApiError,
   AuthorisedError,
   BadRequestError,
   NotFoundError,
@@ -66,6 +68,55 @@ class Service {
     ); //month
 
     return { accessToken, refreshToken, newSession };
+  }
+
+  async AuthWithGoogleOauth({ code }: { code: string }, userAgent: string) {
+    const { id_token, access_token } = await Utils.getGoogleOauthToken({
+      code,
+    });
+    const googleUser = await Utils.getGoogleUser({ id_token, access_token });
+
+    if (!googleUser.verified_email)
+      throw new AuthorisedError("Google account is not verified");
+
+    const user = await this.Repo.FindAndUpdateUser(
+      googleUser.email,
+      {
+        email: googleUser.email,
+        username: googleUser.name,
+        picture: googleUser.picture,
+      },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
+
+    if (user && user._id) {
+      const newSession = await this.Repo.CreateSession(
+        user._id.toString(),
+        userAgent
+      );
+
+      const accessToken = signWihtJWT(
+        {
+          user: newSession.user,
+          session: newSession._id,
+        },
+        { expiresIn: 86400 }
+      ); //day
+
+      const refreshToken = signWihtJWT(
+        {
+          user: newSession.user,
+          session: newSession._id,
+        },
+        { expiresIn: 86400 * 30 }
+      ); //month
+      if (!newSession || !accessToken || !refreshToken)
+        throw new AuthorisedError("Error while authrisation process");
+      return { accessToken, refreshToken };
+    }
   }
 
   async FindMeService(id: string) {

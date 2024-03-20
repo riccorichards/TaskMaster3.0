@@ -33,7 +33,7 @@ const DashboardHeader = () => {
     <div className="dashboard-header">
       <Logo where="header" />
       <ul className="dashboard-header-navs">
-        <NavLink style={navlinkStyle} to="/dashboard/workspace">
+        <NavLink style={navlinkStyle} to="/dashboard/overview">
           <TbHomeStats />
           Overview
         </NavLink>

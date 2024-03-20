@@ -16,8 +16,6 @@ export interface UserInput {
   username: string;
   email: string;
   password: string;
-  image: string;
-  url: string | null;
   journeyDuration: string | null;
   allocatedTime: number;
 }
@@ -25,6 +23,7 @@ export interface UserInput {
 export interface UserDocument extends UserInput {
   _id: mongoose.Schema.Types.ObjectId;
   createdAt: Date;
+  picture: string;
   comparePass(incomingPassword: string): Promise<boolean>;
 }
 
@@ -57,4 +56,21 @@ export interface BotInput {
 
 export interface BotDocument extends BotInput {
   _id: mongoose.Schema.Types.ObjectId;
+}
+
+export interface GoogleUserResult {
+  id: string;
+  email: string;
+  verified_email: boolean;
+  name: string;
+  given_name: string;
+  family_name: string;
+  picture: string;
+  locale: string;
+}
+
+export interface UpsertUser {
+  email: string;
+  username: string;
+  picture: string;
 }

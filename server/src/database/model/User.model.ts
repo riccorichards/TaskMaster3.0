@@ -8,8 +8,7 @@ const UserSchema = new mongoose.Schema(
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    image: { type: String },
-    url: { type: String, default: null },
+    picture: { type: String },
     journeyDuration: { type: String, default: null },
     allocatedTime: { type: Number, default: 0 },
   },
@@ -23,7 +22,7 @@ UserSchema.pre("save", async function (next) {
   if (!user?.isModified("password")) {
     return next();
   }
-  
+
   try {
     const salt = await bcrypt.genSalt(13);
     const hash = await bcrypt.hash(user?.password, salt);

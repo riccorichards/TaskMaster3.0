@@ -7,7 +7,7 @@ import Timer from "../../../components/Timer/TimerSetup";
 const MainDashboard = () => {
   return (
     <Routes>
-      <Route path="/workspace" element={<Overview />} />
+      <Route path="/overview" element={<Overview />} />
       <Route path="/task-generator" element={<TaskGenerator />} />
       <Route path="/road-map" element={<RoadMap />} />
       <Route path="/timer" element={<Timer />} />

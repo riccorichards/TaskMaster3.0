@@ -7,7 +7,7 @@ import { RiNodeTree } from "react-icons/ri";
 const Navigation = () => {
   return (
     <ul className="navigation-wrapper">
-      <NavLink className="nav-item" to="/dashboard/workspace">
+      <NavLink className="nav-item" to="/dashboard/overview">
         <TbHomeStats />
         Overview
       </NavLink>

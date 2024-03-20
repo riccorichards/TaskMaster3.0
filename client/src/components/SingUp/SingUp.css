@@ -49,6 +49,7 @@
   align-items: center;
   justify-content: center;
   border: none;
+  width: 100%;
   border-radius: 5px;
   font-family: "Patua One", serif;
   gap: 5px;

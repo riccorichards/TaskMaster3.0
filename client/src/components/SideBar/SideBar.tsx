@@ -18,6 +18,7 @@ const SideBar = () => {
 
   const handleLogout = () => {
     logOut();
+    localStorage.setItem("valid-user", JSON.stringify(false));
     navigate("/");
   };
 
@@ -52,7 +53,20 @@ const SideBar = () => {
             color: "#9baab8",
           }}
         >
-          <h1 style={{ fontSize: "24px", color: "#06141b" }}>
+          <img
+            src={user?.picture}
+            alt=""
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              border: "2.5px solid #06141b",
+            }}
+          />
+          <h1
+            style={{ fontSize: "24px", color: "#06141b", textAlign: "center" }}
+          >
             {Utils.capitalized(user?.username || "")}
           </h1>
           <span style={{ fontSize: "14px" }}>

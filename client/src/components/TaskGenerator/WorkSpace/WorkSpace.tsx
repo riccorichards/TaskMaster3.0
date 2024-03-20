@@ -14,7 +14,7 @@ const WorkSpace: FC<{ setStoreWorkspace: (v: string | null) => void }> = ({
       fetchEntireNodesName(user.username);
     }
   }, [fetchEntireNodesName, user, nodeNames.length]);
-  
+
   return (
     <div className="workspace-wrapper">
       {nodeNames.length < 1 ? (
@@ -23,8 +23,13 @@ const WorkSpace: FC<{ setStoreWorkspace: (v: string | null) => void }> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "100%",
+            width: "fit-content",
             flexDirection: "column",
+            padding: "5px",
+            borderRadius: "5px",
+            backgroundColor: "#ccd0cf",
+            margin: "0 auto",
+            gap: "5px",
           }}
         >
           <BsDatabaseExclamation />

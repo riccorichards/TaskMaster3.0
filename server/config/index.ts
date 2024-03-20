@@ -6,4 +6,8 @@ export default {
   port: 5000,
   rsaPriviteKey: process.env.RSA_PRIVATE_KEY,
   rsaPublicKey: process.env.RSA_PUBLIC_KEY,
+  googleOauthTokenUrl: "https://oauth2.googleapis.com/token",
+  googleClientID: process.env.Google_Client_ID,
+  googleClientSecret: process.env.Google_Client_Secret,
+  googleRedirectURI: process.env.Google_Oauth_Redirect_URI,
 };
