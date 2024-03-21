@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <span style={{ color: "#ccd0cf" }}>
+      <span style={{ color: "#ccd0cf", textAlign: "center" }}>
         © Copyright 2024. Made by RiccoRichards
       </span>
     </footer>

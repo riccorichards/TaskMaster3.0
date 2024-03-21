@@ -1,6 +1,5 @@
 import { get } from "lodash";
-import UserModel from "../database/model/User.model";
-import { signWihtJWT, verifyJWT } from "./jwt";
+import { signWithJWT, verifyJWT } from "./jwt";
 import SessionModel from "../database/model/Session.model";
 import { AuthorisedError } from "./Error";
 
@@ -24,7 +23,7 @@ export const generateNewAccessToken = async (refreshToken: string) => {
     throw new AuthorisedError("Invalid session");
   }
 
-  const accessToken = signWihtJWT(
+  const accessToken = signWithJWT(
     { user: session.user, session: session._id },
     { expiresIn: 86400 }
   );

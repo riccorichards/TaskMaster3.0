@@ -11,7 +11,6 @@ const FilterController: FC<{ historyLen: number }> = ({ historyLen }) => {
   >(null);
 
   const [errorHandler, setErrorHandler] = useState<string | null>(null);
-
   const possibleFields = ["priority", "workspace"];
 
   useEffect(() => {

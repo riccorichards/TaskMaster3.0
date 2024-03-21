@@ -21,6 +21,7 @@ const SignIn = () => {
   });
   const { isLoading, error, login, session } = useUserStore();
   const navigate = useNavigate();
+
   const onSubmit = async (values: SignInInput) => {
     login(values);
     reset();
@@ -28,6 +29,11 @@ const SignIn = () => {
 
   useEffect(() => {
     if (session) {
+      localStorage.setItem("accessToken", JSON.stringify(session.accessToken));
+      localStorage.setItem(
+        "refreshToken",
+        JSON.stringify(session.refreshToken)
+      );
       navigate("/dashboard/overview");
     }
   }, [session, navigate]);

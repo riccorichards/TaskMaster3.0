@@ -51,31 +51,12 @@ const Api = (app: Application) => {
     incomingDataValidation(LoginUserSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
-        const { accessToken, refreshToken, newSession } =
-          await service.LoginService(req.body, req.get("user-agent") || "");
-        res.setHeader(
-          "Access-Control-Allow-Origin",
-          "https://task-master3-0.vercel.app"
+        const response = await service.LoginService(
+          req.body,
+          req.get("user-agent") || ""
         );
-        res.setHeader("Access-Control-Allow-Credentials", "true");
 
-        res.cookie("accessToken", accessToken, {
-          maxAge: 3.154e10,
-          httpOnly: true,
-          path: "/",
-          sameSite: "none",
-          secure: true,
-        });
-
-        res.cookie("refreshToken", refreshToken, {
-          maxAge: 3.154e10,
-          httpOnly: true,
-          path: "/",
-          sameSite: "none",
-          secure: true,
-        });
-
-        return res.status(201).json(newSession);
+        return res.status(201).json(response);
       } catch (error) {
         if (error instanceof ZodError) {
           return res.status(404).json({ err: error.message });
@@ -169,6 +150,7 @@ const Api = (app: Application) => {
     incomingDataValidation(CreateNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
+        console.log(req.body);
         const response = await service.CreateNewNodeService(req.body);
         return res.status(201).json(response);
       } catch (error) {
@@ -231,6 +213,7 @@ const Api = (app: Application) => {
       }
     }
   );
+
   // api endpoint for update notes (update // remove)
   app.put(
     "/api/update-node",
@@ -247,6 +230,7 @@ const Api = (app: Application) => {
       }
     }
   );
+
   //api endpoint for read task only
   app.post(
     "/api/task",
@@ -454,8 +438,6 @@ const Api = (app: Application) => {
     "/api/log-out",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.clearCookie("refreshToken");
-        res.clearCookie("accessToken");
         return res.status(201).json(null);
       } catch (error) {
         if (error instanceof ZodError) {

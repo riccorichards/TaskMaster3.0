@@ -6,7 +6,6 @@ import { useUserStore } from "../../store/AuthStore";
 const DailyResult = () => {
   const { dailyResult, fetchDailyResult } = useTaskStore();
   const { user } = useUserStore();
-
   useEffect(() => {
     if (user) {
       fetchDailyResult();

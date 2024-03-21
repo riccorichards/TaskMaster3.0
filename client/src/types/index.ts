@@ -66,7 +66,9 @@ export interface MyStatsType {
 }
 
 export interface SessionType {
-  user: string;
+  session: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface UserState {

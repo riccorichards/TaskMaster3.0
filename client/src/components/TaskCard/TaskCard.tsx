@@ -48,7 +48,9 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
           {task.priority}
         </span>
       </p>
-      <span className="task-created-at">{Utils.extractDate(task.createdAt || "")}</span>
+      <span className="task-created-at">
+        {Utils.extractDate(task.createdAt || "")}
+      </span>
       <button
         className="remove-btn"
         onClick={() => handleRemoveTask(task._id || "")}

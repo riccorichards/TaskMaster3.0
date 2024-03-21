@@ -1,29 +1,19 @@
 import Echart from "echarts-for-react";
 import { useNodeTree } from "../../store/NodeTreeStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUserStore } from "../../store/AuthStore";
 import Loader from "../Loader/Loader";
+import { useToolsStore } from "../../store/ToolsStore";
 
 const MapTreeChart = () => {
   const { fetchEntireNodeTree, isLoading, error, nodeTree } = useNodeTree();
   const { user } = useUserStore();
-  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
-
+  const { screenSize } = useToolsStore();
   useEffect(() => {
     if (user?.username) {
       fetchEntireNodeTree(user?.username);
     }
   }, [fetchEntireNodeTree, user?.username]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [screenSize]);
 
   if (error)
     return (

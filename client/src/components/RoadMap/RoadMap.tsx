@@ -7,6 +7,7 @@ import MapTreeChart from "./MapTreeChart";
 import { TbDatabaseExclamation } from "react-icons/tb";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
 import { useUserStore } from "../../store/AuthStore";
+import Loader from "../Loader/Loader";
 
 const RoadMap = () => {
   const [node, setNode] = useState<string>("");
@@ -25,13 +26,15 @@ const RoadMap = () => {
   } = useNodeTree();
 
   const { user } = useUserStore();
+
   useEffect(() => {
     if (user?.username) {
       fetchEntireNodesName(user?.username);
     }
   }, [fetchEntireNodesName, user?.username]);
 
-  if (!user) return null;
+  if (!user) return <Loader />;
+
   const { username } = user;
   const handleNode = (e: ChangeEvent<HTMLInputElement>) => {
     setNode(e.target.value);
@@ -46,6 +49,7 @@ const RoadMap = () => {
           );
           return;
         }
+
         setCustomErr(null);
         const isUpdate = node.split(":")[0] === "update";
 

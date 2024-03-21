@@ -1,23 +1,14 @@
 import EChartsReact from "echarts-for-react";
 import { useTaskStore } from "../../store/TaskStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "../Loader/Loader";
 import { useUserStore } from "../../store/AuthStore";
+import { useToolsStore } from "../../store/ToolsStore";
 
 const TopLearnedTopics = () => {
   const { topWorkspaces, getTopWorkspaces } = useTaskStore();
   const { user } = useUserStore();
-  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [screenSize]);
+  const { screenSize } = useToolsStore();
 
   useEffect(() => {
     if (user) {

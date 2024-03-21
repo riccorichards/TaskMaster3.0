@@ -15,6 +15,7 @@ const MyStats = () => {
 
   if (isLoading) return <Loader />;
   if (!myStats) return null;
+
   return (
     <div className="my-stats">
       <h3>Welcome to your journey!</h3>

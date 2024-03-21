@@ -12,11 +12,11 @@ import { GiPathDistance } from "react-icons/gi";
 const Overview = () => {
   const { user } = useUserStore();
   const { fetchEntireNodesName, nodeNames } = useNodeTree();
-
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
+      console.log({ user });
       fetchEntireNodesName(user.username);
     }
   }, [user, fetchEntireNodesName]);

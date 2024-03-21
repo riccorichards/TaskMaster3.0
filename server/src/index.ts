@@ -2,7 +2,6 @@ import express, { NextFunction, Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
 import config from "../config";
-import cookieParser from "cookie-parser";
 import connectedToDB from "./utils/connectedToDB";
 import Api from "./api/Api";
 
@@ -16,7 +15,6 @@ export const runServer = async () => {
   );
 
   app.use(express.json());
-  app.use(cookieParser());
 
   await connectedToDB(config.mongo_prod || "");
 

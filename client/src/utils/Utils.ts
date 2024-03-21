@@ -1,5 +1,6 @@
 import axios, { Method } from "axios";
 import { NodeTreeType } from "../types";
+import takeAccessTokenFromStorage from "./takeAccessTokenFromStorage";
 class Utils {
   static scrollToComponent(id: string) {
     const element = document.getElementById(id);
@@ -23,10 +24,15 @@ class Utils {
     data?: unknown
   ): Promise<T> {
     try {
+      const { accessToken, refreshToken } = takeAccessTokenFromStorage();
       const response = await axios({
         url: `https://task-master-zjvca.ondigitalocean.app/api/${url}`,
         method,
         data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "x-refresh": refreshToken,
+        },
         withCredentials: true,
         responseType: "json",
       });

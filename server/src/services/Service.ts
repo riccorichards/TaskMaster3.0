@@ -1,4 +1,3 @@
-import { Schema } from "zod";
 import {
   CreateNodeType,
   ReadNodeType,
@@ -22,7 +21,7 @@ import {
   NotFoundError,
 } from "../utils/Error";
 import Utils from "../utils/Utils";
-import { signWihtJWT } from "../utils/jwt";
+import { signWithJWT } from "../utils/jwt";
 
 class Service {
   private Repo: Repository;
@@ -51,7 +50,7 @@ class Service {
       userAgent
     );
 
-    const accessToken = signWihtJWT(
+    const accessToken = signWithJWT(
       {
         user: newSession.user,
         session: newSession._id,
@@ -59,7 +58,7 @@ class Service {
       { expiresIn: 86400 }
     ); //day
 
-    const refreshToken = signWihtJWT(
+    const refreshToken = signWithJWT(
       {
         user: newSession.user,
         session: newSession._id,
@@ -98,7 +97,7 @@ class Service {
         userAgent
       );
 
-      const accessToken = signWihtJWT(
+      const accessToken = signWithJWT(
         {
           user: newSession.user,
           session: newSession._id,
@@ -106,15 +105,14 @@ class Service {
         { expiresIn: 86400 }
       ); //day
 
-      const refreshToken = signWihtJWT(
+      const refreshToken = signWithJWT(
         {
           user: newSession.user,
           session: newSession._id,
         },
         { expiresIn: 86400 * 30 }
       ); //month
-      if (!newSession || !accessToken || !refreshToken)
-        throw new AuthorisedError("Error while authrisation process");
+
       return { accessToken, refreshToken };
     }
   }

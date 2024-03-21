@@ -9,6 +9,7 @@ const TaskGenerator = () => {
   const [storeWorkspace, setStoreWorkspace] = useState<string | null>(null);
   const { getTasks, dayFinish, tasks } = useTaskStore();
   const [errorHandler, setErrorHadler] = useState<string | null>(null);
+
   useEffect(() => {
     getTasks();
   }, [getTasks]);

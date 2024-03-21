@@ -1,5 +1,11 @@
 import { create } from "zustand";
-import { DailyResultType, HistoryType, TaskState, TaskType, TopWorkspaceType } from "../types";
+import {
+  DailyResultType,
+  HistoryType,
+  TaskState,
+  TaskType,
+  TopWorkspaceType,
+} from "../types";
 import Utils from "../utils/Utils";
 
 interface TaskStore extends TaskState {

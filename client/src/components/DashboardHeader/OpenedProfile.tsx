@@ -23,7 +23,6 @@ const OpenedProfile = () => {
   const navigate = useNavigate();
   const { myStats, logOut } = useUserStore();
   const { botAction, bot } = useBotStore();
-
   const quality =
     dailyResult &&
     dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;

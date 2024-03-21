@@ -12,7 +12,6 @@ const TaskInput: FC<{
   const [inputValue, setInputValue] = useState<string>("");
   const [errorhandler, setErrorHandler] = useState<string | null>(null);
   const { createTask } = useTaskStore();
-
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };

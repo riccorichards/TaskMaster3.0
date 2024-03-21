@@ -19,6 +19,8 @@ const SideBar = () => {
   const handleLogout = () => {
     logOut();
     localStorage.setItem("valid-user", JSON.stringify(false));
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     navigate("/");
   };
 
@@ -33,6 +35,7 @@ const SideBar = () => {
   const quality =
     dailyResult &&
     dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;
+
   return (
     <div className="side-bar-wrapper">
       <div

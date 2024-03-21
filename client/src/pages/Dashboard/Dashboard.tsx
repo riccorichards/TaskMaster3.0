@@ -7,23 +7,15 @@ import Bot from "../../components/Bot/Bot";
 import { useBotStore } from "../../store/BotStore";
 import { useNavigate } from "react-router-dom";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
+import { useToolsStore } from "../../store/ToolsStore";
+import ScreenSizeHandler from "../../utils/ScreenSizeHandler";
 
 const Dashboard = () => {
-  const { getMe, user } = useUserStore();
+  const { getMe, user, session } = useUserStore();
   const { bot } = useBotStore();
   const navigate = useNavigate();
-  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
   const [authChecking, setAuthChecking] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [screenSize]);
+  const { screenSize } = useToolsStore();
 
   useEffect(() => {
     const checkUser = async () => {
@@ -32,7 +24,7 @@ const Dashboard = () => {
     };
 
     checkUser();
-  }, [getMe]);
+  }, [getMe, session]);
 
   useEffect(() => {
     if (!authChecking) {
@@ -50,15 +42,18 @@ const Dashboard = () => {
   }, [user, navigate, authChecking]);
 
   return (
-    <section className="dashboard-wrapper">
-      <div className="dashboard">
-        <aside>{screenSize > 769 ? <SideBar /> : <DashboardHeader />}</aside>
-        <main>
-          <MainDashboard />
-        </main>
-      </div>
-      {(bot === "open" || bot === "hide") && <Bot />}
-    </section>
+    <>
+      <ScreenSizeHandler />
+      <section className="dashboard-wrapper">
+        <div className="dashboard">
+          <aside>{screenSize > 769 ? <SideBar /> : <DashboardHeader />}</aside>
+          <main>
+            <MainDashboard />
+          </main>
+        </div>
+        {(bot === "open" || bot === "hide") && <Bot />}
+      </section>
+    </>
   );
 };
 
