@@ -150,7 +150,6 @@ const Api = (app: Application) => {
     incomingDataValidation(CreateNodeSchema),
     async (req: Request, res: Response, next: NextFunction) => {
       try {
-        console.log(req.body);
         const response = await service.CreateNewNodeService(req.body);
         return res.status(201).json(response);
       } catch (error) {
@@ -177,7 +176,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   // api endpoint for finding the entire nodes based on provided username
   app.get(
     "/api/nodes/:username",
@@ -213,7 +211,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   // api endpoint for update notes (update // remove)
   app.put(
     "/api/update-node",
@@ -230,7 +227,6 @@ const Api = (app: Application) => {
       }
     }
   );
-
   //api endpoint for read task only
   app.post(
     "/api/task",

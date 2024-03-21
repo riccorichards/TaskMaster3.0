@@ -9,7 +9,7 @@ export const runServer = async () => {
   const app = express();
   app.use(
     cors({
-      origin: config.origin,
+      origin: config.origin_dev,
       credentials: true,
     })
   );

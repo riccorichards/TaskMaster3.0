@@ -242,7 +242,11 @@ class Service {
 
   async GetDayFinishService(author: string, amount: string) {
     const history = await this.Repo.GetDayFinish(author, amount);
-    if (history.length === 0) throw new NotFoundError("data was not found");
+    if (history.length === 0) {
+      return [];
+    } else if (!history) {
+      throw new NotFoundError("Error while retrieve user's history");
+    }
     return history;
   }
 
@@ -269,7 +273,11 @@ class Service {
 
   async DailyResulyService(author: string) {
     const history = await this.Repo.GetDayFinish(author, "all");
-    if (history.length === 0) throw new NotFoundError("data was not found");
+    if (history.length === 0) {
+      return [];
+    } else if (!history) {
+      throw new NotFoundError("Error while retrieve user's history");
+    }
 
     // Create a map to group tasks by date
     const groupedTasks = new Map();
@@ -295,9 +303,9 @@ class Service {
 
   async MyStatsService(userId: string) {
     const profile = await this.Repo.FindMe(userId);
+
     if (!profile)
       throw new NotFoundError("user was not ound with provided ID: " + userId);
-
     let remainingDays;
     let usedTime;
     let perDay;
@@ -307,12 +315,17 @@ class Service {
         createdAt: string;
       }[];
 
-      if (history.length === 0) throw new NotFoundError("data was not found");
+      if (history.length === 0) {
+        return [];
+      } else if (!history) {
+        throw new NotFoundError("Error while retrieve user's history");
+      }
 
       const totalWorkingHours = history.reduce(
         (acc, task) => acc + task.storedTime!,
         0
       );
+
       remainingDays = Utils.defineRemainDays(
         profile.journeyDuration,
         history[0].createdAt || ""
@@ -325,13 +338,18 @@ class Service {
           history[0].createdAt || ""
         ).differenceInDays;
     }
+
     return { remainingDays, usedTime, perDay };
   }
 
   async TopLearnedTopicsService(userId: string) {
     const history = await this.Repo.GetDayFinish(userId, "all");
 
-    if (history.length === 0) throw new NotFoundError("data was not found");
+    if (history.length === 0) {
+      return [];
+    } else if (!history) {
+      throw new NotFoundError("Error while retrieve user's history");
+    }
 
     const groupedTasks = new Map<any, any>();
 

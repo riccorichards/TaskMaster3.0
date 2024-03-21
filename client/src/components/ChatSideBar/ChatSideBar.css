@@ -1,0 +1,99 @@
+.chat-side-bar {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+.chat-side-bar .add-new-role {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+.chat-side-bar .add-new-role .new-role-btn {
+  width: 45px;
+  height: 45px;
+  background-color: #9baab8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.chat-side-bar .add-new-role .generate-bot-input {
+  padding: 3.5px;
+  font-family: "Roboto Condensed", sans-serif;
+  border-radius: 2.5px;
+  border: none;
+}
+.chat-side-bar .add-new-role .generate-bot-input:focus {
+  outline: none;
+}
+.chat-side-bar .search-bot {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #253745;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+.chat-side-bar .search-bot .search-bot-icon {
+  display: flex;
+  align-items: center;
+  color: #ccd0cf;
+}
+.chat-side-bar .search-bot input {
+  font-size: 14px;
+  font-family: "Roboto Condensed", sans-serif;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: #ccd0cf;
+}
+.chat-side-bar .search-bot input:focus {
+  outline: none;
+}
+.chat-side-bar .bot-list {
+  height: 70vh;
+  width: 100%;
+  box-shadow: 0 0 1px #9baab8;
+  border-radius: 2.5px;
+  overflow-y: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.chat-side-bar .bot-list .single-bot {
+  background-color: #11212d;
+  padding: 5px;
+  box-shadow: 0 0 1px #9baab8;
+  border-radius: 3.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chat-side-bar .bot-list .single-bot:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.chat-side-bar .bot-list .single-bot .single-bot-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #06141b;
+  color: #9baab8;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.chat-side-bar .bot-list .single-bot .single-bot-role {
+  word-break: break-word;
+  color: #9baab8;
+}

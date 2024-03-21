@@ -48,6 +48,8 @@
   border-radius: 3.5px;
   color: #ccd0cf;
   cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .bot-btn:active {
   transform: scale(0.95);

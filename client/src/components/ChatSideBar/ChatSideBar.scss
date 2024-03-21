@@ -1,0 +1,120 @@
+@use "../utils/sass/v.scss";
+
+.chat-side-bar {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
+  .add-new-role {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+
+    .new-role-btn {
+      width: 45px;
+      height: 45px;
+      background-color: v.$cadet-gray;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .generate-bot-input {
+      padding: 3.5px;
+      font-family: v.$font;
+      border-radius: 2.5px;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .search-bot {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: v.$independence;
+    height: 35px;
+    border-radius: 5px;
+    padding: 0 5px;
+
+    .search-bot-icon {
+      display: flex;
+      align-items: center;
+      color: v.$light-gray;
+    }
+
+    input {
+      font-size: 14px;
+      font-family: v.$font;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: v.$light-gray;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .bot-list {
+    height: 70vh;
+    width: 100%;
+    box-shadow: 0 0 1px v.$cadet-gray;
+    border-radius: 2.5px;
+    overflow-y: auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .single-bot {
+      background-color: v.$charcoal_blue;
+      padding: 5px;
+      box-shadow: 0 0 1px v.$cadet-gray;
+      border-radius: 3.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+
+      .remove-bot {
+        position: absolute;
+        top: 0;
+        color: red;
+      }
+
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      .single-bot-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: v.$gunmetal;
+        color: v.$cadet-gray;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+      .single-bot-role {
+        word-break: break-word;
+        color: v.$cadet-gray;
+      }
+    }
+  }
+}

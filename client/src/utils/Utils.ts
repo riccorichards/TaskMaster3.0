@@ -18,6 +18,7 @@ class Utils {
     document.body.removeChild(link);
   };
 
+  //https://task-master-zjvca.ondigitalocean.app/
   static async makeRequest<T>(
     url: string,
     method: Method = "GET",
@@ -26,7 +27,7 @@ class Utils {
     try {
       const { accessToken, refreshToken } = takeAccessTokenFromStorage();
       const response = await axios({
-        url: `https://task-master-zjvca.ondigitalocean.app/api/${url}`,
+        url: `http://localhost:5000/api/${url}`,
         method,
         data,
         headers: {

@@ -53,6 +53,7 @@
   border-radius: 3.5px;
   color: v.$light-gray;
   cursor: pointer;
+  width: fit-content;
 
   &:active {
     transform: scale(0.95);

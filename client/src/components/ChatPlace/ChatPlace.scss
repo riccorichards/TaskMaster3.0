@@ -1,47 +1,36 @@
 @use "../../utils/sass/v.scss";
-@use "../../utils/sass/f.scss" as mq;
 
-.bot-wrapper {
-  position: absolute;
-  bottom: 2.5%;
-  right: 2.5%;
+.chat-place {
+  padding: 15px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  background-color: v.$cadet-gray;
-  height: 350px;
-  z-index: 1;
+  justify-content: space-between;
 
-  .bot-header {
-    flex: 1;
-    background-color: v.$charcoal_blue;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5px;
-  }
-  .bot-chat {
-    flex: 8;
-    background-color: v.$light-gray;
-    font-size: 14px;
+  .messages-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 5px 3.5px;
+    gap: 15px;
+    height: 85vh;
     overflow-y: auto;
+    padding: 20px 0;
+    
 
     .single-msg {
       display: flex;
-      gap: 5px;
+      gap: 15px;
+      align-items: flex-end;
 
       .bot-icon-wrapper {
         border: 1px solid;
         border-radius: 50%;
-        width: 24px;
-        height: 24px;
+        width: 45px;
+        height: 45px;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: v.$cadet-gray;
+        background-color: v.$gunmetal;
 
         svg {
           font-size: 24px;
@@ -54,25 +43,24 @@
         background-color: v.$charcoal_blue;
         color: v.$light-gray;
         border-radius: 0 10px 10px 10px;
+        align-items: baseline;
       }
 
       .user-icon-wrapper {
+        border: 1px solid;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
         display: flex;
         align-items: center;
-        width: 24px;
-        height: 24px;
-        border: v.$gunmetal 1px solid;
-        border-radius: 50%;
-        letter-spacing: 1px;
-        font-weight: 700;
         justify-content: center;
-        font-family: v.$intro_title;
+        color: v.$cadet-gray;
+        background-color: v.$gunmetal;
       }
     }
   }
+
   .send-message {
-    flex: 1;
-    background-color: v.$gunmetal;
     display: flex;
     align-items: center;
 
@@ -99,22 +87,4 @@
       cursor: pointer;
     }
   }
-}
-
-.bot-header {
-  flex: 1;
-  background-color: v.$charcoal_blue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5px;
-  height: 100%;
-}
-
-.hidden-bot {
-  position: absolute;
-  bottom: 2.5%;
-  right: 2.5%;
-  width: 280px;
-  height: 5vh;
 }

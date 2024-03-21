@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { TbHomeStats } from "react-icons/tb";
 import { BiTask } from "react-icons/bi";
-import { IoIosTimer } from "react-icons/io";
 import { RiNodeTree } from "react-icons/ri";
+import { SiProbot } from "react-icons/si";
 
 const Navigation = () => {
   return (
@@ -15,13 +15,13 @@ const Navigation = () => {
         <BiTask />
         Task
       </NavLink>
-      <NavLink className="nav-item" to="/dashboard/timer">
-        <IoIosTimer />
-        Timer
-      </NavLink>
       <NavLink className="nav-item" to="/dashboard/road-map">
         <RiNodeTree />
         Road Map
+      </NavLink>
+      <NavLink className="nav-item" to="/dashboard/bots">
+        <SiProbot />
+        Bots
       </NavLink>
     </ul>
   );

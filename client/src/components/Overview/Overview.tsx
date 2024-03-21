@@ -6,48 +6,54 @@ import MyStats from "../MyStats/MyStats";
 import DailyResult from "./DailyResult";
 import "./Overview.css";
 import TopLearnedTopics from "./TopLearnedTopics";
-import { useNavigate } from "react-router-dom";
-import { GiPathDistance } from "react-icons/gi";
+import PathForNewUser from "./PathForNewUser";
+import { useTaskStore } from "../../store/TaskStore";
 
 const Overview = () => {
   const { user } = useUserStore();
   const { fetchEntireNodesName, nodeNames } = useNodeTree();
-  const navigate = useNavigate();
+  const { history } = useTaskStore();
 
   useEffect(() => {
     if (user) {
-      console.log({ user });
       fetchEntireNodesName(user.username);
     }
   }, [user, fetchEntireNodesName]);
 
   return (
     <div className="overview-wrapper">
-      {nodeNames.length < 1 ? (
-        <div
+      {history.length < 1 && (
+        <p
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "5px",
-            backgroundColor: "#ccd0cf",
             padding: "5px",
-            borderRadius: "5px",
+            position: "absolute",
+            top: "2.5%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: " #06141b",
+            color: "#ccd0cf",
+            textAlign: "center",
+            width: "calc(100% - 20px)",
+            borderRadius: "3.5px",
+            boxShadow: "0 0 1px #ccd0cf",
           }}
         >
-          <GiPathDistance style={{ fontSize: "100px" }} />
-          <p>Empower Your Journey: Personalize Your Path to Success.</p>
-          <button
-            onClick={() => navigate("/dashboard/road-map")}
-            className="new-user-btn"
+          <span
+            style={{
+              padding: "2.5px",
+              backgroundColor: "#11212d",
+              color: "orangered",
+              borderRadius: "2.5px",
+            }}
           >
-            Create your path
-          </button>
-        </div>
+            Pro Tip:
+          </span>{" "}
+          To unlock insights into your learning progress and access other
+          related data, make sure to log your tasks for at least one day!
+        </p>
+      )}
+      {nodeNames.length < 1 ? (
+        <PathForNewUser />
       ) : (
         <div className="overview">
           <div className="left-side-wrapper">

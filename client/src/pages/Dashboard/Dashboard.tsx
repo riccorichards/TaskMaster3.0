@@ -3,8 +3,6 @@ import { useUserStore } from "../../store/AuthStore";
 import "./Dashboard.css";
 import MainDashboard from "./MainDashboard/MainDashboard";
 import SideBar from "../../components/SideBar/SideBar";
-import Bot from "../../components/Bot/Bot";
-import { useBotStore } from "../../store/BotStore";
 import { useNavigate } from "react-router-dom";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import { useToolsStore } from "../../store/ToolsStore";
@@ -12,7 +10,6 @@ import ScreenSizeHandler from "../../utils/ScreenSizeHandler";
 
 const Dashboard = () => {
   const { getMe, user, session } = useUserStore();
-  const { bot } = useBotStore();
   const navigate = useNavigate();
   const [authChecking, setAuthChecking] = useState(true);
   const { screenSize } = useToolsStore();
@@ -51,7 +48,6 @@ const Dashboard = () => {
             <MainDashboard />
           </main>
         </div>
-        {(bot === "open" || bot === "hide") && <Bot />}
       </section>
     </>
   );

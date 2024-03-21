@@ -136,7 +136,11 @@ class Repository {
 
   async DayFinish(author: string) {
     const dailyTasks = await TaskModel.find({ author });
-    if (dailyTasks.length === 0) throw new NotFoundError("data was not found");
+    if (dailyTasks.length === 0) {
+      return [];
+    } else if (!history) {
+      throw new NotFoundError("Error while taking daily tasks");
+    }
 
     await Promise.all(
       dailyTasks.map(async (dailyTask: TaskDocument) => {

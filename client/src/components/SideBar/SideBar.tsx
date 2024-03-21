@@ -6,9 +6,9 @@ import Logo from "../header/logo/Logo";
 import Utils from "../../utils/Utils";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { HiMiniVideoCamera } from "react-icons/hi2";
-import { GrRobot } from "react-icons/gr";
 import { useBotStore } from "../../store/BotStore";
 import { useTaskStore } from "../../store/TaskStore";
+import { IoIosTimer } from "react-icons/io";
 
 const SideBar = () => {
   const { logOut, user, myStats } = useUserStore();
@@ -90,9 +90,9 @@ const SideBar = () => {
           </span>
         </div>
         <div className="bot-btn" onClick={handleBotAction}>
-          Who is <i>Matthew</i>
+          Run timer
           <span>
-            <GrRobot />
+            <IoIosTimer />
           </span>
         </div>
       </div>
