@@ -53,6 +53,11 @@ const Api = (app: Application) => {
       try {
         const { accessToken, refreshToken, newSession } =
           await service.LoginService(req.body, req.get("user-agent") || "");
+        res.setHeader(
+          "Access-Control-Allow-Origin",
+          "https://task-master3-0.vercel.app"
+        );
+        res.setHeader("Access-Control-Allow-Credentials", "true");
 
         res.cookie("accessToken", accessToken, {
           maxAge: 3.154e10,
@@ -92,6 +97,11 @@ const Api = (app: Application) => {
 
         if (response) {
           const { accessToken, refreshToken } = response;
+          res.setHeader(
+            "Access-Control-Allow-Origin",
+            "https://task-master3-0.vercel.app"
+          );
+          res.setHeader("Access-Control-Allow-Credentials", "true");
 
           res.cookie("accessToken", accessToken, {
             maxAge: 3.154e10,

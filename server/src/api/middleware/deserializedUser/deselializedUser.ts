@@ -19,6 +19,7 @@ export const deserializeUser = async (
     get(req, "cookies.refreshToken") ||
     (get(req, "headers.x-refresh") as string);
 
+  console.log({ accessToken, refreshToken });
   if (!accessToken) return next();
 
   //extraction information from the token and its expiration time
