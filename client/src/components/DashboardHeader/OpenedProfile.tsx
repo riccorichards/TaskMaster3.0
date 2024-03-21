@@ -56,7 +56,7 @@ const OpenedProfile = () => {
         top: "100%",
         right: "0",
         borderRadius: "15px 0 15px 15px",
-        width: "100%",
+        width: "100px",
       }}
     >
       <span style={{ fontSize: "14px" }}>

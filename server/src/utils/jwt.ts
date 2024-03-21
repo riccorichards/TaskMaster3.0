@@ -10,6 +10,20 @@ const publicKey = Buffer.from(config.rsaPublicKey || "", "base64").toString(
   "ascii"
 );
 
+// Add this in your code to check if the keys are in the correct format
+console.log("Private Key:", privateKey);
+console.log("Public Key:", publicKey);
+
+// Check if the keys are in the correct PEM format
+console.log(
+  "Is private key in valid PEM format:",
+  /BEGIN.*PRIVATE KEY/.test(privateKey)
+);
+console.log(
+  "Is public key in valid PEM format:",
+  /BEGIN.*PUBLIC KEY/.test(publicKey)
+);
+
 //creating signed fucntion
 export const signWihtJWT = (
   object: Object, //waits for information for encoded

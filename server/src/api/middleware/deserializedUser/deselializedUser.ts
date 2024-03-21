@@ -43,11 +43,11 @@ export const deserializeUser = async (
 
       if (token) {
         res.cookie("accessToken", token, {
-          httpOnly: false,
+          maxAge: 3.154e10,
+          httpOnly: true,
           path: "/",
-          secure: false,
-          sameSite: "strict",
-          domain: "localhost",
+          secure: true,
+          sameSite: "none",
         });
 
         //then we need to decoded the information from the creating token for ensure that the current user has a permission to take our protected resources
