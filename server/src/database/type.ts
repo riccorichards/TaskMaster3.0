@@ -49,12 +49,22 @@ export interface TaskDocument {
   createdAt: Date;
 }
 
-export interface BotInput {
+export interface BotRoleInput {
   user: string;
-  question: string;
+  role: string;
 }
 
-export interface BotDocument extends BotInput {
+export interface BotRoleDocument extends BotRoleInput {
+  _id: mongoose.Schema.Types.ObjectId;
+}
+
+export interface BotMsgInput {
+  user: string;
+  question: string;
+  role: string;
+}
+
+export interface BotMsgDocument extends BotMsgInput {
   _id: mongoose.Schema.Types.ObjectId;
 }
 

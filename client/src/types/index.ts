@@ -118,11 +118,18 @@ export interface FilteredType {
 export interface MessageType {
   author: string;
   msg: string;
+  role: string;
+}
+
+export interface BotRolesType {
+  _id: string;
+  role: string;
 }
 
 export interface BotState {
   messages: MessageType[];
-  bot: string;
+  roles: BotRolesType[];
+  pickedRole: string;
   isLoading: boolean;
   error: string | null;
 }

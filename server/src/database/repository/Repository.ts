@@ -12,13 +12,14 @@ import {
   RegisterUserType,
 } from "../../api/middleware/zodSchemas/UserAuthZodSchema";
 import { NotFoundError } from "../../utils/Error";
-import BotModel from "../model/Bot.model";
+import BotMsgModel from "../model/BotMsg.model";
+import BotRoleModel from "../model/BotRole.model";
 import HistoryModel from "../model/History.model";
 import NodeModel from "../model/NodeTree.model";
 import SessionModel from "../model/Session.model";
 import TaskModel from "../model/Task.model";
 import UserModel from "../model/User.model";
-import { TaskDocument, UpsertUser } from "../type";
+import { BotRoleInput, TaskDocument, UpsertUser } from "../type";
 
 class Repository {
   async Register(input: RegisterUserType["body"]) {
@@ -138,8 +139,6 @@ class Repository {
     const dailyTasks = await TaskModel.find({ author });
     if (dailyTasks.length === 0) {
       return [];
-    } else if (!history) {
-      throw new NotFoundError("Error while taking daily tasks");
     }
 
     await Promise.all(
@@ -188,13 +187,13 @@ class Repository {
     return await HistoryModel.find(query);
   }
 
-  async NewQuestionForBot(userId: string, question: string) {
-    return await BotModel.create({ user: userId, question });
+  async NewQuestionForBot(userId: string, question: string, role: string) {
+    return await BotMsgModel.create({ user: userId, msg: question, role });
   }
 
-  async GetQuestionFromBotMemory(userId: string) {
-    return await BotModel.aggregate([
-      { $match: { user: userId } },
+  async GetQuestionFromBotMemory(userId: string, role: string) {
+    return await BotMsgModel.aggregate([
+      { $match: { user: userId, role } },
       { $sample: { size: 1 } },
     ]);
   }
@@ -204,6 +203,26 @@ class Repository {
       ...options,
       returnDocument: "after",
     });
+  }
+
+  async CreateBot(input: BotRoleInput) {
+    return await BotRoleModel.create(input);
+  }
+
+  async GetBots(userId: string) {
+    return await BotRoleModel.find({ user: userId });
+  }
+
+  async SearchBot(query: any) {
+    return await BotRoleModel.find(query);
+  }
+
+  async RemoveBot(botId: string) {
+    const removedBot = await BotRoleModel.findByIdAndDelete(botId);
+
+    await BotMsgModel.deleteMany({ role: removedBot?.role });
+
+    return removedBot;
   }
 }
 

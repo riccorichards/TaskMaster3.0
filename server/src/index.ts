@@ -10,7 +10,7 @@ export const runServer = async () => {
 
   app.use(
     cors({
-      origin: config.origin,
+      origin: config.origin_dev,
       credentials: true,
     })
   );

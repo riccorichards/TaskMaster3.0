@@ -16,18 +16,13 @@ export const help = [
   },
   {
     id: 6,
-    command: "start",
-    describe:
-      "Initiates interview mode, sending existing questions sequentially.",
-  },
-  {
-    id: 7,
-    command: "next",
-    describe: "Move on the next question.",
+    command: "question",
+    describe: "Returns ramdomly selected question.",
   },
   {
     id: 8,
     command: "finish",
-    describe: "Concludes interview mode after assessing your knowledge.",
+    describe:
+      "Concludes interview mode after assessing your knowledge and clean the chat.",
   },
 ];

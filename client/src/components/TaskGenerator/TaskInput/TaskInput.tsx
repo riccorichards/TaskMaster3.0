@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import "./TaskInput.scss";
 import { IoCloseCircle } from "react-icons/io5";
 import { useTaskStore } from "../../../store/TaskStore";
@@ -53,6 +53,11 @@ const TaskInput: FC<{
     }
   };
 
+  const handlekeyBoard = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleCreateTask();
+    }
+  };
   return (
     <div className="insert-daily-task">
       {storeWorkspace && (
@@ -68,6 +73,7 @@ const TaskInput: FC<{
         ref={inputRef}
         type="text"
         value={inputValue}
+        onKeyDown={handlekeyBoard}
         onChange={handleInputValue}
         placeholder="Task, description.../priority; (example) => Blockchain, this is example of blockchain/high"
       />

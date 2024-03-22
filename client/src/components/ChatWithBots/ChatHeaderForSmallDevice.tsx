@@ -2,33 +2,21 @@ import { MdOutlineAddReaction } from "react-icons/md";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { useState } from "react";
 import { SiProbot } from "react-icons/si";
-const take = [
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interxcdjk hdkjchdkjc hsdkjchd" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-  { bot: SiProbot, role: "interviewer" },
-];
+import { useBotStore } from "../../store/BotStore";
+
 const ChatHeaderForSmallDevice = () => {
   const [isOpenBotList, setIsOpenBotList] = useState<boolean>(false);
   const [addBot, setAddBot] = useState<boolean>(false);
   const [role, setRole] = useState<string>("");
+  const { roles, getPickedRole, pickedRole, createBotRole } = useBotStore();
 
+  const handleAddRole = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && role !== "") {
+      createBotRole({ role });
+      setRole("");
+      setAddBot(false);
+    }
+  };
   return (
     <div className="chat-header-for-small-device">
       <div
@@ -58,9 +46,10 @@ const ChatHeaderForSmallDevice = () => {
               gap: "5px",
               backgroundColor: "#ccd0cf",
               padding: "5px",
+              borderRadius: "3.5px",
             }}
           >
-            {take.map((el) => (
+            {roles.map((el) => (
               <div
                 style={{
                   display: "flex",
@@ -69,9 +58,15 @@ const ChatHeaderForSmallDevice = () => {
                   padding: "5px",
                   boxShadow: "0 0 1px #06141b",
                   borderRadius: "2.5px",
+                  backgroundColor: pickedRole === el.role ? "#253745" : "",
+                  color: pickedRole === el.role ? "#ccd0cf" : "",
                 }}
+                key={el._id}
+                onClick={() => getPickedRole(el.role)}
               >
-                <span>{<el.bot />}</span>
+                <span>
+                  <SiProbot />
+                </span>
                 <span>{el.role}</span>
               </div>
             ))}
@@ -90,6 +85,7 @@ const ChatHeaderForSmallDevice = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setRole(e.target.value)
           }
+          onKeyDown={handleAddRole}
         />
       )}
     </div>

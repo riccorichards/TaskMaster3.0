@@ -1,4 +1,4 @@
-@use "../utils/sass/v.scss";
+@use "../../utils/sass/v.scss";
 
 .chat-side-bar {
   padding: 15px;
@@ -46,6 +46,7 @@
     height: 35px;
     border-radius: 5px;
     padding: 0 5px;
+    position: relative;
 
     .search-bot-icon {
       display: flex;
@@ -88,10 +89,15 @@
       gap: 10px;
       position: relative;
 
-      .remove-bot {
+      .remove-bot-btn {
         position: absolute;
-        top: 0;
-        color: red;
+        top: 0.5%;
+        right: 0.5%;
+        cursor: pointer;
+        color: v.$orange;
+        &:active {
+          transform: scale(1.5);
+        }
       }
 
       &:hover {

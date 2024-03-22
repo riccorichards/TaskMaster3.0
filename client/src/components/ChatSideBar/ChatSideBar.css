@@ -40,6 +40,7 @@
   height: 35px;
   border-radius: 5px;
   padding: 0 5px;
+  position: relative;
 }
 .chat-side-bar .search-bot .search-bot-icon {
   display: flex;
@@ -76,6 +77,17 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
+}
+.chat-side-bar .bot-list .single-bot .remove-bot-btn {
+  position: absolute;
+  top: 0.5%;
+  right: 0.5%;
+  cursor: pointer;
+  color: orangered;
+}
+.chat-side-bar .bot-list .single-bot .remove-bot-btn:active {
+  transform: scale(1.5);
 }
 .chat-side-bar .bot-list .single-bot:hover {
   opacity: 0.8;

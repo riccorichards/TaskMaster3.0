@@ -14,6 +14,7 @@ import {
   RegisterUserType,
 } from "../api/middleware/zodSchemas/UserAuthZodSchema";
 import Repository from "../database/repository/Repository";
+import { BotRoleInput } from "../database/type";
 import {
   ApiError,
   AuthorisedError,
@@ -386,33 +387,79 @@ class Service {
     return result.sort((a, b) => b.value - a.value);
   }
 
-  async BotMessageService(cmd: string, userId: string) {
-    if (cmd === "" || cmd === "help" || cmd === "finish") {
+  async BotMessageService({
+    cmd,
+    userId,
+    role,
+  }: {
+    cmd: string;
+    userId: string;
+    role: string;
+  }) {
+    const argument = cmd.split(":")[0];
+    if (argument !== "new" && cmd !== "question") {
       return Utils.botInteraction(cmd);
     }
 
-    const argument = cmd.split(":")[0];
     const newRegaxedItems = /^new:\s*(.+)$/;
 
     if (newRegaxedItems.test(cmd)) {
       const matched = cmd.match(newRegaxedItems);
       if (matched) {
         const [, question] = matched;
-        const response = await this.Repo.NewQuestionForBot(userId, question);
+        const response = await this.Repo.NewQuestionForBot(
+          userId,
+          question,
+          role
+        );
         if (!response)
           throw new NotFoundError("Error while adding new question");
         return Utils.botInteraction(cmd, argument);
       }
-    } else if (cmd === "start" || cmd === "next") {
-      const response = await this.Repo.GetQuestionFromBotMemory(userId);
+    } else if (cmd === "question") {
+      const response = await this.Repo.GetQuestionFromBotMemory(userId, role);
+
       if (!response || response.length === 0)
         return Utils.botInteraction("not found");
       const question = {
         author: "bot",
-        msg: response[0].question,
+        msg: response[0].msg,
       };
       return question;
     }
+  }
+
+  async CreateBotRoleService(input: BotRoleInput) {
+    const newRole = await this.Repo.CreateBot(input);
+    if (!newRole)
+      throw new BadRequestError("Error while creating new bot's role");
+
+    return newRole;
+  }
+
+  async GetBotRoleService(userId: string) {
+    const roles = await this.Repo.GetBots(userId);
+    if (!roles) {
+      throw new BadRequestError("Error while retrieving bots roles");
+    } else if (roles.length < 1) return [];
+    return roles;
+  }
+
+  async SearchBotRoleService(botQuery: string, userId: string) {
+    const query = { user: userId, role: { $regex: botQuery, $options: "i" } };
+    const roles = await this.Repo.SearchBot(query);
+    if (!roles) {
+      throw new BadRequestError("Error while retrieving bots roles");
+    } else if (roles.length < 1) return [];
+    return roles;
+  }
+
+  async RemoveBotRoleService(botId: string) {
+    const removedBot = await this.Repo.RemoveBot(botId);
+    if (!removedBot)
+      throw new BadRequestError("Error while removing bot's role");
+
+    return removedBot;
   }
 }
 

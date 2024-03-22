@@ -1,4 +1,5 @@
 import config from "../../config";
+import { help } from "../const";
 import { GoogleUserResult, NodeDocument } from "../database/type";
 import { ApiError } from "./Error";
 import axios from "axios";
@@ -60,6 +61,17 @@ class Utils {
     return { result, differenceInDays };
   }
 
+  static generateHelpString(
+    commands: { id: number; command: string; describe: string }[]
+  ): string {
+    return commands
+      .map(
+        (cmd) =>
+          `#$%Command ==> ${cmd.command}#$%Description ==> ${cmd.describe}`
+      )
+      .join("\n\n");
+  }
+
   static botInteraction(cmd: string, argument?: any) {
     let response: { author: string; msg: string } = { author: "bot", msg: "" };
     if (cmd === "") {
@@ -67,7 +79,7 @@ class Utils {
         "Hi, I'm Matthew, I'm here to check our knowledge. For more instructions, please type 'help'.";
       return response;
     } else if (cmd === "help") {
-      response.msg = "It's temporary response...";
+      response.msg = this.generateHelpString(help);
       return response;
     } else if (argument === "new") {
       response.msg = `Thanks for adding new question into my memory.`;
@@ -79,7 +91,7 @@ class Utils {
       response.msg = `Question was not found...`;
       return response;
     } else {
-      response.msg = "sorry, I can not response...";
+      response.msg = "Sorry, I can not response...";
       return response;
     }
   }

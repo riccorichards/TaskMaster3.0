@@ -65,7 +65,7 @@ const Api = (app: Application) => {
       }
     }
   );
-  //oauth wit google
+  //Oauth with google
   app.get(
     "/api/session/oauth/google",
     async (req: Request, res: Response, next: NextFunction) => {
@@ -416,19 +416,87 @@ const Api = (app: Application) => {
       }
     }
   );
+  // interaction with bot
   app.get(
     "/api/bot-message",
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const userId = res.locals.user.user;
         const cmd = typeof req.query.cmd === "string" ? req.query.cmd : "";
-        const response = await service.BotMessageService(cmd, userId);
+        const role = typeof req.query.role === "string" ? req.query.role : "";
+        const input = {
+          cmd,
+          userId,
+          role,
+        };
+        const response = await service.BotMessageService(input);
         return res.status(200).json(response);
       } catch (error) {
         next(error);
       }
     }
   );
+  //create bot
+  app.post(
+    "/api/create-bot",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const userId = res.locals.user.user;
+        const response = await service.CreateBotRoleService({
+          user: userId,
+          role: req.body.role,
+        });
+        return res.status(201).json(response);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
+  //retrieve bots' roles
+  app.get(
+    "/api/bot",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const userId = res.locals.user.user;
+        const response = await service.GetBotRoleService(userId);
+        return res.status(201).json(response);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
+  //remove bots' roles
+  app.delete(
+    "/api/bot/:botId",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const { botId } = req.params;
+        const response = await service.RemoveBotRoleService(botId);
+        return res.status(201).json(response);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
+  //search bot roles based provided query "name"
+  app.get(
+    "/api/search-bot",
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const userId = res.locals.user.user;
+        const botQuery =
+          typeof req.query.role === "string" ? req.query.role : "";
+        const response = await service.SearchBotRoleService(botQuery, userId);
+        return res.status(201).json(response);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
   //logs out
   app.get(
     "/api/log-out",

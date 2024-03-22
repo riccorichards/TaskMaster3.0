@@ -15,7 +15,7 @@ const ChatWithBots = () => {
     if (greeting) return;
 
     const tID = setTimeout(() => {
-      interactWithBot("");
+      interactWithBot("", "");
     }, 1000);
 
     return () => clearTimeout(tID);
