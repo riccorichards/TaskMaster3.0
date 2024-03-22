@@ -4,13 +4,14 @@ import { useBotStore } from "../../store/BotStore";
 import { SiProbot } from "react-icons/si";
 import "./ChatPlace.css";
 import SendMsg from "./SendMsg";
+import ChatHeaderForSmallDevice from "../ChatWithBots/ChatHeaderForSmallDevice";
 
 const ChatPlace = () => {
   const { messages } = useBotStore();
   const { user } = useUserStore();
   const authorNick = user && user.username.slice(0, 2).toLocaleUpperCase();
   const inVisibleElRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     if (inVisibleElRef.current) {
       inVisibleElRef.current.scrollIntoView({ behavior: "smooth" });
@@ -19,6 +20,7 @@ const ChatPlace = () => {
 
   return (
     <div className="chat-place">
+      <ChatHeaderForSmallDevice />
       <div className="messages-wrapper">
         {messages.map((msg, i) => (
           <div

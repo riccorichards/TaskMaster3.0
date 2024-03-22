@@ -4,12 +4,23 @@
   display: flex;
   gap: 5px;
   padding: 5px;
+  position: relative;
 }
 .chat-bots-wrapper .chat-side-bar-wrapper {
   flex: 1;
   border-radius: 3.5px;
   background-color: #06141b;
   box-shadow: 0 0 1px #9baab8;
+}
+@media (max-width: 1025px) {
+  .chat-bots-wrapper .chat-side-bar-wrapper {
+    flex: 0 0 250px;
+  }
+}
+@media (max-width: 426px) {
+  .chat-bots-wrapper .chat-side-bar-wrapper {
+    display: none;
+  }
 }
 .chat-bots-wrapper .chat-place-wrapper {
   flex: 3;
