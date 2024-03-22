@@ -2,12 +2,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useTaskStore } from "../../store/TaskStore";
 import { useUserStore } from "../../store/AuthStore";
 import { RiLogoutBoxLine, RiNodeTree } from "react-icons/ri";
-import { useBotStore } from "../../store/BotStore";
 import { HiMiniVideoCamera } from "react-icons/hi2";
-import { GrRobot } from "react-icons/gr";
 import { TbHomeStats } from "react-icons/tb";
 import { BiTask } from "react-icons/bi";
 import { IoIosTimer } from "react-icons/io";
+import { SiProbot } from "react-icons/si";
+import { FC } from "react";
 
 const navlinkStyle = {
   display: "flex",
@@ -18,22 +18,16 @@ const navlinkStyle = {
   textDecoration: "none",
 };
 
-const OpenedProfile = () => {
+const OpenedProfile: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
+  setIsOpenTimer,
+}) => {
   const { dailyResult } = useTaskStore();
   const navigate = useNavigate();
   const { myStats, logOut } = useUserStore();
-  const { botAction, bot } = useBotStore();
+
   const quality =
     dailyResult &&
     dailyResult.reduce((acc, task) => acc + task.value, 0) / dailyResult.length;
-
-  const handleBotAction = () => {
-    if (bot === "close") {
-      botAction("open");
-    } else if (bot === "open") {
-      botAction("close");
-    }
-  };
 
   const handleLogout = () => {
     logOut();
@@ -55,7 +49,8 @@ const OpenedProfile = () => {
         top: "100%",
         right: "0",
         borderRadius: "15px 0 15px 15px",
-        width: "100px",
+        width: "200px",
+        boxShadow: "0 0 1px #9baab8",
       }}
     >
       <span style={{ fontSize: "14px" }}>
@@ -89,7 +84,7 @@ const OpenedProfile = () => {
             border: "1px solid",
           }}
         >
-          <GrRobot onClick={handleBotAction} />
+          <IoIosTimer onClick={() => setIsOpenTimer(true)} />
         </span>
       </div>
       <div
@@ -103,9 +98,9 @@ const OpenedProfile = () => {
         <BiTask />
         Task
       </NavLink>
-      <NavLink style={navlinkStyle} to="/dashboard/timer">
-        <IoIosTimer />
-        Timer
+      <NavLink style={navlinkStyle} to="/dashboard/bots">
+        <SiProbot />
+        Bots
       </NavLink>
       <NavLink style={navlinkStyle} to="/dashboard/road-map">
         <RiNodeTree />

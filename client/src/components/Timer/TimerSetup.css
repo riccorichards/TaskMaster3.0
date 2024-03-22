@@ -1,15 +1,17 @@
 .timer-wrapper {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  background-color: #06141b;
+  border-radius: 5px;
+  box-shadow: 0 0 1px #9baab8;
 }
 .timer-wrapper .timer {
   width: 100%;
   border-radius: 5px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 @media (max-width: 1025px) {
   .timer-wrapper .timer {
@@ -43,7 +45,7 @@
   flex-direction: column;
   gap: 5px;
   border-radius: 5px;
-  max-height: 25vh;
+  height: 25vh;
   overflow-y: scroll;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker {
@@ -57,6 +59,7 @@
   cursor: pointer;
   transition: all 0.25s ease-in-out;
   text-align: left;
+  position: relative;
 }
 .timer-wrapper .timer .timer-setup-wrapper .timer-setup .define-task .define-task-box .task-picker:hover {
   opacity: 0.7;
@@ -109,11 +112,9 @@
 }
 .timer-wrapper .timer .timer-output-wrapper {
   flex: 2;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 @media (max-width: 426px) {
   .timer-wrapper .timer .timer-output-wrapper {
@@ -121,10 +122,9 @@
   }
 }
 .timer-wrapper .timer .timer-output-wrapper .timer-output {
-  width: 90%;
-  height: 500px;
   background-color: transparent;
   border-radius: 5px;
+  padding: 15px;
   box-shadow: 0 0 1px #9baab8;
   display: flex;
   justify-content: center;

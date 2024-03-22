@@ -7,7 +7,7 @@
   display: flex;
   gap: 25px;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper {
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
   justify-content: center;
   padding: 15px;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper .intro-title {
     margin-top: 100px;
   }
@@ -36,17 +36,17 @@
   color: #06141b;
   text-shadow: 0 0 1px #11212d;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .intro-wrapper .intro-title h1 {
     font-size: 65px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .intro-wrapper .intro-title h1 {
     font-size: 45px;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper .intro-title h1 {
     text-align: center;
   }
@@ -55,12 +55,12 @@
   color: #ccd0cf;
   font-family: "Roboto Condensed", sans-serif;
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .intro-wrapper .intro-title p {
     font-size: 15px;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper .intro-title p {
     text-align: center;
   }
@@ -79,7 +79,7 @@
 .intro-wrapper .intro-title button:active {
   transform: scale(0.95);
 }
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .intro-wrapper .intro-title button {
     padding: 10px;
     width: -moz-fit-content;
@@ -91,7 +91,7 @@
     letter-spacing: 1px;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper .intro-title button {
     width: 100%;
   }
@@ -141,12 +141,12 @@
   background-color: #11212d;
   color: #ccd0cf;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .intro-wrapper .product-showcases .products .product:hover {
     opacity: 1;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .intro-wrapper .product-showcases .products .product {
     display: flex;
     flex-direction: column;
@@ -156,7 +156,7 @@
     display: none;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .intro-wrapper .product-showcases .products {
     display: flex;
     flex-direction: column;

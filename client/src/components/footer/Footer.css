@@ -17,13 +17,13 @@ footer span {
 footer .footer-content {
   display: flex;
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   footer .footer-content {
     flex-direction: column;
     gap: 15px;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   footer .footer-content {
     flex-direction: column;
     gap: 15px;
@@ -64,7 +64,7 @@ footer .footer-content .introduce-myself .networks {
   gap: 15px;
   align-items: center;
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   footer .footer-content .introduce-myself .networks {
     width: 100%;
     justify-content: space-between;
@@ -88,12 +88,12 @@ footer .footer-content .my-projects {
   color: #ccd0cf;
   border-left: 2px solid;
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   footer .footer-content .my-projects {
     border: none;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   footer .footer-content .my-projects {
     border: none;
   }
@@ -110,7 +110,7 @@ footer .footer-content .my-projects ul {
   flex-direction: column;
   gap: 5px;
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   footer .footer-content .my-projects ul {
     align-items: center;
   }

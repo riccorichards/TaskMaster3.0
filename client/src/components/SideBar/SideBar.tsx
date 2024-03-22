@@ -6,14 +6,15 @@ import Logo from "../header/logo/Logo";
 import Utils from "../../utils/Utils";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { HiMiniVideoCamera } from "react-icons/hi2";
-import { useBotStore } from "../../store/BotStore";
 import { useTaskStore } from "../../store/TaskStore";
 import { IoIosTimer } from "react-icons/io";
+import { FC } from "react";
 
-const SideBar = () => {
+const SideBar: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
+  setIsOpenTimer,
+}) => {
   const { logOut, user, myStats } = useUserStore();
   const navigate = useNavigate();
-  const { botAction, bot } = useBotStore();
   const { dailyResult } = useTaskStore();
 
   const handleLogout = () => {
@@ -22,14 +23,6 @@ const SideBar = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     navigate("/");
-  };
-
-  const handleBotAction = () => {
-    if (bot === "close") {
-      botAction("open");
-    } else if (bot === "open") {
-      botAction("close");
-    }
   };
 
   const quality =
@@ -89,7 +82,7 @@ const SideBar = () => {
             <HiMiniVideoCamera />
           </span>
         </div>
-        <div className="bot-btn" onClick={handleBotAction}>
+        <div className="bot-btn" onClick={() => setIsOpenTimer(true)}>
           Run timer
           <span>
             <IoIosTimer />

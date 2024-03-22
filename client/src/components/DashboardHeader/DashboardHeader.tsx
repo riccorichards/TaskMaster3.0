@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useUserStore } from "../../store/AuthStore";
 import Utils from "../../utils/Utils";
 import Logo from "../header/logo/Logo";
@@ -9,9 +9,9 @@ import OpenedProfile from "./OpenedProfile";
 import { NavLink } from "react-router-dom";
 import { TbHomeStats } from "react-icons/tb";
 import { BiTask } from "react-icons/bi";
-import { IoIosTimer } from "react-icons/io";
 import { RiNodeTree } from "react-icons/ri";
 import DisplayTimer from "../Timer/DisplayTimer";
+import { SiProbot } from "react-icons/si";
 const navlinkStyle = {
   display: "flex",
   alignItems: "center",
@@ -21,7 +21,9 @@ const navlinkStyle = {
   textDecoration: "none",
 };
 
-const DashboardHeader = () => {
+const DashboardHeader: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
+  setIsOpenTimer,
+}) => {
   const { user } = useUserStore();
   const [isOpenProfile, setIsOpenProfile] = useState<boolean>(false);
 
@@ -41,9 +43,9 @@ const DashboardHeader = () => {
           <BiTask />
           Task
         </NavLink>
-        <NavLink style={navlinkStyle} to="/dashboard/timer">
-          <IoIosTimer />
-          Timer
+        <NavLink style={navlinkStyle} to="/dashboard/bots">
+          <SiProbot />
+          Bots
         </NavLink>
         <NavLink style={navlinkStyle} to="/dashboard/road-map">
           <RiNodeTree />
@@ -73,7 +75,7 @@ const DashboardHeader = () => {
               style={{ fontSize: "14px", color: "#ccd0cf" }}
             />
           )}
-          {isOpenProfile && <OpenedProfile />}
+          {isOpenProfile && <OpenedProfile setIsOpenTimer={setIsOpenTimer} />}
         </div>
         <div className="header-timer-wrapper">
           <DisplayTimer />

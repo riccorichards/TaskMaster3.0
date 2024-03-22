@@ -19,6 +19,7 @@ const DisplayTimer = () => {
 
     return () => removeEventListener("resize", handleResize);
   }, [screeSize]);
+  
   return (
     <div className="timer-output-wrapper">
       <div className="timer-output">

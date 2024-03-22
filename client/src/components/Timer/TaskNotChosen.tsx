@@ -10,12 +10,12 @@ const TaskNotChosen = () => {
         justifyContent: "center",
         gap: "5px",
         fontSize: "18px",
-        height: "20vh",
+        height: "25vh",
         fontWeight: "bold",
       }}
     >
       <BsDatabaseExclamation style={{ fontSize: "24px", color: "#fb2985" }} />
-      Task is not selected yet...
+      Tasks was not defined!
     </span>
   );
 };

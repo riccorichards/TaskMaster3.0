@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import { useToolsStore } from "../../store/ToolsStore";
 import ScreenSizeHandler from "../../utils/ScreenSizeHandler";
+import Timer from "../../components/Timer/TimerSetup";
 
 const Dashboard = () => {
   const { getMe, user, session } = useUserStore();
   const navigate = useNavigate();
   const [authChecking, setAuthChecking] = useState(true);
   const { screenSize } = useToolsStore();
+  const [isOpenTimer, setIsOpenTimer] = useState<boolean>(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -43,11 +45,18 @@ const Dashboard = () => {
       <ScreenSizeHandler />
       <section className="dashboard-wrapper">
         <div className="dashboard">
-          <aside>{screenSize > 769 ? <SideBar /> : <DashboardHeader />}</aside>
+          <aside>
+            {screenSize > 769 ? (
+              <SideBar setIsOpenTimer={setIsOpenTimer} />
+            ) : (
+              <DashboardHeader setIsOpenTimer={setIsOpenTimer} />
+            )}
+          </aside>
           <main>
             <MainDashboard />
           </main>
         </div>
+        {isOpenTimer && <Timer setIsOpenTimer={setIsOpenTimer} />}
       </section>
     </>
   );
