@@ -32,7 +32,7 @@ class Service {
 
   async RegisterService(input: RegisterUserType["body"]) {
     try {
-      const newUser = this.Repo.Register(input);
+      const newUser = await this.Repo.Register(input);
       if (!newUser) throw new BadRequestError("something wents wrong...");
       return newUser;
     } catch (error) {
