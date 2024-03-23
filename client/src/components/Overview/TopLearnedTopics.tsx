@@ -33,7 +33,7 @@ const TopLearnedTopics = () => {
     visualMap: {
       show: false,
       min: 20,
-      max: 200,
+      max: 600,
       inRange: {
         colorLightness: [1, 0],
       },
@@ -44,14 +44,14 @@ const TopLearnedTopics = () => {
         type: "pie",
         radius: "55%",
         center: ["50%", "50%"],
-        data: topWorkspaces.slice(0, 10),
+        data: topWorkspaces,
         roseType: "radius",
         label: {
           color: "#fff",
         },
         labelLine: {
           lineStyle: {
-            color: "#01c380",
+            color: "#ccd0cf",
           },
           smooth: 0.1,
           length: 5,

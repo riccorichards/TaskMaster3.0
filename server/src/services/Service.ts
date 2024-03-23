@@ -380,11 +380,11 @@ class Service {
 
       result.push({
         name: key,
-        value: totalStoredTime + totalTasks + completionRate,
+        value: (totalStoredTime + totalTasks + completionRate) / 15,
       });
     });
 
-    return result.sort((a, b) => b.value - a.value);
+    return result.slice(0, 10).sort((a, b) => b.value - a.value);
   }
 
   async BotMessageService({
