@@ -18,7 +18,6 @@ const TimerControllers: FC<{
   const { tasks } = useTaskStore();
   const { completeTask } = useTaskStore();
   const delta = useRef<number>(0);
-
   useEffect(() => {
     let frame: number;
     if (isRunTimer) {
@@ -80,11 +79,14 @@ const TimerControllers: FC<{
   function save() {
     if (delta.current > 0) {
       if (taskIndex !== null) {
-        const confirmToComplete = window.confirm("Do you finish the task?");
+        const confirmToComplete = window.confirm(
+          "Do you want to save the time?"
+        );
         if (confirmToComplete) {
+          const isCompleteTask = window.confirm("Do you complete the task?");
           completeTask(tasks[taskIndex]._id || "", {
             storedTime: delta.current,
-            complete: confirmToComplete,
+            complete: isCompleteTask,
           });
           setTimeout(() => {
             Utils.scrollToComponent("Task");

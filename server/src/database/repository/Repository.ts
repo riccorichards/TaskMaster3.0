@@ -117,7 +117,7 @@ class Repository {
   }
 
   async ReadTasks(author: string) {
-    return await TaskModel.find({ author });
+    return await TaskModel.find({ author }).sort({ createdAt: -1 });
   }
 
   async UpdateTask(
@@ -145,7 +145,7 @@ class Repository {
       dailyTasks.map(async (dailyTask: TaskDocument) => {
         const {
           _id,
-          createdAt,
+          updatedAt,
           author,
           workspace,
           complete,
@@ -155,7 +155,7 @@ class Repository {
         } = dailyTask;
 
         await HistoryModel.create({
-          createdAt,
+          createdAt: updatedAt,
           author,
           workspace,
           complete,
@@ -172,19 +172,13 @@ class Repository {
   }
 
   async GetDayFinish(author: string, amount: string) {
-    let myHistory: any;
-    if (amount === "all") {
-      myHistory = await HistoryModel.find({ author }).sort({ createdAt: -1 });
-    } else {
-      myHistory = await HistoryModel.find({ author })
-        .sort({ createdAt: -1 })
-        .limit(10);
-    }
-    return myHistory;
+    return await HistoryModel.find({ author })
+      .sort({ createdAt: -1 })
+      .limit(amount === "all" ? Infinity : 10);
   }
 
   async FilterHistory(query: any) {
-    return await HistoryModel.find(query);
+    return await HistoryModel.find(query).sort({ createdAt: -1 });
   }
 
   async NewQuestionForBot(userId: string, question: string, role: string) {

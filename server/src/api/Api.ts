@@ -227,7 +227,7 @@ const Api = (app: Application) => {
       }
     }
   );
-  //api endpoint for read task only
+  //api endpoint for create task
   app.post(
     "/api/task",
     incomingDataValidation(CreateTaskSchema),
@@ -322,7 +322,6 @@ const Api = (app: Application) => {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         const author = res.locals.user.user;
-
         if (Object.keys(req.query).length === 0)
           return res
             .status(400)

@@ -25,7 +25,7 @@ class Utils {
     try {
       const { accessToken, refreshToken } = takeAccessTokenFromStorage();
       const response = await axios({
-        url: `https://task-master-zjvca.ondigitalocean.app/api/${url}`,
+        url: `https://taskmaster3-19c68de2e41f.herokuapp.com/api/${url}`,
         method,
         data,
         headers: {
