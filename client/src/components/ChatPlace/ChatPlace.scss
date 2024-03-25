@@ -88,6 +88,8 @@
         justify-content: center;
         color: v.$cadet-gray;
         background-color: v.$gunmetal;
+        flex-grow: 0;
+        flex-shrink: 0;
       }
     }
   }

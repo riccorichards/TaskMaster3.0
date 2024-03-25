@@ -7,10 +7,24 @@ import SendMsg from "./SendMsg";
 import ChatHeaderForSmallDevice from "../ChatWithBots/ChatHeaderForSmallDevice";
 
 const ChatPlace = () => {
-  const { messages, roles } = useBotStore();
+  const { interactWithBot, messages, roles } = useBotStore();
+
   const { user } = useUserStore();
   const authorNick = user && user.username.slice(0, 2).toLocaleUpperCase();
   const inVisibleElRef = useRef<HTMLDivElement>(null);
+
+  const greeting =
+    messages.length > 0 && messages[0].msg.startsWith("Hi, I'm Matthew,");
+
+  useEffect(() => {
+    if (greeting) return;
+
+    const tID = setTimeout(() => {
+      interactWithBot("", "");
+    }, 1000);
+
+    return () => clearTimeout(tID);
+  }, [interactWithBot, greeting]);
 
   useEffect(() => {
     if (inVisibleElRef.current) {
