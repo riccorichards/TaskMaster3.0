@@ -80,6 +80,8 @@
   justify-content: center;
   color: #9baab8;
   background-color: #06141b;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .chat-place .send-message {
   display: flex;
