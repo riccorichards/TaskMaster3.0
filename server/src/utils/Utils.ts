@@ -34,7 +34,6 @@ class Utils {
     const date = new Date(createdAt);
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
     const day = String(date.getDate()).padStart(2, "0");
-
     return `${month}/${day}`;
   }
 

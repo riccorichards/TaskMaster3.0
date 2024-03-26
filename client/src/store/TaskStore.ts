@@ -94,10 +94,11 @@ export const useTaskStore = create<TaskStore>((set) => ({
         const taskIndex = tasks.findIndex((task) => task._id === response._id);
         if (taskIndex !== -1) {
           const updatedTasks = [...tasks];
+
           const updatedTask = {
             ...tasks[taskIndex],
             complete: response.complete,
-            storedTime: tasks[taskIndex].storedTime + response.storedTime,
+            storedTime: response.storedTime,
           };
           updatedTasks[taskIndex] = updatedTask;
 

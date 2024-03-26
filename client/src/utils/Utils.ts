@@ -83,6 +83,7 @@ class Utils {
     const today = new Date();
     const start = new Date(startDay);
 
+    console.log({ endTime, today, start });
     //normalize both days at the start of the day
     endTime.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
