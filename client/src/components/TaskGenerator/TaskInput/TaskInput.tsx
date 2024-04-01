@@ -27,9 +27,9 @@ const TaskInput: FC<{
       return;
     }
     if (inputValue !== "") {
-      const task = inputValue.split(",")[0].split("/")[0];
+      const task = inputValue.split(",")[0].split("/")[0].trim();
       const desc = inputValue.split(",")[1].split("/")[0].trim();
-      const priority = inputValue.split("/")[1];
+      const priority = inputValue.split("/")[1].trim();
       const allowedPriorities = ["easy", "medium", "high"];
 
       if (!allowedPriorities.includes(priority)) {

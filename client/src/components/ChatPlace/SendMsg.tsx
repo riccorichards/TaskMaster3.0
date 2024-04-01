@@ -5,7 +5,7 @@ const SendMsg = () => {
   const [input, setInput] = useState<string>("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { interactWithBot, msgTaker, pickedRole } = useBotStore();
-  
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -20,7 +20,7 @@ const SendMsg = () => {
     if (input !== "") {
       msgTaker({ author: "you", msg: input, role: pickedRole });
       setTimeout(() => {
-        interactWithBot(input, pickedRole);
+        interactWithBot(input.toLowerCase().trim(), pickedRole);
       }, 500);
       setInput("");
     }
