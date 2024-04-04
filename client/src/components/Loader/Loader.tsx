@@ -1,10 +1,7 @@
 import { FC } from "react";
 import "./Loader.css";
 
-const Loader: FC<{ width?: string; height?: string }> = ({
-  width = "40px",
-  height = "40px",
-}) => {
+const Loader: FC<{ width?: string; height?: string }> = () => {
   return (
     <div
       style={{
@@ -15,7 +12,7 @@ const Loader: FC<{ width?: string; height?: string }> = ({
         justifyContent: "center",
       }}
     >
-      <div className="loader" style={{ width, height }} />
+      <div className="loader" />
     </div>
   );
 };

@@ -62,7 +62,7 @@ export const useBotStore = create<BotStoreType>((set) => ({
     set(() => ({ isLoading: true }));
     try {
       const response = await Utils.makeRequest<BotRolesType[]>("bot", "GET");
-      set(() => ({ roles: response }));
+      set(() => ({ roles: response, isLoading: false }));
     } catch (error) {
       const message =
         (error as Error).message ?? "An unexpected error occurred!";
@@ -77,7 +77,7 @@ export const useBotStore = create<BotStoreType>((set) => ({
         "POST",
         input
       );
-      set((state) => ({ roles: [response, ...state.roles] }));
+      set((state) => ({ roles: [response, ...state.roles], isLoading: false }));
     } catch (error) {
       const message =
         (error as Error).message ?? "An unexpected error occurred!";
@@ -95,6 +95,7 @@ export const useBotStore = create<BotStoreType>((set) => ({
         roles: roles.filter(
           (role) => role._id.toString() !== response._id.toString()
         ),
+        isLoading: false,
       }));
     } catch (error) {
       const message =

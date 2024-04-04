@@ -1,0 +1,74 @@
+.chat-gpt {
+  background: radial-gradient(circle farthest-side at 0% 50%, #babec0 23.5%, rgba(0, 0, 0, 0) 0) 11.55px 16.5px, radial-gradient(circle farthest-side at 0% 50%, rgba(24, 24, 41, 0.12) 24%, rgba(0, 0, 0, 0) 0) 10.45px 16.5px, linear-gradient(#babec0 14%, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 85%, #babec0 0) 0 0, linear-gradient(150deg, #babec0 24%, rgba(24, 24, 41, 0.12) 0, rgba(24, 24, 41, 0.12) 26%, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 74%, rgba(24, 24, 41, 0.12) 0, rgba(24, 24, 41, 0.12) 76%, #babec0 0) 0 0, linear-gradient(30deg, #babec0 24%, rgba(24, 24, 41, 0.12) 0, rgba(24, 24, 41, 0.12) 26%, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 74%, rgba(24, 24, 41, 0.12) 0, rgba(24, 24, 41, 0.12) 76%, #babec0 0) 0 0, linear-gradient(90deg, rgba(24, 24, 41, 0.12) 2%, #babec0 0, #babec0 98%, rgba(24, 24, 41, 0.12) 0%) 0 0 #babec0;
+  background-size: 22px 33px;
+  background-color: #babec0;
+  width: 350px;
+  height: 80vh;
+  position: relative;
+  box-shadow: inset 0 0 1px #11212d;
+  border-radius: 5px;
+}
+.chat-gpt .close-chat-gpt {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #253745;
+  background-color: #11212d;
+  color: #9baab8;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 3.5px;
+  cursor: pointer;
+}
+.chat-gpt .close-chat-gpt:active {
+  transform: scale(0.95);
+}
+.chat-gpt #form-gpt {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 2.5px;
+  display: flex;
+  align-items: center;
+  background-color: #11212d;
+}
+.chat-gpt #form-gpt .gpt-input {
+  width: 100%;
+  resize: none;
+  border: none;
+  border-radius: 3.5px;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #ccd0cf;
+  background-color: transparent;
+  font-size: 16px;
+}
+.chat-gpt #form-gpt .gpt-input:focus {
+  outline: none;
+}
+.chat-gpt #form-gpt .gpt-btn {
+  height: 100%;
+  font-family: "Roboto Condensed", sans-serif;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.5px;
+  border: none;
+  background-color: #253745;
+  color: #06141b;
+  border: 1px solid #9baab8;
+}
+.chat-gpt #form-gpt .gpt-btn:hover {
+  cursor: pointer;
+}
+.chat-gpt .gpt-chat-place {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px;
+  overflow: auto;
+  height: calc(80vh - 35px);
+}

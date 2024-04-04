@@ -133,3 +133,9 @@ export interface BotState {
   isLoading: boolean;
   error: string | null;
 }
+
+export interface GptState {
+  gpt_messages: { message: string; role?: string }[];
+  isLoading: boolean;
+  error: string | null;
+}

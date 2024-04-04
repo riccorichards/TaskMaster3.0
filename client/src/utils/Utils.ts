@@ -17,6 +17,7 @@ class Utils {
     link.click();
     document.body.removeChild(link);
   };
+
   static async makeRequest<T>(
     url: string,
     method: Method = "GET",
@@ -98,6 +99,19 @@ class Utils {
     console.log({ journeyDuration, journeyDurationDays, startDay });
 
     return differenceInDays;
+  }
+
+  static typeWriter(elementId: string, text: string, speed: number) {
+    let i = 0;
+    const elem = document.getElementById(elementId);
+    function typing() {
+      if (i < text.length && elem) {
+        elem.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      }
+    }
+    typing();
   }
 }
 

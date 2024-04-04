@@ -5,14 +5,15 @@ import "./SideBar.scss";
 import Logo from "../header/logo/Logo";
 import Utils from "../../utils/Utils";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { HiMiniVideoCamera } from "react-icons/hi2";
 import { useTaskStore } from "../../store/TaskStore";
 import { IoIosTimer } from "react-icons/io";
 import { FC } from "react";
+import gpt from "../../assets/chatGPT.jpg";
 
-const SideBar: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
-  setIsOpenTimer,
-}) => {
+const SideBar: FC<{
+  setIsOpenTimer: (v: boolean) => void;
+  setIsOpenGPT: (v: boolean) => void;
+}> = ({ setIsOpenTimer, setIsOpenGPT }) => {
   const { logOut, user, myStats } = useUserStore();
   const navigate = useNavigate();
   const { dailyResult } = useTaskStore();
@@ -76,14 +77,22 @@ const SideBar: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-        <div className="tutorial">
-          App's Tutorial:{" "}
-          <span>
-            <HiMiniVideoCamera />
-          </span>
+        <div className="tutorial" onClick={() => setIsOpenGPT(true)}>
+          <h3>AI helper</h3>
+          <img
+            src={gpt}
+            alt="gpt-image"
+            style={{
+              width: "30px",
+              height: "30px",
+              objectFit: "cover",
+              borderRadius: "3.5px",
+              alignSelf: "flex-end",
+            }}
+          />
         </div>
         <div className="bot-btn" onClick={() => setIsOpenTimer(true)}>
-          Run timer
+          <h3>Run timer</h3>
           <span>
             <IoIosTimer />
           </span>

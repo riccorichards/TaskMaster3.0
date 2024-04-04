@@ -2,10 +2,17 @@ import { SiProbot } from "react-icons/si";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { useBotStore } from "../../store/BotStore";
 import { useEffect } from "react";
+import Loader from "../Loader/Loader";
 
 const BotList = () => {
-  const { roles, getBotRoles, removeBot, getPickedRole, pickedRole } =
-    useBotStore();
+  const {
+    roles,
+    getBotRoles,
+    removeBot,
+    getPickedRole,
+    pickedRole,
+    isLoading,
+  } = useBotStore();
 
   useEffect(() => {
     getBotRoles();
@@ -24,6 +31,8 @@ const BotList = () => {
   const handlePickInterviewer = (role: string) => {
     getPickedRole(role);
   };
+
+  if (isLoading) return <Loader />;
   return (
     <div className="bot-list">
       {roles.length > 0 ? (
@@ -54,6 +63,7 @@ const BotList = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            textAlign: "center",
             color: "#9baab8",
           }}
         >

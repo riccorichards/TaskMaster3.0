@@ -1,22 +1,36 @@
 @use "../../utils/sass/v.scss";
-.loader {
-  border: 4px solid v.$independence;
-  border-radius: 50%;
-  border-top-color: v.$charcoal_blue;
-  width: 40px;
-  height: 40px;
-  -webkit-animation: spin 1s ease-in-out infinite;
-  animation: spin 1s ease-in-out infinite;
-  position: relative;
-  margin: auto;
-}
 
-@-webkit-keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
+.loader {
+  position: relative;
+  width: 22.4px;
+  height: 22.4px;
+
+  &::before,
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    animation: spinner-b4c8mmmd 0.5s backwards,
+      spinner-49opz7md 1.25s 0.5s infinite ease;
+    border: 5.6px solid v.$cadet-gray;
+    border-radius: 50%;
+    box-shadow: 0 -33.6px 0 -5.6px v.$independence;
+    position: absolute;
+  }
+
+  &::after {
+    animation-delay: 0s, 1.25s;
   }
 }
-@keyframes spin {
+
+@keyframes spinner-b4c8mmmd {
+  from {
+    box-shadow: 0 0 0 -5.6px v.$independence;
+  }
+}
+
+@keyframes spinner-49opz7md {
   to {
     transform: rotate(360deg);
   }

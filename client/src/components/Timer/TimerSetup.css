@@ -5,6 +5,7 @@
   background-color: #06141b;
   border-radius: 5px;
   box-shadow: 0 0 1px #9baab8;
+  position: relative;
 }
 .timer-wrapper .timer {
   width: 100%;

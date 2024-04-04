@@ -8,6 +8,8 @@ import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import { useToolsStore } from "../../store/ToolsStore";
 import ScreenSizeHandler from "../../utils/ScreenSizeHandler";
 import Timer from "../../components/Timer/TimerSetup";
+import Draggable from "../../components/Draggable";
+import Gpt from "../../components/GPT/GPT";
 
 const Dashboard = () => {
   const { getMe, user, session } = useUserStore();
@@ -15,6 +17,7 @@ const Dashboard = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const { screenSize } = useToolsStore();
   const [isOpenTimer, setIsOpenTimer] = useState<boolean>(false);
+  const [isOpenGPT, setIsOpenGPT] = useState<boolean>(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -47,7 +50,10 @@ const Dashboard = () => {
         <div className="dashboard">
           <aside>
             {screenSize > 769 ? (
-              <SideBar setIsOpenTimer={setIsOpenTimer} />
+              <SideBar
+                setIsOpenTimer={setIsOpenTimer}
+                setIsOpenGPT={setIsOpenGPT}
+              />
             ) : (
               <DashboardHeader setIsOpenTimer={setIsOpenTimer} />
             )}
@@ -56,7 +62,12 @@ const Dashboard = () => {
             <MainDashboard />
           </main>
         </div>
-        {isOpenTimer && <Timer setIsOpenTimer={setIsOpenTimer} />}
+        {isOpenTimer && (
+          <Draggable children={<Timer setIsOpenTimer={setIsOpenTimer} />} />
+        )}
+        {isOpenGPT && (
+          <Draggable children={<Gpt setIsOpenGPT={setIsOpenGPT} />} />
+        )}
       </section>
     </>
   );

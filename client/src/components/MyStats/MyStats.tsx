@@ -6,7 +6,6 @@ import StatsInput from "./StatsInput";
 
 const MyStats = () => {
   const { myStats, getMyStats, user, isLoading } = useUserStore();
-
   useEffect(() => {
     if (user) {
       getMyStats();

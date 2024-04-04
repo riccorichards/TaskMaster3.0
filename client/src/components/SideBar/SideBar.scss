@@ -17,7 +17,7 @@
 .tutorial {
   display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
   background-color: v.$charcoal_blue;
   padding: 5px;
   border-radius: 3.5px;
@@ -26,21 +26,6 @@
 
   &:active {
     transform: scale(0.95);
-  }
-
-  span {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: v.$cadet-gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid 1.5px v.$gunmetal;
-
-    svg {
-      color: v.$gunmetal;
-    }
   }
 }
 
@@ -60,9 +45,9 @@
   }
 
   span {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 3.5px;
     background-color: v.$cadet-gray;
     display: flex;
     align-items: center;
