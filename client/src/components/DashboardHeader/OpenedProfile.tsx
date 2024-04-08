@@ -1,13 +1,14 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTaskStore } from "../../store/TaskStore";
 import { useUserStore } from "../../store/AuthStore";
 import { RiLogoutBoxLine, RiNodeTree } from "react-icons/ri";
-import { HiMiniVideoCamera } from "react-icons/hi2";
 import { TbHomeStats } from "react-icons/tb";
 import { BiTask } from "react-icons/bi";
 import { IoIosTimer } from "react-icons/io";
 import { SiProbot } from "react-icons/si";
 import { FC } from "react";
+import gpt from "../../assets/chatGPT.jpg";
+import { useGptStore } from "../../store/GPTStore";
 
 const navlinkStyle = {
   display: "flex",
@@ -24,6 +25,8 @@ const OpenedProfile: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
   const { dailyResult } = useTaskStore();
   const navigate = useNavigate();
   const { myStats, logOut } = useUserStore();
+  const { isUsedGPT, useGPT } = useGptStore();
+  const location = useLocation().pathname;
 
   const quality =
     dailyResult &&
@@ -33,6 +36,16 @@ const OpenedProfile: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
     logOut();
     navigate("/");
   };
+
+  const useChatGPT = () => {
+    if (location === "/dashboard/bots") {
+      isUsedGPT(true);
+    }
+    
+    isUsedGPT(true);
+    navigate("/dashboard/bots");
+  };
+
   return (
     <div
       style={{
@@ -60,6 +73,38 @@ const OpenedProfile: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
         Per day: {myStats?.perDay?.toFixed(2)} hr
       </span>
       <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        {useGPT ? (
+          <span
+            style={{
+              width: "24px",
+              height: "24px",
+              display: "flex",
+              alignItems: "center",
+              border: "1px solid",
+              justifyContent: "center",
+            }}
+            onClick={() => isUsedGPT(false)}
+          >
+            <SiProbot />
+          </span>
+        ) : (
+          <span
+            style={{
+              width: "24px",
+              height: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={useChatGPT}
+          >
+            <img
+              src={gpt}
+              alt="gpt"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </span>
+        )}
         <span
           style={{
             width: "24px",
@@ -67,20 +112,6 @@ const OpenedProfile: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: "50%",
-            border: "1px solid",
-          }}
-        >
-          <HiMiniVideoCamera />
-        </span>
-        <span
-          style={{
-            width: "24px",
-            height: "24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
             border: "1px solid",
           }}
         >

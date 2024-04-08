@@ -136,6 +136,7 @@ export interface BotState {
 
 export interface GptState {
   gpt_messages: { message: string; role?: string }[];
+  useGPT: boolean;
   isLoading: boolean;
   error: string | null;
 }

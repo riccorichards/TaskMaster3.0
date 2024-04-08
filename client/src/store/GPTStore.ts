@@ -6,10 +6,12 @@ interface GptStoreType extends GptState {
   sentToGpt: ({ message }: { message: string }) => Promise<void>;
   msgTaker: ({ message, role }: { message: string; role: string }) => void;
   closeGpt: () => void;
+  isUsedGPT: (v: boolean) => void;
 }
 
 export const useGptStore = create<GptStoreType>((set) => ({
   gpt_messages: [],
+  useGPT: false,
   isLoading: false,
   error: null,
   sentToGpt: async (cmd) => {
@@ -35,5 +37,8 @@ export const useGptStore = create<GptStoreType>((set) => ({
   },
   closeGpt: () => {
     set(() => ({ gpt_messages: [] }));
+  },
+  isUsedGPT: (v) => {
+    set(() => ({ useGPT: v }));
   },
 }));

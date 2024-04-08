@@ -92,6 +92,7 @@
       color: v.$light-gray;
       background-color: transparent;
       font-size: 16px;
+      position: relative;
 
       &:focus {
         outline: none;
@@ -124,5 +125,6 @@
     padding: 5px;
     overflow: auto;
     height: calc(80vh - 35px);
+    position: relative;
   }
 }

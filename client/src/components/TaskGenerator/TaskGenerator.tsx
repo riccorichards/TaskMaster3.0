@@ -4,6 +4,7 @@ import WorkSpace from "./WorkSpace/WorkSpace";
 import TasksWrapper from "../TasksWrapper/TasksWrapper";
 import { useTaskStore } from "../../store/TaskStore";
 import TaskInput from "./TaskInput/TaskInput";
+import Utils from "../../utils/Utils";
 
 const TaskGenerator = () => {
   const [storeWorkspace, setStoreWorkspace] = useState<string | null>(null);
@@ -28,6 +29,9 @@ const TaskGenerator = () => {
       setErrorHadler(null);
     }
   }, [tasks]);
+
+  const totalHours =
+    tasks.length > 0 && tasks.reduce((acc, task) => acc + task.storedTime, 0);
   return (
     <section className="task-generator">
       <WorkSpace setStoreWorkspace={setStoreWorkspace} />
@@ -37,7 +41,13 @@ const TaskGenerator = () => {
       />
       <TasksWrapper />
       <button className="store-daily-result" onClick={handleDayFinish}>
-        <span>Store result</span>
+        <span>
+          {" "}
+          <span style={{ color: "orangered" }}>
+            {tasks.length > 0 && Utils.formatDuration(totalHours || 0)}
+          </span>{" "}
+          Store result
+        </span>
       </button>
       {errorHandler && (
         <p style={{ fontSize: "14px", color: "red", alignSelf: "flex-end" }}>

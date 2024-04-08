@@ -4,11 +4,13 @@ import ChatPlace from "../ChatPlace/ChatPlace";
 import { useToolsStore } from "../../store/ToolsStore";
 import { useBotStore } from "../../store/BotStore";
 import { useEffect } from "react";
+import { useGptStore } from "../../store/GPTStore";
+import Gpt from "../GPT/GPT";
 
 const ChatWithBots = () => {
   const { screenSize } = useToolsStore();
   const { interactWithBot, messages } = useBotStore();
-
+  const { useGPT } = useGptStore();
   const greeting =
     messages.length > 0 && messages[0].msg.startsWith("Hi, I'm Matthew,");
 
@@ -23,20 +25,26 @@ const ChatWithBots = () => {
   }, [interactWithBot, greeting]);
 
   return (
-    <div className="chat-bots-wrapper">
-      {screenSize > 425 ? (
-        <>
-          <div className="chat-side-bar-wrapper">
-            <ChatSideBar />
-          </div>
-          <div className="chat-place-wrapper">
-            <ChatPlace />
-          </div>
-        </>
+    <>
+      {useGPT ? (
+        <Gpt />
       ) : (
-        <ChatPlace />
+        <div className="chat-bots-wrapper">
+          {screenSize > 425 ? (
+            <>
+              <div className="chat-side-bar-wrapper">
+                <ChatSideBar />
+              </div>
+              <div className="chat-place-wrapper">
+                <ChatPlace />
+              </div>
+            </>
+          ) : (
+            <ChatPlace />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

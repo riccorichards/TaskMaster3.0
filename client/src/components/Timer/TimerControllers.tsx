@@ -7,7 +7,10 @@ import Utils from "../../utils/Utils";
 
 const TimerControllers: FC<{
   taskIndex: number | null;
-  setTaskIndex: (v: number | null) => void;
+  setTaskIndex: (v: {
+    taskIndex: number | null;
+    taskId: string | undefined;
+  }) => void;
 }> = ({ taskIndex, setTaskIndex }) => {
   const [errorHandler, setErrorHadler] = useState<string | null>(null);
   const [isRunTimer, setIsRunTimer] = useState<boolean>(false);
@@ -93,7 +96,11 @@ const TimerControllers: FC<{
           }, 1000);
         }
         reset();
-        setTaskIndex(null);
+        const result = {
+          taskIndex: null,
+          taskId: undefined,
+        };
+        setTaskIndex(result);
       }
     }
   }

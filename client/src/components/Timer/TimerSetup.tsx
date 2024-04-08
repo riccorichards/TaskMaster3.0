@@ -9,10 +9,18 @@ import { FaWindowClose } from "react-icons/fa";
 const Timer: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
   setIsOpenTimer,
 }) => {
-  const [taskIndex, setTaskIndex] = useState<number | null>(null);
+  const [taskIdAndInd, setTaskIdAndInd] = useState<{
+    taskIndex: number | null;
+    taskId: string | undefined;
+  }>({ taskId: undefined, taskIndex: null });
   const { tasks } = useTaskStore();
-  const handleTaskIndex = (ind: number) => {
-    setTaskIndex(ind);
+
+  const handleTaskIndex = (_id: string, ind: number) => {
+    const result = {
+      taskId: _id,
+      taskIndex: ind,
+    };
+    setTaskIdAndInd(result);
   };
 
   return (
@@ -49,14 +57,14 @@ const Timer: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
                     <button
                       className="task-picker"
                       key={i}
-                      onClick={() => handleTaskIndex(i)}
+                      onClick={() => handleTaskIndex(task._id || "", i)}
                       disabled={task.complete}
                       style={{
                         cursor: task.complete ? "not-allowed" : "pointer",
                         backgroundColor: task.complete ? "#14bc87" : "",
                       }}
                     >
-                      {taskIndex === i && (
+                      {taskIdAndInd.taskId === task._id && (
                         <div
                           style={{
                             position: "absolute",
@@ -88,8 +96,8 @@ const Timer: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
               </div>
             </div>
             <TimerControllers
-              taskIndex={taskIndex}
-              setTaskIndex={setTaskIndex}
+              taskIndex={taskIdAndInd.taskIndex}
+              setTaskIndex={setTaskIdAndInd}
             />
           </div>
         </div>
