@@ -7,11 +7,12 @@ import Utils from "../../utils/Utils";
 
 const TimerControllers: FC<{
   taskIndex: number | null;
+  taskId: string | undefined;
   setTaskIndex: (v: {
     taskIndex: number | null;
     taskId: string | undefined;
   }) => void;
-}> = ({ taskIndex, setTaskIndex }) => {
+}> = ({ taskIndex, setTaskIndex, taskId }) => {
   const [errorHandler, setErrorHadler] = useState<string | null>(null);
   const [isRunTimer, setIsRunTimer] = useState<boolean>(false);
   const pauseStartTime = useRef<number>(0);
@@ -21,6 +22,7 @@ const TimerControllers: FC<{
   const { tasks } = useTaskStore();
   const { completeTask } = useTaskStore();
   const delta = useRef<number>(0);
+
   useEffect(() => {
     let frame: number;
     if (isRunTimer) {
@@ -87,7 +89,8 @@ const TimerControllers: FC<{
         );
         if (confirmToComplete) {
           const isCompleteTask = window.confirm("Do you complete the task?");
-          completeTask(tasks[taskIndex]._id || "", {
+          const completeTaskId = tasks.find((task) => task._id === taskId)?._id;
+          completeTask(completeTaskId, {
             storedTime: delta.current,
             complete: isCompleteTask,
           });

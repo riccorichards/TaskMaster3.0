@@ -14,7 +14,7 @@ interface TaskStore extends TaskState {
   getTaskById: (id: string) => Promise<void>;
   deleteTask: (id: string) => Promise<void>;
   completeTask: (
-    taskId: string,
+    taskId: string | undefined,
     input: { storedTime: number; complete: boolean }
   ) => Promise<void>;
   dayFinish: () => Promise<void>;

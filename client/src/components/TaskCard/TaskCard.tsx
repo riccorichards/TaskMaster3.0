@@ -1,14 +1,16 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "./TaskCard.scss";
 import { TaskType } from "../../types";
 import { useTaskStore } from "../../store/TaskStore";
 import Utils from "../../utils/Utils";
 
 const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
-  const { deleteTask } = useTaskStore();
+  const { deleteTask, isLoading } = useTaskStore();
+  const [tempTaskId, setTempTaskId] = useState<string | null>(null);
 
   const handleRemoveTask = (taskId: string) => {
     deleteTask(taskId);
+    setTempTaskId(taskId);
   };
 
   return (
@@ -56,7 +58,7 @@ const TaskCard: FC<{ task: TaskType }> = ({ task }) => {
         onClick={() => handleRemoveTask(task._id || "")}
         disabled={task.complete}
       >
-        Remove
+        {`Remove ${isLoading && tempTaskId === task._id ? "..." : ""}`}
       </button>
     </div>
   );

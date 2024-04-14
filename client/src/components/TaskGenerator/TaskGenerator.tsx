@@ -8,6 +8,7 @@ import Utils from "../../utils/Utils";
 
 const TaskGenerator = () => {
   const [storeWorkspace, setStoreWorkspace] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean | null>(null);
   const { getTasks, dayFinish, tasks } = useTaskStore();
   const [errorHandler, setErrorHadler] = useState<string | null>(null);
 
@@ -19,6 +20,7 @@ const TaskGenerator = () => {
     if (tasks.length > 0) {
       dayFinish();
       setErrorHadler(null);
+      setIsLoading(true);
     } else {
       setErrorHadler("Task is not existing...");
     }
@@ -30,8 +32,15 @@ const TaskGenerator = () => {
     }
   }, [tasks]);
 
+  useEffect(() => {
+    if (tasks.length === 0) {
+      setIsLoading(null);
+    }
+  }, [tasks]);
+
   const totalHours =
     tasks.length > 0 && tasks.reduce((acc, task) => acc + task.storedTime, 0);
+
   return (
     <section className="task-generator">
       <WorkSpace setStoreWorkspace={setStoreWorkspace} />
@@ -46,7 +55,7 @@ const TaskGenerator = () => {
           <span style={{ color: "orangered" }}>
             {tasks.length > 0 && Utils.formatDuration(totalHours || 0)}
           </span>{" "}
-          Store result
+          {`Store result ${isLoading ? "..." : ""}`}
         </span>
       </button>
       {errorHandler && (

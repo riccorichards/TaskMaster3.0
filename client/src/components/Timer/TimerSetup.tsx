@@ -20,6 +20,7 @@ const Timer: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
       taskId: _id,
       taskIndex: ind,
     };
+
     setTaskIdAndInd(result);
   };
 
@@ -97,6 +98,7 @@ const Timer: FC<{ setIsOpenTimer: (v: boolean) => void }> = ({
             </div>
             <TimerControllers
               taskIndex={taskIdAndInd.taskIndex}
+              taskId={taskIdAndInd.taskId}
               setTaskIndex={setTaskIdAndInd}
             />
           </div>
