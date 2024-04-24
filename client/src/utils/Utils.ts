@@ -17,6 +17,7 @@ class Utils {
     link.click();
     document.body.removeChild(link);
   };
+
   static async makeRequest<T>(
     url: string,
     method: Method = "GET",

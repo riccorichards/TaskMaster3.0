@@ -55,7 +55,6 @@ class Utils {
     const differenceInDays = Math.ceil(differentInTime / (1000 * 3600 * 24));
     const journeyDurationDays = Math.ceil(journeyDuration / (1000 * 3600 * 24));
     const usedDays = journeyDurationDays - differenceInDays;
-
     const result = ((usedDays / journeyDurationDays) * 100).toFixed(2);
     return { result, differenceInDays };
   }
